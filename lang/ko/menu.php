@@ -16,6 +16,7 @@ return [
     'greeting' => '인사말',
     'history' => '연혁',
     'organization' => '조직도',
+    'capability' => '역량소개',
     'location' => '오시는 길',
 
     'education' => '교육사업',

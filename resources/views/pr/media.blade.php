@@ -15,58 +15,71 @@
         </div>
     </div>
 
+    {{-- Alpine.js 데이터 선언 (모달 제어용) --}}
     <div class="py-20 bg-white" x-data="{ open: false, videoUrl: '' }">
         <div class="max-w-7xl mx-auto px-4">
             
-            <div class="flex justify-between items-center mb-8 border-b border-gray-200 pb-4">
-                <span class="text-sm text-gray-600">전체 <b class="text-amber-600">2</b> 건 / 현재 1 페이지</span>
-                <div class="flex gap-0">
-                    <input type="text" class="border border-gray-300 px-3 py-2 text-sm w-48" placeholder="검색어 입력">
-                    <button class="bg-amber-500 text-white px-3 py-2"><i class="xi-search"></i></button>
+            {{-- 상단 검색 및 통계 --}}
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 border-b border-gray-200 pb-4">
+                <div class="text-sm text-gray-600 font-medium">
+                    전체 <span class="text-amber-600 font-bold">{{ $videos->total() }}</span> 건 / 현재 {{ $videos->currentPage() }} 페이지
                 </div>
+                
+                {{-- form action을 pr.media 라우트로 변경해야 함 (컨트롤러에서 처리) --}}
+                <form class="flex gap-0 w-full md:w-auto">
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="검색어를 입력하세요" class="border border-gray-300 px-4 py-2 text-sm w-full md:w-64 focus:outline-none focus:border-amber-500">
+                    <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 transition">
+                        <i class="xi-search"></i>
+                    </button>
+                </form>
             </div>
 
+            {{-- 비디오 그리드 --}}
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
+                @forelse($videos as $video)
                 <div class="group cursor-pointer" 
-                     @click="open = true; videoUrl = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'"> <div class="relative rounded-lg overflow-hidden border border-gray-200 aspect-video group-hover:shadow-lg transition">
-                        <img src="https://via.placeholder.com/640x360.png?text=FOEX+Video+KR" alt="썸네일" class="w-full h-full object-cover">
+                     @click="open = true; videoUrl = 'https://www.youtube.com/embed/{{ $video->video_id }}?autoplay=1'"> 
+                    
+                    {{-- 썸네일 영역 --}}
+                    <div class="relative rounded-lg overflow-hidden border border-gray-200 aspect-video group-hover:shadow-lg transition bg-gray-100">
+                        {{-- 모델에서 정의한 getThumbnailUrlAttribute() 사용 --}}
+                        <img src="{{ $video->thumbnail_url }}" alt="{{ $video->title }}" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                         
+                        {{-- 재생 아이콘 오버레이 --}}
                         <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition flex items-center justify-center">
                             <div class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition duration-300">
                                 <i class="xi-play text-2xl text-white ml-1"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4 border-b border-gray-100 pb-4">
-                        <h3 class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition truncate">FOEx Suite 홍보 영상 (국문)</h3>
-                        <p class="text-sm text-gray-400 mt-1">2025.02.07</p>
-                    </div>
-                </div>
 
-                <div class="group cursor-pointer" 
-                     @click="open = true; videoUrl = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1'">
-                    <div class="relative rounded-lg overflow-hidden border border-gray-200 aspect-video group-hover:shadow-lg transition">
-                        <img src="https://via.placeholder.com/640x360.png?text=FOEX+Video+EN" alt="썸네일" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition flex items-center justify-center">
-                            <div class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition duration-300">
-                                <i class="xi-play text-2xl text-white ml-1"></i>
-                            </div>
+                    {{-- 텍스트 정보 --}}
+                    <div class="mt-4 border-b border-gray-100 pb-4">
+                        <h3 class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition truncate">
+                            {{ $video->title }}
+                        </h3>
+                        <div class="flex justify-between items-center mt-2">
+                            <p class="text-sm text-gray-400">{{ $video->created_at->format('Y.m.d') }}</p>
+                            <span class="text-xs text-gray-400"><i class="xi-eye"></i> {{ number_format($video->hit) }}</span>
                         </div>
                     </div>
-                    <div class="mt-4 border-b border-gray-100 pb-4">
-                        <h3 class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition truncate">FOEx Suite 홍보 영상 (영문)</h3>
-                        <p class="text-sm text-gray-400 mt-1">2025.02.07</p>
-                    </div>
                 </div>
+                @empty
+                <div class="col-span-full py-20 text-center text-gray-400 border-2 border-dashed border-gray-100 rounded-lg">
+                    등록된 홍보영상이 없습니다.
+                </div>
+                @endforelse
 
             </div>
 
+            {{-- 페이지네이션 --}}
             <div class="mt-12 flex justify-center">
-                <a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-900 text-white text-sm font-bold">1</a>
+                {{ $videos->appends(request()->input())->links('pagination.foex') }}
             </div>
         </div>
 
+        {{-- 영상 재생 모달 --}}
         <div x-show="open" class="fixed inset-0 z-50 flex items-center justify-center px-4" x-cloak>
             <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" @click="open = false; videoUrl = ''"></div>
             
@@ -75,8 +88,8 @@
                  x-transition:enter-start="opacity-0 scale-90"
                  x-transition:enter-end="opacity-100 scale-100">
                 
-                <button @click="open = false; videoUrl = ''" class="absolute top-4 right-4 z-10 text-white hover:text-gray-300">
-                    <i class="xi-close text-3xl"></i>
+                <button @click="open = false; videoUrl = ''" class="absolute top-4 right-4 z-10 text-white hover:text-gray-300 bg-black/50 rounded-full w-10 h-10 flex items-center justify-center transition">
+                    <i class="xi-close text-2xl"></i>
                 </button>
 
                 <iframe :src="videoUrl" class="w-full h-full" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

@@ -16,6 +16,7 @@ return [
     'greeting' => 'CEO Message',
     'history' => 'History',
     'organization' => 'Organization',
+    'capability' => 'Capability',
     'location' => 'Location',
 
     'education' => 'Education',

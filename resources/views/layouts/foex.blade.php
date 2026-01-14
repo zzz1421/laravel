@@ -9,7 +9,7 @@
     
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
 
-    <link rel="stylesheet" href="//unpkg.com/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xpressengine/xeicon@2.3.3/xeicon.min.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -48,6 +48,7 @@
                             <a href="{{ route('company.greeting') }}" @click="open = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.greeting') }}</a>
                             <a href="{{ route('company.history') }}" @click="open = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.history') }}</a>
                             <a href="{{ route('company.organization') }}" @click="open = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.organization') }}</a>
+                            <a href="{{ route('company.capability') }}" @click="open = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.capability') }}</a>
                             <a href="{{ route('company.location') }}" @click="open = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.location') }}</a>
                         </div>
                     </div>

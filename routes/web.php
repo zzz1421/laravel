@@ -19,6 +19,7 @@ Route::prefix('company')->name('company.')->group(function () {
     Route::get('/greeting', [PageController::class, 'greeting'])->name('greeting');
     Route::get('/history', [PageController::class, 'history'])->name('history'); // 연혁
     Route::get('/organization', [PageController::class, 'organization'])->name('organization'); // 조직도
+    Route::get('/capability', [PageController::class, 'capability'])->name('capability');
     Route::get('/location', [PageController::class, 'location'])->name('location'); // 오시는 길
 });
 
@@ -87,5 +88,10 @@ Route::get('lang/{locale}', function ($locale) {
     }
     return redirect()->back(); // 이전 페이지로 돌아가기
 })->name('lang.switch');
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('index');
+    Route::resource('notice', App\Http\Controllers\Admin\NoticeController::class);
+});
 
 require __DIR__.'/auth.php'; // (나중에 Breeze 설치 시 필요)

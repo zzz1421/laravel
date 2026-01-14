@@ -1,5 +1,6 @@
 <?php
-namespace App\Models;
+
+namespace App\Models; // <--- ★ 여기가 'App\Models' 여야 합니다.
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -7,10 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Notice extends Model
 {
     use HasFactory;
-
-	protected $connection = 'mysql';
-    protected $table = 'tbl_board';
-    protected $primaryKey = 'bd_id';
-	public $timestamps = false;
-	protected $quarded = [];
+    
+    protected $fillable = ['title', 'content', 'hit'];
 }

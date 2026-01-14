@@ -16,7 +16,8 @@
 
             <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
                 <div class="text-sm text-gray-600 font-medium">
-                    전체 <span class="text-amber-600 font-bold">41</span> 건 / 현재 1 페이지
+                    {{-- 전체 게시글 수 표시 --}}
+                    전체 <span class="text-amber-600 font-bold">{{ $notices->total() }}</span> 건 / 현재 {{ $notices->currentPage() }} 페이지
                 </div>
                 
                 <form class="flex gap-0 w-full md:w-auto">
@@ -39,51 +40,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            $notices = [
-                                ['no'=>41, 'title'=>'2024 대한민국 안전산업 박람회 포엑스(주) 참가', 'file'=>true, 'date'=>'2024.09.06', 'hits'=>1560],
-                                ['no'=>40, 'title'=>'2024년 2차 IECEx CoPC 교육공고 (Unit Ex 001)', 'file'=>true, 'date'=>'2024.08.05', 'hits'=>1818],
-                                ['no'=>39, 'title'=>'포엑스 주식회사 소프트웨어 사업자 등록', 'file'=>false, 'date'=>'2024.04.26', 'hits'=>2005],
-                                ['no'=>38, 'title'=>'포엑스(주) 한국선박내연기관협회 가입', 'file'=>true, 'date'=>'2024.04.24', 'hits'=>2105],
-                                ['no'=>37, 'title'=>'포엑스(주) 2024년 IP기반해외진출지원(글로벌IP스타기업) 선정', 'file'=>false, 'date'=>'2024.04.24', 'hits'=>739],
-                                ['no'=>36, 'title'=>'2024년 1차 IECEx CoPC 교육공고 (Unit Ex 001)', 'file'=>true, 'date'=>'2024.03.22', 'hits'=>1801],
-                                ['no'=>35, 'title'=>'국제방폭 기술 교육(방폭 기본)', 'file'=>true, 'date'=>'2024.01.12', 'hits'=>2005],
-                                ['no'=>34, 'title'=>'국제방폭 기술 교육(폭발위험장소설정)', 'file'=>true, 'date'=>'2024.01.12', 'hits'=>450],
-                                ['no'=>33, 'title'=>'포엑스(주) 세계 최초로 수소방폭 개인자격(IECEx CoPC Unit ...', 'file'=>true, 'date'=>'2023.07.10', 'hits'=>2355],
-                                ['no'=>32, 'title'=>'2023년 12차 IECEx CoPC 교육공고 (Unit Ex 001)', 'file'=>true, 'date'=>'2023.06.05', 'hits'=>2089],
-                            ];
-                        @endphp
-
-                        @foreach($notices as $notice)
-                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer" onclick="location.href='{{ route('pr.notice.show', 1) }}'">
-                            <td class="py-4 px-4 text-center font-medium">{{ $notice['no'] }}</td>
-                            <td class="py-4 px-4 text-left">
-                                <span class="text-blue-600 font-medium mr-1">[공지사항]</span>
-                                <span class="text-gray-800 hover:underline">{{ $notice['title'] }}</span>
-                            </td>
-                            <td class="py-4 px-4 text-center">
-                                @if($notice['file'])
-                                    <i class="xi-diskette text-gray-400 text-lg border border-gray-300 rounded p-0.5"></i>
-                                @else
+                        {{-- 데이터가 없을 경우 처리 --}}
+                        @if($notices->isEmpty())
+                            <tr>
+                                <td colspan="5" class="py-10 text-center text-gray-500">등록된 공지사항이 없습니다.</td>
+                            </tr>
+                        @else
+                            {{-- 컨트롤러에서 넘겨받은 $notices 변수 사용 --}}
+                            @foreach($notices as $notice)
+                            <tr class="border-b border-gray-200 hover:bg-gray-50 transition cursor-pointer" onclick="location.href='{{ route('pr.notice.show', $notice->id) }}'">
+                                <td class="py-4 px-4 text-center font-medium">{{ $notice->id }}</td>
+                                <td class="py-4 px-4 text-left">
+                                    <span class="text-blue-600 font-medium mr-1">[공지사항]</span>
+                                    {{-- 제목 출력 --}}
+                                    <span class="text-gray-800 hover:underline">{{ $notice->title }}</span>
+                                </td>
+                                <td class="py-4 px-4 text-center">
+                                    {{-- 파일 여부는 일단 비워둠 (추후 구현 시 if문 추가) --}}
                                     <span class="text-gray-300">-</span>
-                                @endif
-                            </td>
-                            <td class="py-4 px-4 text-center text-gray-500">{{ $notice['date'] }}</td>
-                            <td class="py-4 px-4 text-center text-gray-500">{{ $notice['hits'] }}</td>
-                        </tr>
-                        @endforeach
+                                </td>
+                                <td class="py-4 px-4 text-center text-gray-500">
+                                    {{-- 날짜 포맷 변경 --}}
+                                    {{ $notice->created_at->format('Y.m.d') }}
+                                </td>
+                                <td class="py-4 px-4 text-center text-gray-500">
+                                    {{-- 조회수 숫자 포맷 --}}
+                                    {{ number_format($notice->hit) }}
+                                </td>
+                            </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
 
             <div class="mt-12 flex justify-center">
-                <div class="flex items-center gap-1">
-                    <a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-900 text-white font-bold text-sm border border-gray-900">1</a>
-                    <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-gray-600 hover:bg-gray-50 text-sm border border-gray-300 transition">2</a>
-                    <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-gray-600 hover:bg-gray-50 text-sm border border-gray-300 transition">3</a>
-                    <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-gray-600 hover:bg-gray-50 text-sm border border-gray-300 transition">4</a>
-                    <a href="#" class="w-8 h-8 flex items-center justify-center bg-white text-gray-600 hover:bg-gray-50 text-sm border border-gray-300 transition">5</a>
-                </div>
+                {{-- 라라벨 기본 페이지네이션 링크 출력 --}}
+                {{ $notices->links('pagination.foex') }}
             </div>
 
         </div>
