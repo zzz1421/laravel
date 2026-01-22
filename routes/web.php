@@ -6,6 +6,11 @@ use App\Http\Controllers\PageController; // 정적 페이지용
 use App\Http\Controllers\NoticeController; // 게시판용
 use App\Http\Controllers\ProductController; // 제품소개용 (새로 만듦)
 use App\Http\Controllers\ServiceController; // 신청폼용 (새로 만듦)
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\PromotionalVideoController as AdminPromotionalVideoController;
+use App\Http\Controllers\Admin\CapabilityController as AdminCapabilityController;
+use App\Http\Controllers\Admin\NoticeController as AdminNoticeController;
+use App\Http\Controllers\Admin\PressController as AdminPressController;
 
 // 1. 메인 페이지
 Route::get('/', [MainController::class, 'index'])->name('home');
@@ -90,8 +95,15 @@ Route::get('lang/{locale}', function ($locale) {
 })->name('lang.switch');
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('index');
-    Route::resource('notice', App\Http\Controllers\Admin\NoticeController::class);
+    
+    // 대시보드
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+    
+    // 게시판 관리 (Resource 라우트)
+    Route::resource('notice', AdminNoticeController::class);
+    Route::resource('press', AdminPressController::class);
+    Route::resource('capability', AdminCapabilityController::class);
+    Route::resource('video', AdminPromotionalVideoController::class);
 });
 
 require __DIR__.'/auth.php'; // (나중에 Breeze 설치 시 필요)

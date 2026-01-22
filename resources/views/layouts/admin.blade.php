@@ -38,7 +38,7 @@
                 <a href="{{ route('admin.notice.index') }}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition {{ request()->routeIs('admin.notice.*') ? 'bg-gray-800 text-white' : '' }}">
                     <i class="xi-notice mr-3 text-lg"></i> 공지사항
                 </a>
-                <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition">
+                <a href="{{ route('admin.press.index') }}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition {{ request()->routeIs('admin.press.*') ? 'bg-gray-800 text-white' : '' }}">
                     <i class="xi-newspaper mr-3 text-lg"></i> 보도자료
                 </a>
                 <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition">
@@ -50,10 +50,10 @@
                     <p class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">콘텐츠 관리</p>
                 </div>
 
-                <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition">
+                <a href="{{ route('admin.capability.index') }}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition {{ request()->routeIs('admin.capability.*') ? 'bg-gray-800 text-white' : '' }}">
                     <i class="xi-trophy mr-3 text-lg"></i> 역량소개 (특허/인증)
                 </a>
-                <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition">
+                <a href="{{ route('admin.video.index') }}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition {{ request()->routeIs('admin.video.*') ? 'bg-gray-800 text-white' : '' }}">
                     <i class="xi-play-circle-o mr-3 text-lg"></i> 홍보영상
                 </a>
                 <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition">

@@ -158,7 +158,7 @@ class PageController extends Controller
         }
 
         // 3. 정렬 및 페이징 (작성일 최신순, 10개씩)
-        $pressReleases = $query->orderBy('post_date', 'desc')
+        $pressReleases = $query->orderBy('id', 'desc')
                            ->paginate(10);
 
         // 4. 뷰 반환

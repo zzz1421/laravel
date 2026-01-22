@@ -12,15 +12,19 @@ return new class extends Migration
     public function up()
     {
         Schema::create('capabilities', function (Blueprint $table) {
-            $table->id();
-            $table->string('category'); // patent, paper, mou, performance, cert
-            $table->string('title');    // 제목 (특허명, 논문명, 사업명 등)
-            $table->string('agency')->nullable(); // 발급기관, 학회, 발주처
-            $table->date('date')->nullable();     // 등록일, 계약일 등
-            $table->string('file_path')->nullable(); // 연결된 파일 경로
-            $table->boolean('is_display')->default(true);
-            $table->timestamps();
-        });
+        $table->id();
+        $table->string('category');
+        $table->string('title');
+        $table->string('agency')->nullable();
+        $table->date('date')->nullable();
+        $table->string('file_path')->nullable();
+        
+        // [추가] 상세 내용 저장용 (MOU 내용 등)
+        $table->longText('description')->nullable(); 
+        
+        $table->boolean('is_display')->default(true);
+        $table->timestamps();
+    });
     }
     /**
      * Reverse the migrations.
