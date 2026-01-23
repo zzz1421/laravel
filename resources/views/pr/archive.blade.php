@@ -6,8 +6,8 @@
 
     <div class="bg-gray-50 py-16 border-b border-gray-200">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">자료실</h1>
-            <p class="text-gray-600">포엑스의 기술 자료와 문서를 공유합니다.</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ __('pr.archive_title') }}</h1>
+            <p class="text-gray-600">{{ __('pr.archive_desc') }}</p>
         </div>
     </div>
 

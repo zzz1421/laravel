@@ -6,8 +6,8 @@
 
     <div class="bg-gray-50 py-16 border-b border-gray-200">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Q&A</h1>
-            <p class="text-gray-600">궁금한 점을 남겨주시면 친절하게 답변해 드립니다.</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ __('pr.qna_title') }}</h1>
+            <p class="text-gray-600">{{ __('pr.qna_desc') }}</p>
         </div>
     </div>
 

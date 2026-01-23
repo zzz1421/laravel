@@ -33,4 +33,9 @@ return [
     'download_pdf' => 'PDF 다운로드',
     'apply' => '신청하기',
     'inquiry_btn' => '문의하기',
+
+    //Brochure
+    'view_pdf' => 'PDF 미리보기',
+    'download' => '다운로드',
+    'close' => '닫기',
 ];

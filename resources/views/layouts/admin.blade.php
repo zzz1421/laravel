@@ -56,7 +56,7 @@
                 <a href="{{ route('admin.video.index') }}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition {{ request()->routeIs('admin.video.*') ? 'bg-gray-800 text-white' : '' }}">
                     <i class="xi-play-circle-o mr-3 text-lg"></i> 홍보영상
                 </a>
-                <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition">
+                <a href="{{ route('admin.brochure.index') }}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition">
                     <i class="xi-book-o mr-3 text-lg"></i> 브로슈어
                 </a>
             </nav>

@@ -6,7 +6,7 @@
 
     <div class="relative h-[400px] flex items-center justify-center text-white">
         <div class="absolute inset-0 bg-gray-900">
-            <div class="absolute inset-0 bg-[url('https://source.unsplash.com/1600x900/?business,building')] bg-cover bg-center opacity-30"></div>
+            <div class="absolute inset-0 bg-[url('https://loremflickr.com/1600/900/business,building')] bg-cover bg-center opacity-30"></div>
         </div>
         <div class="relative z-10 text-center px-4">
             <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ __('company.ceo_title') }}</h1>
@@ -19,7 +19,7 @@
             
             <div class="relative sticky top-24">
                 <div class="bg-gray-200 rounded-lg aspect-[3/4] shadow-lg overflow-hidden">
-                    <img src="https://source.unsplash.com/600x800/?man,suit" alt="CEO" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
+                    <img src="https://loremflickr.com/600/800/man,suit" alt="CEO" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
                 </div>
                 
                 <div class="absolute -bottom-6 -right-6 bg-blue-900 text-white p-6 rounded-lg shadow-xl hidden md:block">

@@ -7,10 +7,12 @@ use App\Http\Controllers\NoticeController; // 게시판용
 use App\Http\Controllers\ProductController; // 제품소개용 (새로 만듦)
 use App\Http\Controllers\ServiceController; // 신청폼용 (새로 만듦)
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrochureController;
 use App\Http\Controllers\Admin\PromotionalVideoController as AdminPromotionalVideoController;
 use App\Http\Controllers\Admin\CapabilityController as AdminCapabilityController;
 use App\Http\Controllers\Admin\NoticeController as AdminNoticeController;
 use App\Http\Controllers\Admin\PressController as AdminPressController;
+use App\Http\Controllers\Admin\BrochureController as AdminBrochureController;
 
 // 1. 메인 페이지
 Route::get('/', [MainController::class, 'index'])->name('home');
@@ -54,7 +56,7 @@ Route::prefix('pr')->name('pr.')->group(function () {
     Route::get('/notice/{id}', [NoticeController::class, 'show'])->name('notice.show');
 
     // 3) 홍보자료 (갤러리형)
-    Route::get('/brochure', [PageController::class, 'brochure'])->name('brochure');
+    Route::get('/brochure', [BrochureController::class, 'index'])->name('brochure');
 
     // 4) 홍보영상 (갤러리형)
     Route::get('/media', [PageController::class, 'media'])->name('media');
@@ -104,6 +106,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('press', AdminPressController::class);
     Route::resource('capability', AdminCapabilityController::class);
     Route::resource('video', AdminPromotionalVideoController::class);
+    Route::resource('brochure', AdminBrochureController::class);
 });
 
 require __DIR__.'/auth.php'; // (나중에 Breeze 설치 시 필요)

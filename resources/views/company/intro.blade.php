@@ -14,7 +14,7 @@
                     {!! __('company.intro_desc') !!} </p>
             </div>
             <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img src="https://source.unsplash.com/800x600/?industrial,engineer,valve" alt="Industrial Engineering" class="w-full h-full object-cover transform hover:scale-105 transition duration-700">
+                <img src="https://loremflickr.com/800/600/industrial,engineer,valve" alt="Industrial Engineering" class="w-full h-full object-cover transform hover:scale-105 transition duration-700">
                 <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-amber-400 rounded-full opacity-50 blur-3xl"></div>
             </div>
         </div>

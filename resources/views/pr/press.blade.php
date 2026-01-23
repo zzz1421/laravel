@@ -6,8 +6,8 @@
 
     <div class="bg-gray-50 py-16 border-b border-gray-200">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">보도자료</h1>
-            <p class="text-gray-600">언론에 소개된 포엑스의 소식과 관련 기사를 모았습니다.</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ __('pr.press_title') }}</h1>
+            <p class="text-gray-600">{{ __('pr.press_desc') }}</p>
         </div>
     </div>
 

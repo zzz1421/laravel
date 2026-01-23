@@ -33,4 +33,9 @@ return [
     'download_pdf' => 'Download PDF',
     'apply' => 'Apply',
     'inquiry_btn' => 'Inquiry',
+
+    //Brochure
+    'view_pdf' => 'View PDF',
+    'download' => 'Download',
+    'close' => 'Close',
 ];

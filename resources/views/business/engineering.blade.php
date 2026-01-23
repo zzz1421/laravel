@@ -52,7 +52,7 @@
                 </div>
                 <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
                     <div class="rounded-xl overflow-hidden shadow-lg h-[350px]">
-                        <img src="https://source.unsplash.com/800x600/?construction,engineer,building" alt="Design" class="w-full h-full object-cover">
+                        <img src="https://loremflickr.com/800/600/construction,engineer,building" alt="Design" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
@@ -73,15 +73,15 @@
                 </div>
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
-                        <div class="h-48 overflow-hidden"><img src="https://source.unsplash.com/600x400/?workers,construction" class="w-full h-full object-cover"></div>
+                        <div class="h-48 overflow-hidden"><img src="https://loremflickr.com/600/400/workers,construction" class="w-full h-full object-cover"></div>
                         <div class="p-6 text-center font-bold text-gray-800">Hazardous area equipment<br>register</div>
                     </div>
                     <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
-                        <div class="h-48 overflow-hidden"><img src="https://source.unsplash.com/600x400/?technology,network" class="w-full h-full object-cover"></div>
+                        <div class="h-48 overflow-hidden"><img src="https://loremflickr.com/600/400/technology,network" class="w-full h-full object-cover"></div>
                         <div class="p-6 text-center font-bold text-gray-800">Certificate</div>
                     </div>
                     <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
-                        <div class="h-48 overflow-hidden"><img src="https://source.unsplash.com/600x400/?blueprint,drawing" class="w-full h-full object-cover"></div>
+                        <div class="h-48 overflow-hidden"><img src="https://loremflickr.com/600/400/blueprint,drawing" class="w-full h-full object-cover"></div>
                         <div class="p-6 text-center font-bold text-gray-800">HAC Drawing</div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                 </div>
                 <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
                     <div class="rounded-xl overflow-hidden shadow-lg h-[400px]">
-                        <img src="https://source.unsplash.com/800x600/?inspector,helmet" alt="Inspection" class="w-full h-full object-cover">
+                        <img src="https://loremflickr.com/800/600/inspector,helmet" alt="Inspection" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center"><span class="w-2 h-8 bg-amber-500 mr-3"></span> {{ __('business.eng_tab_inspection') }}</h2>
@@ -114,16 +114,16 @@
                     <div>
                         <h3 class="text-xl font-bold text-gray-900 mb-6 border-l-4 border-amber-500 pl-3">{{ __('business.eng_insp_subtitle1') }}</h3>
                         <div class="grid grid-cols-2 gap-2">
-                            <img src="https://via.placeholder.com/200x200?text=Corrosion" class="w-full h-32 object-cover rounded shadow-sm">
-                            <img src="https://via.placeholder.com/200x200?text=Broken+Gland" class="w-full h-32 object-cover rounded shadow-sm">
-                            <img src="https://via.placeholder.com/200x200?text=Open+Bolt" class="w-full h-32 object-cover rounded shadow-sm">
-                            <img src="https://via.placeholder.com/200x200?text=Damaged+Seal" class="w-full h-32 object-cover rounded shadow-sm">
+                            <img src="https://placehold.co/200x200?text=Corrosion" class="w-full h-32 object-cover rounded shadow-sm">
+                            <img src="https://placehold.co/200x200?text=Broken+Gland" class="w-full h-32 object-cover rounded shadow-sm">
+                            <img src="https://placehold.co/200x200?text=Open+Bolt" class="w-full h-32 object-cover rounded shadow-sm">
+                            <img src="https://placehold.co/200x200?text=Damaged+Seal" class="w-full h-32 object-cover rounded shadow-sm">
                         </div>
                     </div>
                     <div>
                         <h3 class="text-xl font-bold text-gray-900 mb-6 border-l-4 border-amber-500 pl-3">{{ __('business.eng_insp_subtitle2') }}</h3>
                         <div class="border border-gray-300 p-2 rounded bg-white shadow-sm">
-                            <img src="https://via.placeholder.com/500x600?text=IECEx+Inspection+Report+Form" alt="Report" class="w-full h-auto">
+                            <img src="https://placehold.co/500x600?text=IECEx+Inspection+Report+Form" alt="Report" class="w-full h-auto">
                         </div>
                     </div>
                 </div>
@@ -138,15 +138,15 @@
                 </div>
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm text-center">
-                        <img src="https://source.unsplash.com/600x400/?digital,interface" class="w-full h-48 object-cover">
+                        <img src="https://loremflickr.com/600/400/digital,interface" class="w-full h-48 object-cover">
                         <div class="p-6 font-bold text-gray-800">{{ __('business.eng_diag_card1') }}</div>
                     </div>
                     <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm text-center">
-                        <img src="https://source.unsplash.com/600x400/?support,consulting" class="w-full h-48 object-cover">
+                        <img src="https://loremflickr.com/600/400/support,consulting" class="w-full h-48 object-cover">
                         <div class="p-6 font-bold text-gray-800">{{ __('business.eng_diag_card2') }}</div>
                     </div>
                     <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm text-center">
-                        <img src="https://source.unsplash.com/600x400/?factory,robot" class="w-full h-48 object-cover">
+                        <img src="https://loremflickr.com/600/400/factory,robot" class="w-full h-48 object-cover">
                         <div class="p-6 font-bold text-gray-800">{{ __('business.eng_diag_card3') }}</div>
                     </div>
                 </div>
@@ -165,7 +165,7 @@
                 </div>
                 <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
                     <div class="rounded-xl overflow-hidden shadow-lg h-[350px]">
-                        <img src="https://source.unsplash.com/800x600/?blueprint,hands,working" alt="Selection" class="w-full h-full object-cover">
+                        <img src="https://loremflickr.com/800/600/blueprint,hands,working" alt="Selection" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
@@ -188,7 +188,7 @@
                         <div class="proc-bar-yellow">{{ __('business.eng_proc_6') }}</div>
                     </div>
                     <div class="md:col-span-8 border border-gray-200 p-4 rounded-lg shadow-sm bg-white">
-                        <img src="https://via.placeholder.com/800x500?text=Zone+Classification+Drawing" alt="HAC Drawing" class="w-full h-auto">
+                        <img src="https://placehold.co/800x500?text=Zone+Classification+Drawing" alt="HAC Drawing" class="w-full h-auto">
                         <p class="text-center text-gray-500 text-sm mt-4">IEC 60079-10-1 Hazardous Area Classification Example</p>
                     </div>
                 </div>
@@ -203,7 +203,7 @@
                 </div>
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div class="rounded-xl overflow-hidden shadow-lg h-[350px]">
-                        <img src="https://source.unsplash.com/800x600/?industrial,worker,install" alt="Construction" class="w-full h-full object-cover">
+                        <img src="https://loremflickr.com/800/600/industrial,worker,install" alt="Construction" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center"><span class="w-2 h-2 bg-amber-500 mr-3"></span> {{ __('business.eng_tab_construction') }}</h2>
@@ -229,7 +229,7 @@
                 </div>
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div class="border border-gray-200 p-2 rounded shadow-sm">
-                        <img src="https://via.placeholder.com/500x700?text=IECEx+CoC+Certificate" alt="IECEx Certificate" class="w-full h-auto">
+                        <img src="https://placehold.co/500x700?text=IECEx+CoC+Certificate" alt="IECEx Certificate" class="w-full h-auto">
                     </div>
                     <div>
                         <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center"><span class="w-2 h-2 bg-amber-500 mr-3"></span> IECEx Service Facility Scheme</h2>

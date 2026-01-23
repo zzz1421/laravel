@@ -40,7 +40,7 @@
             <div class="py-20 bg-white">
                 <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
                     <div class="rounded-xl overflow-hidden shadow-lg h-[400px]">
-                        <img src="https://source.unsplash.com/800x600/?robot,industrial" alt="IECEx Education" class="w-full h-full object-cover">
+                        <img src="https://loremflickr.com/800/600/robot,industrial" alt="IECEx Education" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
@@ -113,7 +113,7 @@
                     </div>
                     <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
                         <div class="rounded-xl overflow-hidden shadow-lg h-[350px]">
-                            <img src="https://source.unsplash.com/800x600/?meeting,training,office" alt="Tech" class="w-full h-full object-cover">
+                            <img src="https://loremflickr.com/800/600/meeting,training,office" alt="Tech" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center"><span class="w-2 h-8 bg-amber-500 mr-3"></span> {{ __('business.tech_title') }}</h2>
@@ -145,7 +145,7 @@
                 <div class="max-w-7xl mx-auto px-4">
                     <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
                         <div class="rounded-xl overflow-hidden shadow-lg h-[400px]">
-                            <img src="https://source.unsplash.com/800x600/?electric-motor,engine" alt="Motor" class="w-full h-full object-cover">
+                            <img src="https://loremflickr.com/800/600/electric-motor,engine" alt="Motor" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center"><span class="w-3 h-3 bg-amber-500 mr-3 rounded-sm"></span> {{ __('business.motor_title') }}</h2>
@@ -181,7 +181,7 @@
                 <div class="max-w-7xl mx-auto px-4">
                     <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
                         <div class="rounded-xl overflow-hidden shadow-lg h-[400px] border border-sky-100">
-                            <img src="https://source.unsplash.com/800x600/?hydrogen,energy,blue" class="w-full h-full object-cover">
+                            <img src="https://loremflickr.com/800/600/hydrogen,energy,blue" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center"><span class="w-3 h-3 bg-sky-500 mr-3 rounded-sm"></span> {{ __('business.hydro_title') }}</h2>
@@ -215,7 +215,7 @@
                 <div class="max-w-7xl mx-auto px-4">
                     <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
                         <div class="rounded-xl overflow-hidden shadow-lg h-[400px] border border-orange-100">
-                            <img src="https://source.unsplash.com/800x600/?battery,factory,robot" alt="ESS" class="w-full h-full object-cover">
+                            <img src="https://loremflickr.com/800/600/battery,factory,robot" alt="ESS" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center"><span class="w-3 h-3 bg-orange-500 mr-3 rounded-sm"></span> {{ __('business.ess_title') }}</h2>
@@ -248,7 +248,7 @@
                 <div class="max-w-7xl mx-auto px-4">
                     <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
                         <div class="rounded-xl overflow-hidden shadow-lg h-[400px] border border-emerald-100">
-                            <img src="https://source.unsplash.com/800x600/?workers,safety,green" alt="SIL" class="w-full h-full object-cover">
+                            <img src="https://loremflickr.com/800/600/workers,safety,green" alt="SIL" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <h2 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">

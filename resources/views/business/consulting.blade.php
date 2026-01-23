@@ -91,7 +91,7 @@
                             <li class="flex items-center"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3"></span> {{ __('business.prod_list_9') }}</li>
                         </ul>
                         <div class="w-32 md:w-40 flex-shrink-0 border border-gray-100 shadow-sm p-1">
-                            <img src="https://via.placeholder.com/150x200?text=Certificate" alt="IECEx Certificate" class="w-full h-auto opacity-80">
+                            <img src="https://placehold.co/150x200?text=Certificate" alt="IECEx Certificate" class="w-full h-auto opacity-80">
                         </div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                     </div>
 
                     <div class="rounded-xl overflow-hidden shadow-lg h-[400px]">
-                        <img src="https://source.unsplash.com/800x600/?engineers,industrial,team" alt="Quality System" class="w-full h-full object-cover">
+                        <img src="https://loremflickr.com/800/600/engineers,industrial,team" alt="Quality System" class="w-full h-full object-cover">
                     </div>
                 </div>
 

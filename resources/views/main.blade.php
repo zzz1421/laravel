@@ -6,7 +6,7 @@
 
     <div class="relative h-[600px] md:h-[800px] flex items-center justify-center text-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://source.unsplash.com/1920x1080/?industrial,refinery,night" alt="Background" class="w-full h-full object-cover">
+            <img src="https://loremflickr.com/1920/1080/industrial,refinery,night" alt="Background" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-black/50"></div> </div>
 
         <div class="relative z-10 px-4 animate-fade-in-up">

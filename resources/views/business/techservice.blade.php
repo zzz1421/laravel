@@ -48,7 +48,7 @@
                 
                 <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
                     <div class="border border-gray-200 rounded-xl p-2 shadow-sm">
-                        <img src="https://via.placeholder.com/600x400?text=Risk+Assessment+Diagram" alt="Risk Assessment Diagram" class="w-full h-auto rounded-lg">
+                        <img src="https://placehold.co/600x400?text=Risk+Assessment+Diagram" alt="Risk Assessment Diagram" class="w-full h-auto rounded-lg">
                     </div>
                     
                     <div>
@@ -79,7 +79,7 @@
                             HAZID<br><span class="text-xs font-normal text-gray-500">Hazard Identifications</span>
                         </div>
                         <div class="h-40 overflow-hidden rounded-b-lg relative">
-                            <img src="https://source.unsplash.com/400x300/?ship,port" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                            <img src="https://loremflickr.com/400/300/ship,port" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                             HAZOP<br><span class="text-xs font-normal text-gray-500">Hazard and Operability</span>
                         </div>
                         <div class="h-40 overflow-hidden rounded-b-lg relative">
-                            <img src="https://source.unsplash.com/400x300/?engineers,meeting" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                            <img src="https://loremflickr.com/400/300/engineers,meeting" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                             FMEA<br><span class="text-xs font-normal text-gray-500">Failure Mode and Effect Analysis</span>
                         </div>
                         <div class="h-40 overflow-hidden rounded-b-lg relative">
-                            <img src="https://source.unsplash.com/400x300/?factory,inspection" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                            <img src="https://loremflickr.com/400/300/factory,inspection" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                             LOPA<br><span class="text-xs font-normal text-gray-500">Layer of Protection Analysis</span>
                         </div>
                         <div class="h-40 overflow-hidden rounded-b-lg relative">
-                            <img src="https://source.unsplash.com/400x300/?blueprint,safety" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                            <img src="https://loremflickr.com/400/300/blueprint,safety" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                             Ignition Risk Analysis<br><span class="text-xs font-normal text-gray-500">&nbsp;</span>
                         </div>
                         <div class="h-40 overflow-hidden rounded-b-lg relative">
-                            <img src="https://source.unsplash.com/400x300/?fire,spark" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                            <img src="https://loremflickr.com/400/300/fire,spark" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                 
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div class="rounded-xl overflow-hidden shadow-lg h-[400px] border border-gray-100">
-                        <img src="https://source.unsplash.com/800x600/?industrial,pipes,plant" alt="Safety Standard Development" class="w-full h-full object-cover">
+                        <img src="https://loremflickr.com/800/600/industrial,pipes,plant" alt="Safety Standard Development" class="w-full h-full object-cover">
                     </div>
                     
                     <div>
