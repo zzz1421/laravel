@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController; // 제품소개용 (새로 만듦)
 use App\Http\Controllers\ServiceController; // 신청폼용 (새로 만듦)
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrochureController;
+use App\Http\Controllers\QnaController;
 use App\Http\Controllers\Admin\PromotionalVideoController as AdminPromotionalVideoController;
 use App\Http\Controllers\Admin\CapabilityController as AdminCapabilityController;
 use App\Http\Controllers\Admin\NoticeController as AdminNoticeController;
@@ -68,8 +69,14 @@ Route::prefix('pr')->name('pr.')->group(function () {
     Route::get('/archive', [PageController::class, 'archive'])->name('archive');
 
     // 7) Q&A (게시판형)
-    Route::get('/qna', [PageController::class, 'qna'])->name('qna');
-    Route::get('/qna/view', [PageController::class, 'qnaShow'])->name('qna.show'); // [추가]
+    Route::get('/qna', [QnaController::class, 'index'])->name('qna.index');
+    
+    // 글쓰기(create)
+    Route::get('/qna/create', [QnaController::class, 'create'])->name('qna.create');
+    Route::post('/qna', [QnaController::class, 'store'])->name('qna.store');
+
+    // [중요] 상세(show)는 변수({id})를 받으므로 가장 아래에 두세요.
+    Route::get('/qna/{id}', [QnaController::class, 'show'])->name('qna.show');
 });
 
 // 6. 온라인 신청 (Service) - [교육신청 기능]
