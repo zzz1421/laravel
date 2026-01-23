@@ -1,6 +1,7 @@
 @extends('layouts.foex')
 
-@section('title', '홍보영상')
+{{-- 1. 타이틀 변수 적용 --}}
+@section('title', __('pr.media_title'))
 
 @section('content')
 
@@ -10,6 +11,7 @@
 
     <div class="bg-gray-50 py-16 border-b border-gray-200">
         <div class="max-w-4xl mx-auto px-4 text-center">
+            {{-- 2. 페이지 타이틀 및 설명 --}}
             <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ __('pr.media_title') }}</h1>
             <p class="text-gray-600">{{ __('pr.media_desc') }}</p>
         </div>
@@ -22,12 +24,14 @@
             {{-- 상단 검색 및 통계 --}}
             <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 border-b border-gray-200 pb-4">
                 <div class="text-sm text-gray-600 font-medium">
-                    전체 <span class="text-amber-600 font-bold">{{ $videos->total() }}</span> 건 / 현재 {{ $videos->currentPage() }} 페이지
+                    {{-- 3. 게시글 수 및 페이지 표시 (common 파일 활용) --}}
+                    {{ __('common.total') }} <span class="text-amber-600 font-bold">{{ $videos->total() }}</span>{{ __('common.count') }} / {{ $videos->currentPage() }} {{ __('common.page') }}
                 </div>
                 
                 {{-- form action을 pr.media 라우트로 변경해야 함 (컨트롤러에서 처리) --}}
                 <form class="flex gap-0 w-full md:w-auto">
-                    <input type="text" name="search" value="{{ request('search') }}" placeholder="검색어를 입력하세요" class="border border-gray-300 px-4 py-2 text-sm w-full md:w-64 focus:outline-none focus:border-amber-500">
+                    {{-- 4. 검색어 플레이스홀더 --}}
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="{{ __('common.search_placeholder') }}" class="border border-gray-300 px-4 py-2 text-sm w-full md:w-64 focus:outline-none focus:border-amber-500">
                     <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 transition">
                         <i class="xi-search"></i>
                     </button>
@@ -66,8 +70,9 @@
                     </div>
                 </div>
                 @empty
+                {{-- 5. 데이터 없음 메시지 --}}
                 <div class="col-span-full py-20 text-center text-gray-400 border-2 border-dashed border-gray-100 rounded-lg">
-                    등록된 홍보영상이 없습니다.
+                    {{ __('common.no_data') }}
                 </div>
                 @endforelse
 

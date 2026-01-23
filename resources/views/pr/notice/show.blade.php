@@ -8,8 +8,9 @@
     {{-- 상단 타이틀 영역 (디자인 통일) --}}
     <div class="bg-gray-50 py-16 border-b border-gray-200">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">공지사항</h1>
-            <p class="text-gray-600">포엑스의 주요 소식과 안내사항을 알려드립니다.</p>
+            {{-- 1. 타이틀 및 설명 다국어 적용 --}}
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ __('pr.notice_title') }}</h1>
+            <p class="text-gray-600">{{ __('pr.notice_desc') }}</p>
         </div>
     </div>
 
@@ -21,12 +22,14 @@
                 
                 {{-- 게시글 헤더 --}}
                 <div class="border-b border-gray-200 pb-6 mb-8">
-                    <span class="text-amber-600 font-bold text-sm mb-2 inline-block">공지</span>
+                    {{-- 2. 뱃지 텍스트 ('공지') --}}
+                    <span class="text-amber-600 font-bold text-sm mb-2 inline-block">{{ __('common.notice') }}</span>
                     <h1 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">{{ $notice->title }}</h1>
                     
                     <div class="text-gray-500 text-sm mt-4 flex flex-wrap justify-between items-center gap-4">
                         <div class="flex items-center gap-4">
-                            <span>작성자: {{ $notice->writer ?? '관리자' }}</span>
+                            {{-- 3. 작성자 라벨 및 기본값 처리 --}}
+                            <span>{{ __('common.writer') }}: {{ $notice->writer ?? __('common.admin') }}</span>
                             <span class="w-px h-3 bg-gray-300"></span>
                             <span>{{ $notice->created_at->format('Y.m.d') }}</span>
                         </div>
@@ -43,10 +46,10 @@
                     {!! $notice->content !!}
                 </div>
                 
-                {{-- 첨부파일 영역 (파일이 있는 경우에만 표시하도록 추후 개발) --}}
+                {{-- 첨부파일 영역 (추후 개발 시 주석 해제하여 사용) --}}
                 {{-- 
                 <div class="mt-10 p-4 bg-gray-50 rounded border border-gray-100">
-                    <p class="font-bold text-sm text-gray-700 mb-2">첨부파일</p>
+                    <p class="font-bold text-sm text-gray-700 mb-2">{{ __('common.file') }}</p>
                     <a href="#" class="text-sm text-gray-600 hover:text-blue-600 flex items-center gap-1">
                         <i class="xi-download"></i> 파일명.pdf
                     </a>
@@ -55,8 +58,9 @@
 
                 {{-- 하단 버튼 --}}
                 <div class="mt-12 border-t border-gray-200 pt-8 flex justify-center">
+                    {{-- 4. 목록으로 버튼 --}}
                     <a href="{{ route('pr.notice.index') }}" class="px-8 py-3 bg-gray-800 hover:bg-gray-700 text-white font-medium rounded transition">
-                        목록으로
+                        {{ __('common.list') }}
                     </a>
                 </div>
 

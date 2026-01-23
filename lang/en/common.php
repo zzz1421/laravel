@@ -1,41 +1,85 @@
 <?php
 return [
-    'home' => 'Home',
+    // --- Buttons ---
     'search' => 'Search',
-    'search_placeholder' => 'Enter keyword',
-    'total' => 'Total',
-    'count' => 'items',
-    'page' => 'Page',
-    'no_data' => 'No data available.',
-    'more' => 'Read More',
-    'close' => 'Close',
-    'confirm' => 'Confirm',
+    'list' => 'List',
+    'view' => 'View',
+    'write' => 'Write',
+    'modify' => 'Modify',
+    'delete' => 'Delete',
+    'save' => 'Save',
     'cancel' => 'Cancel',
+    'confirm' => 'Confirm',
+    'close' => 'Close',
     'submit' => 'Submit',
-    'list' => 'Back to List',
-    
-    // Table Headers
-    'no' => 'No.',
+    'more' => 'More',
+    'reset' => 'Reset',
+    'print' => 'Print',
+    'download' => 'Download',
+    'preview' => 'Preview',
+    'back' => 'Back',
+
+    // --- Board & List ---
+    'total' => 'Total',
+    'count' => '', // 영어는 보통 숫자 뒤에 건(Count)을 붙이지 않으므로 비워두거나 'Items' 사용
+    'page' => 'Page',
+    'no' => 'No',
+    'category' => 'Category',
     'title' => 'Title',
     'writer' => 'Writer',
     'date' => 'Date',
-    'hits' => 'Hits',
+    'hit' => 'Views',
     'file' => 'File',
     'status' => 'Status',
-    
-    // Status
-    'recruiting' => 'Open',
-    'closed' => 'Closed',
-    'answered' => 'Answered',
-    'waiting' => 'Waiting',
-    
-    // Buttons
-    'download_pdf' => 'Download PDF',
-    'apply' => 'Apply',
-    'inquiry_btn' => 'Inquiry',
-
-    //Brochure
+    'content' => 'Content',
+    'prev' => 'Previous',
+    'next' => 'Next',
+    'no_data' => 'No data available.',
+    'search_placeholder' => 'Enter keywords',
     'view_pdf' => 'View PDF',
-    'download' => 'Download',
-    'close' => 'Close',
+    'inquiry' => 'Inquiry',
+    'answered' => 'Answered',
+    'waiting' => 'Pending',
+    
+    // --- Status ---
+    'new' => 'New',
+    'notice' => 'Notice',
+    'secret' => 'Secret',
+    'reply' => 'Reply',
+    'recruiting' => 'Recruiting', // or Open
+    'closed' => 'Closed',
+    'waiting' => 'Pending',
+    'completed' => 'Completed',
+
+    // --- Form & Input ---
+    'id' => 'ID',
+    'password' => 'Password',
+    'password_confirm' => 'Confirm Password',
+    'name' => 'Name',
+    'email' => 'Email',
+    'phone' => 'Phone',
+    'address' => 'Address',
+    'homepage' => 'Website',
+    'subject' => 'Subject',
+    'message' => 'Message',
+    'required' => 'Required',
+    'admin' => 'Admin',
+
+    // --- Messages ---
+    'msg_delete_confirm' => 'Are you sure you want to delete?',
+    'msg_save_confirm' => 'Do you want to save?',
+    'msg_process_success' => 'Successfully processed.',
+    'msg_process_fail' => 'An error occurred.',
+    'msg_required' => 'Please required fields.',
+    'msg_loading' => 'Loading...',
+    'msg_uploading' => 'Uploading...',
+
+    // --- Days of Week ---
+    'sun' => 'Sun',
+    'mon' => 'Mon',
+    'tue' => 'Tue',
+    'wed' => 'Wed',
+    'thu' => 'Thu',
+    'fri' => 'Fri',
+    'sat' => 'Sat',
 ];

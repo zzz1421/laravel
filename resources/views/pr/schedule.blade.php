@@ -1,4 +1,3 @@
-cat > /volume1/web/foex_new/resources/views/pr/schedule.blade.php <<'EOF'
 @extends('layouts.foex')
 
 @section('title', __('menu.schedule'))
@@ -23,13 +22,13 @@ cat > /volume1/web/foex_new/resources/views/pr/schedule.blade.php <<'EOF'
             
             {{-- 1. 색깔별 범례 (Legend) --}}
             <div class="flex flex-wrap justify-center gap-6 mb-10 pb-6 border-b border-gray-100">
-                <div class="legend-item"><span class="legend-box bg-[#3B82F6]">I</span> IECEx CoPC</div>
-                <div class="legend-item"><span class="legend-box bg-[#A855F7]">P</span> 방폭교육</div>
-                <div class="legend-item"><span class="legend-box bg-[#22C55E]">M</span> 모터기술교육</div>
-                <div class="legend-item"><span class="legend-box bg-[#EF4444]">H</span> 수소안전교육위험성 평가교육</div>
-                <div class="legend-item"><span class="legend-box bg-[#06B6D4]">S</span> SIL 교육</div>
-                <div class="legend-item"><span class="legend-box bg-[#84CC16]">N</span> 안내사항</div>
-                <div class="legend-item"><span class="legend-box bg-[#9D174D]">E</span> 기타</div>
+                <div class="legend-item"><span class="legend-box bg-[#3B82F6]">I</span> {{ __('schedule.legend_iecex') }}</div>
+                <div class="legend-item"><span class="legend-box bg-[#A855F7]">P</span> {{ __('schedule.legend_explosion') }}</div>
+                <div class="legend-item"><span class="legend-box bg-[#22C55E]">M</span> {{ __('schedule.legend_motor') }}</div>
+                <div class="legend-item"><span class="legend-box bg-[#EF4444]">H</span> {{ __('schedule.legend_hydrogen') }}</div>
+                <div class="legend-item"><span class="legend-box bg-[#06B6D4]">S</span> {{ __('schedule.legend_sil') }}</div>
+                <div class="legend-item"><span class="legend-box bg-[#84CC16]">N</span> {{ __('schedule.legend_notice') }}</div>
+                <div class="legend-item"><span class="legend-box bg-[#9D174D]">E</span> {{ __('schedule.legend_etc') }}</div>
             </div>
 
             {{-- 2. 달력 헤더 (년/월 선택) --}}
@@ -48,13 +47,13 @@ cat > /volume1/web/foex_new/resources/views/pr/schedule.blade.php <<'EOF'
             {{-- 3. 달력 그리드 --}}
             <div class="border-t border-l border-gray-200 shadow-sm overflow-hidden rounded-lg">
                 <div class="grid grid-cols-7 text-center bg-gray-50 border-b border-gray-200">
-                    <div class="py-3 text-red-500 font-bold">일</div>
-                    <div class="py-3 text-gray-700 font-bold">월</div>
-                    <div class="py-3 text-gray-700 font-bold">화</div>
-                    <div class="py-3 text-gray-700 font-bold">수</div>
-                    <div class="py-3 text-gray-700 font-bold">목</div>
-                    <div class="py-3 text-gray-700 font-bold">금</div>
-                    <div class="py-3 text-blue-600 font-bold">토</div>
+                    <div class="py-3 text-red-500 font-bold">{{ __('common.sun') }}</div>
+                    <div class="py-3 text-gray-700 font-bold">{{ __('common.mon') }}</div>
+                    <div class="py-3 text-gray-700 font-bold">{{ __('common.tue') }}</div>
+                    <div class="py-3 text-gray-700 font-bold">{{ __('common.wed') }}</div>
+                    <div class="py-3 text-gray-700 font-bold">{{ __('common.thu') }}</div>
+                    <div class="py-3 text-gray-700 font-bold">{{ __('common.fri') }}</div>
+                    <div class="py-3 text-blue-600 font-bold">{{ __('common.sat') }}</div>
                 </div>
 
                 <div class="grid grid-cols-7 bg-white">
@@ -86,10 +85,11 @@ cat > /volume1/web/foex_new/resources/views/pr/schedule.blade.php <<'EOF'
 
     <script>
         function calendarData(backendEvents) {
+            const now = new Date();
             return {
-                today: new Date(),
-                year: 2023, 
-                month: 1, 
+                today: now,
+                year: now.getFullYear(), 
+                month: now.getMonth(),
                 events: backendEvents || [],
 
                 get blanks() {
@@ -114,4 +114,3 @@ cat > /volume1/web/foex_new/resources/views/pr/schedule.blade.php <<'EOF'
         }
     </script>
 @endsection
-EOF
