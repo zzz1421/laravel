@@ -54,7 +54,7 @@
                 </h3>
                 
                 <div class="text-gray-700 leading-relaxed relative z-10 space-y-2 whitespace-pre-wrap">
-{!! nl2br(e($qna->answer)) !!}
+{!! nl2br($qna->answer) !!}
                 </div>
 
                 @if($qna->updated_at)

@@ -92,7 +92,7 @@
                             <a href="{{ route('pr.brochure') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.brochure') }}</a>
                             <a href="{{ route('pr.media') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.media') }}</a>
                             <a href="{{ route('pr.press') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.press') }}</a>
-                            <a href="{{ route('pr.archive') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.archive') }}</a>
+                            <a href="{{ route('pr.archive.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.archive') }}</a>
                             <a href="{{ route('pr.qna.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.qna') }}</a>
                         </div>
                     </div>
@@ -112,11 +112,32 @@
 
                 {{-- 우측 상단 (언어, 로그인) --}}
                 <div class="flex items-center space-x-6">
+    
+                    {{-- 1. 언어 설정 --}}
                     <div class="flex items-center space-x-2 text-sm font-medium">
                         <a href="{{ route('lang.switch', 'ko') }}" class="{{ app()->getLocale() == 'ko' ? 'text-blue-700 font-bold' : 'text-gray-400 hover:text-gray-600' }}">KR</a>
                         <span class="text-gray-300">|</span>
                         <a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() == 'en' ? 'text-blue-700 font-bold' : 'text-gray-400 hover:text-gray-600' }}">EN</a>
                     </div>
+
+                    {{-- 2. 로그인/회원가입 (여기 추가됨!) --}}
+                    <div class="flex items-center gap-4 text-sm font-medium border-l border-gray-200 pl-6">
+                        @auth
+                            {{-- 로그인 상태일 때 --}}
+                            <span class="text-gray-600 hidden md:inline">
+                                <span class="text-blue-700 font-bold">{{ Auth::user()->name }}</span>님
+                            </span>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="text-gray-500 hover:text-blue-700 transition">로그아웃</button>
+                            </form>
+                        @else
+                            {{-- 로그아웃(손님) 상태일 때 --}}
+                            <a href="{{ route('login') }}" class="text-gray-500 hover:text-blue-700 transition">로그인</a>
+                            <a href="{{ route('register') }}" class="text-gray-500 hover:text-blue-700 transition">회원가입</a>
+                        @endauth
+                    </div>
+
                 </div>
             </div>
         </div>

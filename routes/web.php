@@ -66,7 +66,7 @@ Route::prefix('pr')->name('pr.')->group(function () {
     Route::get('/press', [PageController::class, 'press'])->name('press');
 
     // 6) 자료실 (게시판형)
-    Route::get('/archive', [PageController::class, 'archive'])->name('archive');
+    Route::get('/archive', [PageController::class, 'archive'])->name('archive.index');
 
     // 7) Q&A (게시판형)
     Route::get('/qna', [QnaController::class, 'index'])->name('qna.index');

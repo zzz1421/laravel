@@ -9,6 +9,8 @@ use App\Models\PressRelease; // 상단에 추가 필수!
 use App\Models\PromotionalVideo;
 use App\Models\Brochure;
 use App\Models\Capability;
+use App\Models\Archive;
+use App\Models\Qna;
 
 class PageController extends Controller
 {
@@ -166,13 +168,62 @@ class PageController extends Controller
     }
 
     // 자료실
-    public function archive() { return view('pr.archive'); }
+    public function archive()
+    {
+        // 2. DB에서 자료실 데이터를 최신순으로 가져옵니다 (페이지네이션 적용)
+        // 변수명을 뷰 파일에서 사용하는 '$references'로 맞춰야 합니다.
+        $references = Archive::latest()->paginate(10); 
+
+        // 3. 뷰(화면)에 데이터를 함께 보냅니다.
+        return view('pr.archive', compact('references'));
+    }
 
     // Q&A 목록
-    public function qna() { return view('pr.qna'); }
+    public function qna()
+{
+    // 1. DB에서 Qna 데이터를 최신순으로 가져오기 (10개씩 페이지네이션)
+    $qnas = Qna::latest()->paginate(10);
+
+    // 2. 화면(pr.qna.index)에 $qnas 변수를 함께 전달
+    // (이전에 파일명을 index.blade.php로 바꿨다면 뷰 이름은 'pr.qna.index'가 정확합니다)
+    return view('pr.qna.index', compact('qnas')); 
+}
 
     // [추가] Q&A 상세 보기 (임시)
-    public function qnaShow() { return view('pr.qna_show'); }
+    public function qnaShow($id)
+    {
+        // 1. 글 데이터 찾기
+        $qna = Qna::findOrFail($id);
+
+        // 2. 비밀글(secret == 1)인 경우 검증 시작
+        if ($qna->secret) {
+            
+            // (1) 관리자인지 확인 (관리자 이메일 목록)
+            // ★ 관리자 이메일을 배열 안에 추가하세요.
+            $adminEmails = ['admin@foex.co.kr', 'admin@test.com'];
+            $currentUser = auth()->user();
+
+            // 로그인 상태이고, 관리자 이메일이라면 -> 통과 (내용 보여줌)
+            if ($currentUser && in_array($currentUser->email, $adminEmails)) {
+                 return view('pr.qna.show', compact('qna'));
+            }
+
+            // (2) 작성자 본인인지 확인 (이메일 대조)
+            // 비회원 비밀번호 기능이 아직 없으므로, 로그인한 유저의 이메일과 글쓴이 이메일을 비교합니다.
+            if (auth()->check()) {
+                // 글에 저장된 이메일과 현재 로그인한 사람의 이메일이 같다면 -> 통과
+                if ($qna->email === auth()->user()->email) {
+                    return view('pr.qna.show', compact('qna'));
+                }
+            }
+
+            // (3) 위의 조건에 해당하지 않으면 -> 차단 (목록으로 튕겨냄)
+            return redirect()->route('pr.qna.index')->with('error', '비밀글은 작성자와 관리자만 확인할 수 있습니다.');
+        }
+
+        // 3. 비밀글이 아니면 그냥 보여줌
+        return view('pr.qna.show', compact('qna'));
+    }
 
     // 사이트맵 페이지
     public function sitemap() {
