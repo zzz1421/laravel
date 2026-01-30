@@ -168,19 +168,17 @@ class PageController extends Controller
     // 보도자료
     public function press(Request $request)
     {
-        // 1. 쿼리 시작
-        $query = PressRelease::query();
+        // [수정] query() 시작 시점에 where 조건 추가
+        $query = PressRelease::where('is_display', true); // ★ 수정됨
 
-        // 2. 검색어 처리
+        // 검색어 처리
         if ($search = $request->input('search')) {
             $query->where('title', 'like', "%{$search}%");
         }
 
-        // 3. 정렬 및 페이징 (작성일 최신순, 10개씩)
         $pressReleases = $query->orderBy('id', 'desc')
                            ->paginate(9);
 
-        // 4. 뷰 반환
         return view('pr.press', compact('pressReleases'));
     }
 

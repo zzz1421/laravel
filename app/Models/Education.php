@@ -2,21 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory; // 팩토리 기능 (선택사항이지만 추천)
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\EducationApplication; // 관계 모델 import
 
 class Education extends Model
 {
     use HasFactory;
 
-    // 테이블 이름 명시
     protected $table = 'educations';
     
-    // 모든 컬럼 수정 가능하도록 허용
+    // 모든 컬럼 입력 허용 (is_display 포함됨)
     protected $guarded = [];
 
-    // ▼▼▼ [이 부분이 추가되어야 합니다!] ▼▼▼
-    // DB에 있는 날짜 문자열을 진짜 '날짜 객체(Carbon)'로 변환해줍니다.
+    // 데이터 타입 변환 설정
     protected $casts = [
         'edu_start' => 'date',
         'edu_end' => 'date',
@@ -24,11 +23,13 @@ class Education extends Model
         'register_end' => 'date',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        
+        // ★ [추가] 0/1 값을 자동으로 true/false로 변환 (필수!)
+        'is_display' => 'boolean', 
     ];
-    // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
-    // 관계 설정: 이 교육에 달린 신청서들
+    // ★ [필수] 이 부분이 있어야 에러가 안 납니다.
     public function applications() {
-        return $this->hasMany(EducationApplication::class);
+        return $this->hasMany(EducationApplication::class, 'education_id');
     }
 }

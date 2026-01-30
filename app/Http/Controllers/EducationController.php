@@ -9,24 +9,21 @@ use Illuminate\Support\Facades\Auth;
 
 class EducationController extends Controller
 {
-    /**
-     * [목록] 교육 과정 리스트
-     */
     public function index()
     {
-        // 최신 등록순으로 페이징 처리 (10개씩)
-        $educations = Education::orderBy('created_at', 'desc')->paginate(9);
+        // [수정] 숨김 처리된 교육 과정 제외
+        $educations = Education::where('is_display', true) // ★ 추가됨
+                               ->orderBy('created_at', 'desc')
+                               ->paginate(9);
+                               
         return view('service.education.index', compact('educations'));
     }
 
-    /**
-     * [상세] 내용 보기 + 신청 폼
-     */
     public function show($id)
     {
-        $education = Education::findOrFail($id);
+        // [수정] 숨김 처리된 교육 상세 접근 차단
+        $education = Education::where('is_display', true)->findOrFail($id); // ★ 추가됨
         
-        // 로그인한 유저 정보 (신청 폼 자동 완성을 위해)
         $user = Auth::user(); 
 
         return view('service.education.show', compact('education', 'user'));

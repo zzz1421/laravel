@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models; // <--- ★ 여기가 'App\Models' 여야 합니다.
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -8,6 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Notice extends Model
 {
     use HasFactory;
-    
-    protected $fillable = ['title', 'content', 'hit'];
+
+    // 1. 대량 할당 허용 컬럼에 추가
+    protected $fillable = [
+        'title', 
+        'content', 
+        'writer', 
+        'hit',
+        'is_display', // ★ 추가
+        'is_top'      // ★ 추가
+    ];
+
+    // 2. 타입 캐스팅 설정 (0/1 -> false/true 자동 변환)
+    protected $casts = [
+        'is_display' => 'boolean',
+        'is_top' => 'boolean',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }
