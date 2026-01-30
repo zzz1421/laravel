@@ -7,19 +7,27 @@ return [
 
     // Business Section
     'biz_title' => 'Business Area',
-    'biz_desc' => 'We provide optimal services with professional technology and know-how.',
+    'biz_desc' => 'We provide optimal services based on professional expertise and know-how.',
     
+    // 1. Education
     'biz_1_title' => 'Education',
-    'biz_1_desc' => 'IECEx CoPC Personnel Certification<br>& Practical Technical Training',
+    'biz_1_desc' => 'IECEx CoPC Personnel Certification and<br>Practical Technical Training',
     
+    // 2. Consulting
     'biz_2_title' => 'Consulting',
-    'biz_2_desc' => 'Expert consulting for Ex product<br>certification & quality systems',
+    'biz_2_desc' => 'Expert consulting for Ex product certification<br>and quality system establishment',
+
+    // 3. Technical Services (신규)
+    'biz_3_title' => 'Technical Services',
+    'biz_3_desc' => 'Customized technical support for<br>stable industrial facility operations',
     
-    'biz_3_title' => 'Engineering',
-    'biz_3_desc' => 'HAC Design, Inspection, Maintenance<br>& Safety Diagnosis',
+    // 4. Engineering
+    'biz_4_title' => 'Engineering',
+    'biz_4_desc' => 'Hazardous area design, inspection,<br>maintenance, and safety diagnosis',
     
-    'biz_4_title' => 'R&D',
-    'biz_4_desc' => 'R&D for Ex Equipment Design<br>& Hydrogen Safety Systems',
+    // 5. R&D
+    'biz_5_title' => 'R&D',
+    'biz_5_desc' => 'R&D for Ex equipment design and<br>Hydrogen safety system optimization',
 
     'view_more' => 'View More',
 

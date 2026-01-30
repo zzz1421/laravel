@@ -27,7 +27,8 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            // 'email' => ['required', 'string', 'email'],  <-- 기존 코드 (지우거나 주석 처리)
+            'email' => ['required', 'string'],           // <-- 수정 코드 ('email' 규칙 제거)
             'password' => ['required', 'string'],
         ];
     }

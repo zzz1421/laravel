@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\EducationApplication;
 use Carbon\Carbon; // 날짜 계산용
 use App\Models\Schedule; // ★ 이 줄이 반드시 있어야 에러가 안 납니다!
 use App\Models\PressRelease; // 상단에 추가 필수!
@@ -12,8 +14,23 @@ use App\Models\Capability;
 use App\Models\Archive;
 use App\Models\Qna;
 
+
 class PageController extends Controller
 {
+
+    public function mypage()
+    {
+        $user = Auth::user();
+        
+        // ★ 내가 신청한 교육 내역 가져오기 (최신순)
+        // 'education'은 교육 과정 정보(제목 등)를 가져오기 위한 관계입니다.
+        $myApplications = EducationApplication::with('education')
+                                ->where('user_id', $user->id)
+                                ->orderBy('created_at', 'desc')
+                                ->get();
+
+        return view('mypage', compact('user', 'myApplications'));
+    }
     public function intro() {
         return view('company.intro');
     }
@@ -161,7 +178,7 @@ class PageController extends Controller
 
         // 3. 정렬 및 페이징 (작성일 최신순, 10개씩)
         $pressReleases = $query->orderBy('id', 'desc')
-                           ->paginate(10);
+                           ->paginate(9);
 
         // 4. 뷰 반환
         return view('pr.press', compact('pressReleases'));

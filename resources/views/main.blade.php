@@ -24,63 +24,97 @@
     </div>
 
     <div class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ __('main.biz_title') }}</h2>
-                <p class="text-gray-600">{{ __('main.biz_desc') }}</p>
-            </div>
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ __('main.biz_title') }}</h2>
+            <p class="text-gray-600">{{ __('main.biz_desc') }}</p>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <a href="{{ route('business.education') }}" class="group bg-white rounded-xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 border border-gray-100 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-blue-100"></div>
-                    <div class="w-14 h-14 bg-blue-600 rounded-lg flex items-center justify-center mb-6 text-white text-2xl relative z-10 group-hover:scale-110 transition">
-                        <i class="xi-book"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition">{{ __('main.biz_1_title') }}</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 h-10">{!! __('main.biz_1_desc') !!}</p>
-                    <span class="text-blue-600 text-sm font-bold flex items-center">
-                        {{ __('main.view_more') }} <i class="xi-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
-                    </span>
-                </a>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            
+            {{-- 1. 교육사업 --}}
+            <a href="{{ route('business.education') }}" class="group bg-white rounded-xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 border border-gray-100 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-blue-100"></div>
+                <div class="w-14 h-14 bg-blue-600 rounded-lg flex items-center justify-center mb-6 text-white text-2xl relative z-10 group-hover:scale-110 transition">
+                    <i class="xi-book"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition">{{ __('main.biz_1_title') }}</h3>
+                
+                {{-- [수정됨] h-10 -> h-20 (높이 확장), line-clamp-2 -> line-clamp-4 (4줄까지 허용) --}}
+                <p class="text-gray-500 text-sm leading-relaxed mb-6 h-20 line-clamp-4">{!! __('main.biz_1_desc') !!}</p>
+                
+                <span class="text-blue-600 text-sm font-bold flex items-center">
+                    {{ __('main.view_more') }} <i class="xi-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                </span>
+            </a>
 
-                <a href="{{ route('business.consulting') }}" class="group bg-white rounded-xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 border border-gray-100 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-amber-50 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-amber-100"></div>
-                    <div class="w-14 h-14 bg-amber-500 rounded-lg flex items-center justify-center mb-6 text-white text-2xl relative z-10 group-hover:scale-110 transition">
-                        <i class="xi-users"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-amber-600 transition">{{ __('main.biz_2_title') }}</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 h-10">{!! __('main.biz_2_desc') !!}</p>
-                    <span class="text-amber-600 text-sm font-bold flex items-center">
-                        {{ __('main.view_more') }} <i class="xi-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
-                    </span>
-                </a>
+            {{-- 2. 컨설팅 --}}
+            <a href="{{ route('business.consulting') }}" class="group bg-white rounded-xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 border border-gray-100 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-amber-50 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-amber-100"></div>
+                <div class="w-14 h-14 bg-amber-500 rounded-lg flex items-center justify-center mb-6 text-white text-2xl relative z-10 group-hover:scale-110 transition">
+                    <i class="xi-users"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-amber-600 transition">{{ __('main.biz_2_title') }}</h3>
+                
+                {{-- [수정됨] --}}
+                <p class="text-gray-500 text-sm leading-relaxed mb-6 h-20 line-clamp-4">{!! __('main.biz_2_desc') !!}</p>
+                
+                <span class="text-amber-600 text-sm font-bold flex items-center">
+                    {{ __('main.view_more') }} <i class="xi-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                </span>
+            </a>
 
-                <a href="{{ route('business.engineering') }}" class="group bg-white rounded-xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 border border-gray-100 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-teal-50 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-teal-100"></div>
-                    <div class="w-14 h-14 bg-teal-600 rounded-lg flex items-center justify-center mb-6 text-white text-2xl relative z-10 group-hover:scale-110 transition">
-                        <i class="xi-cog"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-teal-600 transition">{{ __('main.biz_3_title') }}</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 h-10">{!! __('main.biz_3_desc') !!}</p>
-                    <span class="text-teal-600 text-sm font-bold flex items-center">
-                        {{ __('main.view_more') }} <i class="xi-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
-                    </span>
-                </a>
+            {{-- 3. 기술용역 --}}
+            <a href="{{ route('business.techservice') }}" class="group bg-white rounded-xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 border border-gray-100 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-rose-50 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-rose-100"></div>
+                <div class="w-14 h-14 bg-rose-600 rounded-lg flex items-center justify-center mb-6 text-white text-2xl relative z-10 group-hover:scale-110 transition">
+                    <i class="xi-wrench"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-rose-600 transition">{{ __('main.biz_3_title') }}</h3>
+                
+                {{-- [수정됨] --}}
+                <p class="text-gray-500 text-sm leading-relaxed mb-6 h-20 line-clamp-4">{!! __('main.biz_3_desc') !!}</p>
+                
+                <span class="text-rose-600 text-sm font-bold flex items-center">
+                    {{ __('main.view_more') }} <i class="xi-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                </span>
+            </a>
 
-                <a href="{{ route('business.rnd') }}" class="group bg-white rounded-xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 border border-gray-100 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-50 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-indigo-100"></div>
-                    <div class="w-14 h-14 bg-indigo-600 rounded-lg flex items-center justify-center mb-6 text-white text-2xl relative z-10 group-hover:scale-110 transition">
-                        <i class="xi-flask"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition">{{ __('main.biz_4_title') }}</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-6 h-10">{!! __('main.biz_4_desc') !!}</p>
-                    <span class="text-indigo-600 text-sm font-bold flex items-center">
-                        {{ __('main.view_more') }} <i class="xi-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
-                    </span>
-                </a>
-            </div>
+            {{-- 4. 엔지니어링 --}}
+            <a href="{{ route('business.engineering') }}" class="group bg-white rounded-xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 border border-gray-100 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-teal-50 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-teal-100"></div>
+                <div class="w-14 h-14 bg-teal-600 rounded-lg flex items-center justify-center mb-6 text-white text-2xl relative z-10 group-hover:scale-110 transition">
+                    <i class="xi-cog"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-teal-600 transition">{{ __('main.biz_4_title') }}</h3>
+                
+                {{-- [수정됨] --}}
+                <p class="text-gray-500 text-sm leading-relaxed mb-6 h-20 line-clamp-4">{!! __('main.biz_4_desc') !!}</p>
+                
+                <span class="text-teal-600 text-sm font-bold flex items-center">
+                    {{ __('main.view_more') }} <i class="xi-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                </span>
+            </a>
+
+            {{-- 5. 연구개발 --}}
+            <a href="{{ route('business.rnd') }}" class="group bg-white rounded-xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 border border-gray-100 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-50 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-indigo-100"></div>
+                <div class="w-14 h-14 bg-indigo-600 rounded-lg flex items-center justify-center mb-6 text-white text-2xl relative z-10 group-hover:scale-110 transition">
+                    <i class="xi-lightbulb-o"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition">{{ __('main.biz_5_title') }}</h3>
+                
+                {{-- [수정됨] --}}
+                <p class="text-gray-500 text-sm leading-relaxed mb-6 h-20 line-clamp-4">{!! __('main.biz_5_desc') !!}</p>
+                
+                <span class="text-indigo-600 text-sm font-bold flex items-center">
+                    {{ __('main.view_more') }} <i class="xi-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                </span>
+            </a>
+
         </div>
     </div>
+</div>
 
     <div class="bg-gray-900 text-white py-20 relative overflow-hidden">
         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>

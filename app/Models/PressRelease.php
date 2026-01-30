@@ -20,7 +20,8 @@ class PressRelease extends Model
         'writer', 
         'post_date', 
         'hit',
-        'is_display'
+        'is_display',
+        'thumbnail'
     ];
 
     // 날짜 컬럼 캐스팅 (필수 아님, 편의상 추가)

@@ -8,12 +8,14 @@
         
         <h2 class="text-2xl font-bold text-center text-gray-900 mb-8">LOGIN</h2>
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}" target="_self">
             @csrf
 
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1">이메일</label>
-                <input type="email" name="email" value="{{ old('email') }}" required autofocus
+                <label class="block text-sm font-medium text-gray-700 mb-1">아이디 또는 이메일</label>
+                {{-- type="text"로 변경하여 일반 아이디도 입력 가능하게 함 --}}
+                <input type="text" name="email" value="{{ old('email') }}" required autofocus
+                       placeholder="이메일 또는 아이디 입력"
                        class="w-full border-gray-300 border px-4 py-2 focus:border-amber-500 focus:outline-none transition">
                 @error('email') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
@@ -24,7 +26,9 @@
                        class="w-full border-gray-300 border px-4 py-2 focus:border-amber-500 focus:outline-none transition">
             </div>
 
-            <button type="submit" class="w-full bg-gray-900 text-white font-bold py-3 hover:bg-black transition">
+            <button type="submit" 
+                    formtarget="_self" 
+                    class="w-full bg-gray-900 text-white font-bold py-3 hover:bg-black transition">
                 로그인
             </button>
 
@@ -35,5 +39,15 @@
             </div>
         </form>
     </div>
+
+    <script>
+        // 페이지 로드 시 폼의 타겟을 강제로 '_self'(현재창)로 고정
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            if (form) {
+                form.setAttribute('target', '_self');
+            }
+        });
+    </script>
 </div>
 @endsection

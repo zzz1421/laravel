@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FOEX Admin - @yield('title')</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xpressengine/xeicon@2.3.3/xeicon.min.css">
     {{-- Alpine.js (드롭다운 등 인터랙션용) --}}
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
@@ -30,18 +30,27 @@
                     <i class="xi-layout-o mr-3 text-lg"></i> 대시보드
                 </a>
 
+                <div class="pt-4 pb-2">
+                    <p class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">회원 관리</p>
+                </div>
+
+                <a href="{{ route('admin.users.index') }}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition {{ request()->routeIs('admin.users.*') ? 'bg-gray-800 text-white' : '' }}">
+                    <i class="xi-users-plus mr-3 text-lg"></i> 전체 회원 관리
+                </a>
+
                 {{-- 구분선 --}}
                 <div class="pt-4 pb-2">
                     <p class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">게시판 관리</p>
                 </div>
 
                 <a href="{{ route('admin.notice.index') }}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition {{ request()->routeIs('admin.notice.*') ? 'bg-gray-800 text-white' : '' }}">
-                    <i class="xi-notice mr-3 text-lg"></i> 공지사항
+                    <i class="xi-bell mr-3 text-lg"></i> 공지사항
                 </a>
                 <a href="{{ route('admin.press.index') }}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition {{ request()->routeIs('admin.press.*') ? 'bg-gray-800 text-white' : '' }}">
-                    <i class="xi-newspaper mr-3 text-lg"></i> 보도자료
+                    <i class="xi-document mr-3 text-lg"></i> 보도자료
                 </a>
-                <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition">
+                <a href="{{ route('admin.archives.index') }}" 
+                class="flex items-center px-4 py-2 text-sm font-medium rounded-md transition {{ request()->routeIs('admin.archives.*') ? 'bg-gray-800 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
                     <i class="xi-library-books-o mr-3 text-lg"></i> 자료실
                 </a>
 
@@ -53,11 +62,27 @@
                 <a href="{{ route('admin.capability.index') }}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition {{ request()->routeIs('admin.capability.*') ? 'bg-gray-800 text-white' : '' }}">
                     <i class="xi-trophy mr-3 text-lg"></i> 역량소개 (특허/인증)
                 </a>
+                <a href="{{ route('admin.schedules.index') }}" 
+                class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition
+                {{ request()->routeIs('admin.schedules.*') ? 'bg-gray-800 text-white' : '' }}">
+                    {{-- 아이콘: 달력 모양 --}}
+                    <i class="xi-calendar-check text-xl mr-3"></i>
+                    <span class="text-sm">일정 관리</span>
+                </a>
                 <a href="{{ route('admin.video.index') }}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition {{ request()->routeIs('admin.video.*') ? 'bg-gray-800 text-white' : '' }}">
                     <i class="xi-play-circle-o mr-3 text-lg"></i> 홍보영상
                 </a>
                 <a href="{{ route('admin.brochure.index') }}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition">
                     <i class="xi-book-o mr-3 text-lg"></i> 브로슈어
+                </a>
+                {{-- 구분선: 서비스 관리 --}}
+                <div class="pt-4 pb-2">
+                    <p class="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">서비스 관리</p>
+                </div>
+
+                {{-- 교육 과정 관리 메뉴 --}}
+                <a href="{{ route('admin.education.index') }}" class="flex items-center px-4 py-2 text-sm font-medium text-gray-400 rounded-md hover:bg-gray-800 hover:text-white transition {{ request()->routeIs('admin.education.*') ? 'bg-gray-800 text-white' : '' }}">
+                    <i class="xi-school mr-3 text-lg"></i> 교육 과정 관리
                 </a>
             </nav>
 

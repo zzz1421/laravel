@@ -20,6 +20,7 @@ return [
     //보도자료
     'press_title' => '보도자료',
     'press_desc' => '언론에 소개된 포엑스의 소식과 관련 기사를 모았습니다.',
+    'read_more' => '기사 원문 보기', // 추가
 
     //자료실
     'archive_title' => '자료실',

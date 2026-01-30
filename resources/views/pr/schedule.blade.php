@@ -21,14 +21,64 @@
         <div class="max-w-7xl mx-auto px-4">
             
             {{-- 1. 색깔별 범례 (Legend) --}}
-            <div class="flex flex-wrap justify-center gap-6 mb-10 pb-6 border-b border-gray-100">
-                <div class="legend-item"><span class="legend-box bg-[#3B82F6]">I</span> {{ __('schedule.legend_iecex') }}</div>
-                <div class="legend-item"><span class="legend-box bg-[#A855F7]">P</span> {{ __('schedule.legend_explosion') }}</div>
-                <div class="legend-item"><span class="legend-box bg-[#22C55E]">M</span> {{ __('schedule.legend_motor') }}</div>
-                <div class="legend-item"><span class="legend-box bg-[#EF4444]">H</span> {{ __('schedule.legend_hydrogen') }}</div>
-                <div class="legend-item"><span class="legend-box bg-[#06B6D4]">S</span> {{ __('schedule.legend_sil') }}</div>
-                <div class="legend-item"><span class="legend-box bg-[#84CC16]">N</span> {{ __('schedule.legend_notice') }}</div>
-                <div class="legend-item"><span class="legend-box bg-[#9D174D]">E</span> {{ __('schedule.legend_etc') }}</div>
+            <div class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-10 pb-8 border-b border-gray-100">
+                
+                {{-- IECEx (I) -> #ffbb00 (신규 색상) --}}
+                <div class="flex items-center group">
+                    <span class="w-10 h-10 rounded-lg bg-[#ffbb00] text-white flex items-center justify-center shadow-sm text-lg font-bold group-hover:scale-110 transition-transform duration-200">
+                        I
+                    </span>
+                    <span class="ml-2 text-sm text-gray-600 font-medium">{{ __('schedule.legend_iecex') }}</span>
+                </div>
+
+                {{-- 방폭 (P) -> 보라색 (유지) --}}
+                <div class="flex items-center group">
+                    <span class="w-10 h-10 rounded-lg bg-[#A855F7] text-white flex items-center justify-center shadow-sm text-lg font-bold group-hover:scale-110 transition-transform duration-200">
+                        P
+                    </span>
+                    <span class="ml-2 text-sm text-gray-600 font-medium">{{ __('schedule.legend_explosion') }}</span>
+                </div>
+
+                {{-- 모터 (M) -> #3B82F6 (구 IECEx 파란색) --}}
+                <div class="flex items-center group">
+                    <span class="w-10 h-10 rounded-lg bg-[#3B82F6] text-white flex items-center justify-center shadow-sm text-lg font-bold group-hover:scale-110 transition-transform duration-200">
+                        M
+                    </span>
+                    <span class="ml-2 text-sm text-gray-600 font-medium">{{ __('schedule.legend_motor') }}</span>
+                </div>
+
+                {{-- 수소 (H) -> 빨간색 (유지) --}}
+                <div class="flex items-center group">
+                    <span class="w-10 h-10 rounded-lg bg-[#EF4444] text-white flex items-center justify-center shadow-sm text-lg font-bold group-hover:scale-110 transition-transform duration-200">
+                        H
+                    </span>
+                    <span class="ml-2 text-sm text-gray-600 font-medium">{{ __('schedule.legend_hydrogen') }}</span>
+                </div>
+
+                {{-- SIL (S) -> 하늘색 (유지) --}}
+                <div class="flex items-center group">
+                    <span class="w-10 h-10 rounded-lg bg-[#06B6D4] text-white flex items-center justify-center shadow-sm text-lg font-bold group-hover:scale-110 transition-transform duration-200">
+                        S
+                    </span>
+                    <span class="ml-2 text-sm text-gray-600 font-medium">{{ __('schedule.legend_sil') }}</span>
+                </div>
+
+                {{-- 공지 (N) -> #22C55E (구 모터 초록색) --}}
+                <div class="flex items-center group">
+                    <span class="w-10 h-10 rounded-lg bg-[#22C55E] text-white flex items-center justify-center shadow-sm text-lg font-bold group-hover:scale-110 transition-transform duration-200">
+                        N
+                    </span>
+                    <span class="ml-2 text-sm text-gray-600 font-medium">{{ __('schedule.legend_notice') }}</span>
+                </div>
+
+                {{-- 기타 (E) -> 자주색 (유지) --}}
+                <div class="flex items-center group">
+                    <span class="w-10 h-10 rounded-lg bg-[#9D174D] text-white flex items-center justify-center shadow-sm text-lg font-bold group-hover:scale-110 transition-transform duration-200">
+                        E
+                    </span>
+                    <span class="ml-2 text-sm text-gray-600 font-medium">{{ __('schedule.legend_etc') }}</span>
+                </div>
+
             </div>
 
             {{-- 2. 달력 헤더 (년/월 선택) --}}

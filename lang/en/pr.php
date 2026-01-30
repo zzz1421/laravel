@@ -20,6 +20,7 @@ return [
     // Press Release
     'press_title' => 'Press Release',
     'press_desc' => 'Check out the latest news and media coverage of FOEx.',
+    'read_more' => 'Read Full Article', // Added
 
     // Archive (자료실은 보통 Resources, Library, Archive 등으로 표기합니다)
     'archive_title' => 'Resources', 

@@ -20,6 +20,24 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">외부 기사 링크 (URL)</label>
                     <input type="url" name="link_url" value="{{ old('link_url', $press->link_url) }}" placeholder="https://" class="w-full border-gray-300 rounded-md shadow-sm focus:border-amber-500 px-4 py-2 border">
                 </div>
+
+                @if($press->thumbnail)
+                    <div class="mb-6 p-4 bg-gray-50 border rounded-lg flex items-center gap-4">
+                        {{-- 현재 썸네일 미리보기 --}}
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1">현재 썸네일</p>
+                            <img src="{{ $press->thumbnail }}" referrerpolicy="no-referrer" class="h-20 w-32 object-cover rounded border border-gray-300">
+                        </div>
+
+                        {{-- 삭제 체크박스 --}}
+                        <div class="flex items-center h-full pt-4">
+                            <input id="delete_thumbnail" type="checkbox" name="delete_thumbnail" value="1" class="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500">
+                            <label for="delete_thumbnail" class="ml-2 block text-sm font-bold text-red-600 cursor-pointer select-none">
+                                썸네일 삭제하기 (체크 후 저장 시 아이콘으로 대체됨)
+                            </label>
+                        </div>
+                    </div>
+                @endif
                 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">작성자</label>

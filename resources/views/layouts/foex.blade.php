@@ -12,7 +12,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
 
     {{-- XEIcon --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xpressengine/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xpressengine/xeicon@2.3.3/xeicon.min.css">
     
     {{-- Google Fonts --}}
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -120,21 +120,37 @@
                         <a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() == 'en' ? 'text-blue-700 font-bold' : 'text-gray-400 hover:text-gray-600' }}">EN</a>
                     </div>
 
-                    {{-- 2. 로그인/회원가입 (여기 추가됨!) --}}
+                    {{-- 2. 로그인/회원가입 (다국어 적용됨) --}}
                     <div class="flex items-center gap-4 text-sm font-medium border-l border-gray-200 pl-6">
                         @auth
                             {{-- 로그인 상태일 때 --}}
+                            <a href="{{ route('mypage') }}" class="mr-4 text-gray-700 hover:text-blue-600 font-bold">
+                                <i class="xi-user-o"></i> {{ __('header.mypage') }}
+                            </a>
+                            
                             <span class="text-gray-600 hidden md:inline">
-                                <span class="text-blue-700 font-bold">{{ Auth::user()->name }}</span>님
+                                {{-- 
+                                    ★ 중요: 이름 부분만 파란색 볼드 처리를 유지하기 위해 HTML을 변수로 넘깁니다.
+                                    한국어: [홍길동]님
+                                    영어: Hello, [HongGilDong]
+                                --}}
+                                {!! __('header.greeting', ['name' => '<span class="text-blue-700 font-bold">' . Auth::user()->name . '</span>']) !!}
                             </span>
+
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="text-gray-500 hover:text-blue-700 transition">로그아웃</button>
+                                <button type="submit" class="text-gray-500 hover:text-blue-700 transition ml-2">
+                                    {{ __('header.logout') }}
+                                </button>
                             </form>
                         @else
                             {{-- 로그아웃(손님) 상태일 때 --}}
-                            <a href="{{ route('login') }}" class="text-gray-500 hover:text-blue-700 transition">로그인</a>
-                            <a href="{{ route('register') }}" class="text-gray-500 hover:text-blue-700 transition">회원가입</a>
+                            <a href="{{ route('login') }}" class="text-gray-500 hover:text-blue-700 transition">
+                                {{ __('header.login') }}
+                            </a>
+                            <a href="{{ route('register') }}" class="text-gray-500 hover:text-blue-700 transition">
+                                {{ __('header.register') }}
+                            </a>
                         @endauth
                     </div>
 
@@ -148,12 +164,107 @@
         @yield('content')
     </main>
 
-    {{-- 푸터 --}}
-    <footer class="bg-gray-900 text-gray-400 py-10 mt-20 font-light">
-        <div class="max-w-7xl mx-auto px-4">
-            <p class="text-xs text-center md:text-left">© FOEx All Rights Reserved.</p>
+    {{-- 사이트맵 스타일의 확장형 푸터 --}}
+    <footer class="bg-[#1a1c1e] text-gray-400 py-16 mt-20 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            {{-- [상단] 사이트맵 영역 (5열 그리드) --}}
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-16">
+                {{-- Company --}}
+                <div>
+                    <h4 class="text-white font-bold text-base mb-6">{{ __('menu.company') }}</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="{{ route('company.intro') }}" class="hover:text-blue-500 transition">{{ __('menu.intro') }}</a></li>
+                        <li><a href="{{ route('company.greeting') }}" class="hover:text-blue-500 transition">{{ __('menu.greeting') }}</a></li>
+                        <li><a href="{{ route('company.history') }}" class="hover:text-blue-500 transition">{{ __('menu.history') }}</a></li>
+                        <li><a href="{{ route('company.organization') }}" class="hover:text-blue-500 transition">{{ __('menu.organization') }}</a></li>
+                        <li><a href="{{ route('company.capability') }}" class="hover:text-blue-500 transition">{{ __('menu.capability') }}</a></li>
+                        <li><a href="{{ route('company.location') }}" class="hover:text-blue-500 transition">{{ __('menu.location') }}</a></li>
+                    </ul>
+                </div>
+
+                {{-- Business --}}
+                <div>
+                    <h4 class="text-white font-bold text-base mb-6">{{ __('menu.business') }}</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="{{ route('business.education') }}" class="hover:text-blue-500 transition">{{ __('menu.education') }}</a></li>
+                        <li><a href="{{ route('business.consulting') }}" class="hover:text-blue-500 transition">{{ __('menu.consulting') }}</a></li>
+                        <li><a href="{{ route('business.techservice') }}" class="hover:text-blue-500 transition">{{ __('menu.techservice') }}</a></li>
+                        <li><a href="{{ route('business.engineering') }}" class="hover:text-blue-500 transition">{{ __('menu.engineering') }}</a></li>
+                        <li><a href="{{ route('business.rnd') }}" class="hover:text-blue-500 transition">{{ __('menu.rnd') }}</a></li>
+                    </ul>
+                </div>
+
+                {{-- Products --}}
+                <div>
+                    <h4 class="text-white font-bold text-base mb-6">{{ __('menu.solution') }}</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="{{ route('products.suite') }}" class="hover:text-blue-500 transition">FOEX Suite</a></li>
+                        <li><a href="{{ route('products.node') }}" class="hover:text-blue-500 transition">FOEX Node</a></li>
+                    </ul>
+                </div>
+
+                {{-- PR Center --}}
+                <div>
+                    <h4 class="text-white font-bold text-base mb-6">{{ __('menu.pr') }}</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="{{ route('pr.schedule') }}" class="hover:text-blue-500 transition">{{ __('menu.schedule') }}</a></li>
+                        <li><a href="{{ route('pr.notice.index') }}" class="hover:text-blue-500 transition">{{ __('menu.notice') }}</a></li>
+                        <li><a href="{{ route('pr.brochure') }}" class="hover:text-blue-500 transition">{{ __('menu.brochure') }}</a></li>
+                        <li><a href="{{ route('pr.media') }}" class="hover:text-blue-500 transition">{{ __('menu.media') }}</a></li>
+                        <li><a href="{{ route('pr.press') }}" class="hover:text-blue-500 transition">{{ __('menu.press') }}</a></li>
+                        <li><a href="{{ route('pr.archive.index') }}" class="hover:text-blue-500 transition">{{ __('menu.archive') }}</a></li>
+                    </ul>
+                </div>
+
+                {{-- Customer Support --}}
+                <div>
+                    <h4 class="text-white font-bold text-base mb-6">{{ __('menu.service') }}</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="{{ route('service.edu.apply') }}" class="hover:text-blue-500 transition">{{ __('menu.edu_apply') }}</a></li>
+                        <li><a href="{{ route('service.inquiry') }}" class="hover:text-blue-500 transition">{{ __('menu.inquiry') }}</a></li>
+                        <li><a href="{{ route('pr.qna.index') }}" class="hover:text-blue-500 transition">{{ __('menu.qna') }}</a></li>
+                        <li class="pt-2"><a href="{{ route('privacy') }}" class="text-blue-500 font-bold hover:underline">개인정보처리방침</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            {{-- [하단] 기업 정보 영역 --}}
+            <div class="pt-10 border-t border-gray-800 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+                <div class="space-y-4">
+                    {{-- 로고 --}}
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl font-black text-white tracking-tighter">FOEX</span>
+                        <div class="h-4 w-px bg-gray-700 mx-2"></div>
+                        <span class="text-xs text-gray-500 leading-tight uppercase tracking-widest">Digital Transformation<br>Partner</span>
+                    </div>
+                    
+                    {{-- 회사 주소 정보 --}}
+                    <div class="text-xs sm:text-sm leading-relaxed space-y-1">
+                        <div class="flex flex-wrap gap-x-4">
+                            <span>사업자등록번호: 123-45-67890</span>
+                            <span>대표이사: 홍길동</span>
+                        </div>
+                        <p>주소: 서울특별시 강남구 테헤란로 123, 포엑스 빌딩 15층</p>
+                        <div class="flex flex-wrap gap-x-4">
+                            <span>TEL: 02-1234-5678</span>
+                            <span>FAX: 02-1234-5679</span>
+                            <span>E-MAIL: info@foex.co.kr</span>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- 저작권 및 SNS --}}
+                <div class="flex flex-col items-start lg:items-end gap-4">
+                    <div class="flex gap-3">
+                        <a href="#" class="w-9 h-9 rounded bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition text-white"><i class="xi-facebook"></i></a>
+                        <a href="#" class="w-9 h-9 rounded bg-gray-800 flex items-center justify-center hover:bg-red-600 transition text-white"><i class="xi-youtube-play"></i></a>
+                        <a href="#" class="w-9 h-9 rounded bg-gray-800 flex items-center justify-center hover:bg-green-600 transition text-white"><i class="xi-naver"></i></a>
+                    </div>
+                    <p class="text-xs text-gray-600">Copyright © {{ date('Y') }} FOEX. All rights reserved.</p>
+                </div>
+            </div>
         </div>
     </footer>
-
 </body>
 </html>
