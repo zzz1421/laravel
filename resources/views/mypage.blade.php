@@ -41,13 +41,30 @@
                         <h3 class="text-xl font-bold">{{ $user->name }} 님</h3>
                         <p class="text-gray-400 text-sm">{{ $user->email }}</p>
                     </div>
-                    <div class="ml-auto">
+                    {{-- ▼ 교체할 코드 ▼ --}}
+                    <div class="ml-auto flex flex-col md:flex-row items-end md:items-center gap-3">
+                        
+                        {{-- ★ 관리자 페이지 이동 버튼 (관리자일 때만 표시) --}}
+                        @if($user->isAdmin())
+                            <a href="{{ route('admin.index') }}" target="_blank" 
+                               class="flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white text-sm px-4 py-2 rounded-lg font-medium transition backdrop-blur-sm border border-white/10 shadow-sm">
+                                <i class="xi-cog"></i> 
+                                <span>관리자 페이지</span>
+                            </a>
+                        @endif
+
+                        {{-- 권한 뱃지 --}}
                         @if($user->level >= 7)
-                            <span class="bg-red-500 text-white text-xs px-3 py-1 rounded-full font-bold">{{ __('mypage.role.admin') }}</span>
+                            <span class="bg-red-500 text-white text-xs px-3 py-1 rounded-full font-bold shadow-sm ring-2 ring-red-400/50">
+                                {{ __('mypage.role.admin') }}
+                            </span>
                         @else
-                            <span class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-bold">{{ __('mypage.role.user') }}</span>
+                            <span class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-bold shadow-sm">
+                                {{ __('mypage.role.user') }}
+                            </span>
                         @endif
                     </div>
+                    
                 </div>
             </div>
 

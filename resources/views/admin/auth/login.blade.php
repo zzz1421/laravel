@@ -37,28 +37,27 @@
         <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
             <div class="p-8">
                 
-                {{-- 로그인 폼 --}}
                 <form method="POST" action="{{ route('admin.login.store') }}">
                     @csrf
 
-                    {{-- 1. 이메일 입력 --}}
+                    {{-- 1. 아이디 또는 이메일 입력 (수정됨) --}}
                     <div class="mb-6">
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">이메일 계정</label>
+                        <label for="login_id" class="block text-sm font-medium text-gray-700 mb-2">아이디 또는 이메일</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="xi-mail text-gray-400 text-lg"></i>
+                                <i class="xi-user text-gray-400 text-lg"></i> {{-- 아이콘 변경 (메일 -> 유저) --}}
                             </div>
-                            <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus 
+                            {{-- name="email" -> name="login_id", type="email" -> type="text" --}}
+                            <input id="login_id" type="text" name="login_id" value="{{ old('login_id') }}" required autofocus 
                                 class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition text-sm text-gray-800 placeholder-gray-400"
-                                placeholder="admin@foex.co.kr">
+                                placeholder="ID 또는 이메일을 입력하세요">
                         </div>
-                        {{-- 에러 메시지 --}}
-                        @error('email')
+                        @error('login_id')
                             <p class="text-red-500 text-xs mt-1 pl-1">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    {{-- 2. 비밀번호 입력 --}}
+                    {{-- 2. 비밀번호 입력 (기존 유지) --}}
                     <div class="mb-6">
                         <label for="password" class="block text-sm font-medium text-gray-700 mb-2">비밀번호</label>
                         <div class="relative">
@@ -74,17 +73,15 @@
                         @enderror
                     </div>
 
-                    {{-- 3. 기억하기 & 비밀번호 찾기 --}}
+                    {{-- 3. 기억하기 (기존 유지) --}}
                     <div class="flex items-center justify-between mb-8">
                         <label class="flex items-center cursor-pointer">
                             <input type="checkbox" name="remember" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                             <span class="ml-2 text-sm text-gray-600">로그인 유지</span>
                         </label>
-                        {{-- 필요하다면 링크 연결 --}}
-                        {{-- <a href="#" class="text-sm text-blue-600 hover:text-blue-700 hover:underline">비밀번호 찾기</a> --}}
                     </div>
 
-                    {{-- 4. 로그인 버튼 --}}
+                    {{-- 4. 로그인 버튼 (기존 유지) --}}
                     <button type="submit" class="w-full bg-gray-900 text-white py-3 rounded-lg font-bold hover:bg-gray-800 transition transform active:scale-95 shadow-lg shadow-gray-300/50 flex items-center justify-center">
                         <i class="xi-log-in mr-2"></i> 로그인
                     </button>

@@ -31,6 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'is_admin' => 'boolean',
     ];
 
     public function applications()
@@ -38,4 +39,9 @@ class User extends Authenticatable implements MustVerifyEmail
         // 한 유저는 여러 개의 신청서를 가질 수 있다 (1:N)
         return $this->hasMany(EducationApplication::class);
     }   
+    public function isAdmin()
+    {
+        // level 컬럼이 10 이상이면 true 반환
+        return $this->level >= 10;
+    }
 }

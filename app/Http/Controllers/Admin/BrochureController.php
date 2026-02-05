@@ -38,7 +38,7 @@ class BrochureController extends Controller
             'title' => $request->title,
             'pdf_path' => $pdfPath,
             'image_path' => $imagePath,
-            'is_visible' => $request->has('is_visible'),
+            'is_display' => $request->has('is_display'), // ★ 수정됨
         ]);
 
         return redirect()->route('admin.brochure.index')->with('success', '등록되었습니다.');
@@ -65,7 +65,7 @@ class BrochureController extends Controller
         // 데이터 업데이트 준비
         $data = [
             'title' => $request->title,
-            'is_visible' => $request->has('is_visible'),
+            'is_display' => $request->has('is_display'),
         ];
 
         // PDF 파일이 새로 올라왔다면?

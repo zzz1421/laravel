@@ -11,7 +11,6 @@ class EducationAdminController extends Controller
 {
     /**
      * [1] 교육 과정 관리 (메인 목록)
-     * - 여기서 교육 과정을 개설하고, 목록을 봅니다.
      */
     public function index()
     {
@@ -25,14 +24,11 @@ class EducationAdminController extends Controller
 
     /**
      * [2] 특정 교육 과정의 신청자 목록 보기
-     * - 교육 목록에서 클릭해서 들어옵니다.
      */
     public function applications(Request $request, $id)
     {
-        // 현재 선택한 교육 과정 정보
         $currentEducation = Education::findOrFail($id);
 
-        // 해당 교육 과정의 신청자만 가져오기
         $query = EducationApplication::where('education_id', $id)
                     ->orderBy('created_at', 'desc');
 
@@ -49,7 +45,7 @@ class EducationAdminController extends Controller
     }
 
     /**
-     * [관리자] 승인 처리 (Ajax 또는 폼 전송)
+     * [관리자] 승인 처리
      */
     public function approve($id)
     {
@@ -59,8 +55,6 @@ class EducationAdminController extends Controller
             'status' => 'approved',
             'approved_at' => now(),
         ]);
-
-        // ★ 여기서 나중에 "메일 발송 코드"를 추가할 예정입니다.
 
         return back()->with('success', '승인 처리되었습니다.');
     }
@@ -78,8 +72,9 @@ class EducationAdminController extends Controller
 
         return back()->with('success', '반려 처리되었습니다.');
     }
+
     /**
-     * [관리자] 교육 과정 등록 페이지 보여주기
+     * [관리자] 교육 과정 등록 페이지
      */
     public function create()
     {
@@ -91,7 +86,6 @@ class EducationAdminController extends Controller
      */
     public function store(Request $request)
     {
-        // 1. 유효성 검사
         $request->validate([
             'title' => 'required',
             'edu_start' => 'required',
@@ -99,10 +93,9 @@ class EducationAdminController extends Controller
             'capacity' => 'required|integer',
         ]);
 
-        // 2. DB 저장
         Education::create([
             'title'          => $request->title,
-            'content'        => $request->content, // 에디터 내용
+            'content'        => $request->content,
             'status'         => $request->status,
             'price'          => $request->price ?? 0,
             'capacity'       => $request->capacity,
@@ -111,28 +104,26 @@ class EducationAdminController extends Controller
             'edu_start'      => $request->edu_start,
             'edu_end'        => $request->edu_end,
             'place'          => $request->place,
+            'is_display'     => $request->has('is_display'),
         ]);
 
-        // 3. 완료 후 목록(또는 신청관리)으로 이동
-        // (나중에 교육과정 목록 페이지를 만들면 그리로 보내면 됩니다)
-        return redirect()->route('admin.education.applications')
+        // [수정] applications 라우트는 ID가 필요하므로 index(목록)으로 보냅니다.
+        return redirect()->route('admin.education.index')
             ->with('success', '새로운 교육 과정이 개설되었습니다.');
     }
 
     public function show($id)
     {
-        // 신청자 수(applications_count)도 같이 세어서 가져옴
-        $education = \App\Models\Education::withCount('applications')->findOrFail($id);
-
+        $education = Education::withCount('applications')->findOrFail($id);
         return view('admin.education.show', compact('education'));
     }
 
     /**
-     * 수정 페이지 보여주기
+     * 수정 페이지
      */
     public function edit($id)
     {
-        $education = \App\Models\Education::findOrFail($id);
+        $education = Education::findOrFail($id);
         return view('admin.education.edit', compact('education'));
     }
 
@@ -143,28 +134,27 @@ class EducationAdminController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            // 필요한 유효성 검사 규칙 추가...
         ]);
 
-        $education = \App\Models\Education::findOrFail($id);
+        $education = Education::findOrFail($id);
         
-        // 데이터 업데이트
-        $education->update($request->all()); 
-        // 또는 $education->update(['title' => $request->title, ...]);
+        // [수정] 체크박스 값 처리를 위해 데이터를 준비합니다.
+        $data = $request->all();
+        // 체크박스가 해제되면 request에 값이 없으므로 명시적으로 has()를 확인해야 합니다.
+        $data['is_display'] = $request->has('is_display'); 
 
-        return redirect()->route('admin.education.show', $id) // 수정 후 상세페이지로 이동
+        // 데이터 업데이트 실행
+        $education->update($data); 
+
+        return redirect()->route('admin.education.show', $id)
                 ->with('success', '교육 과정이 수정되었습니다.');
     }
 
     public function destroy($id)
     {
-        // 데이터 찾기
-        $education = \App\Models\Education::findOrFail($id);
-        
-        // 삭제 실행
+        $education = Education::findOrFail($id);
         $education->delete();
 
-        // 목록 페이지로 돌아가면서 메시지 띄우기
         return redirect()->route('admin.education.index')
                 ->with('success', '교육 과정이 삭제되었습니다.');
     }

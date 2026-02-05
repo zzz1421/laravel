@@ -14,7 +14,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrochureController;
 use App\Http\Controllers\QnaController;
 use App\Http\Controllers\EducationController;
-use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\Auth\RegisterStepController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController; // 일반 로그인용
 
@@ -78,22 +77,23 @@ Route::get('/', [MainController::class, 'index'])->name('home');
 // 사이트맵
 Route::get('/sitemap', [PageController::class, 'sitemap'])->name('sitemap');
 
-// 회사소개 (Company)
+// 회사소개 (Company) - 인사말, 조직도 삭제됨
 Route::prefix('company')->name('company.')->group(function () {
     Route::get('/intro', [PageController::class, 'intro'])->name('intro');
-    Route::get('/greeting', [PageController::class, 'greeting'])->name('greeting');
     Route::get('/history', [PageController::class, 'history'])->name('history');
-    Route::get('/organization', [PageController::class, 'organization'])->name('organization');
     Route::get('/capability', [PageController::class, 'capability'])->name('capability');
     Route::get('/location', [PageController::class, 'location'])->name('location');
 });
 
-// 사업분야 (Business)
+// 사업분야 (Business) - 기술용역 통합됨
 Route::prefix('business')->name('business.')->group(function () {
     Route::get('/education', [PageController::class, 'education'])->name('education');
-    Route::get('/consulting', [PageController::class, 'consulting'])->name('consulting');
-    Route::get('/techservice', [PageController::class, 'techservice'])->name('techservice');
+    Route::get('/consulting', [PageController::class, 'consulting'])->name('consulting'); // 기술용역 내용 병합
     Route::get('/engineering', [PageController::class, 'engineering'])->name('engineering');
+});
+
+// R&D (독립 메뉴)
+Route::prefix('business')->name('business.')->group(function () {
     Route::get('/rnd', [PageController::class, 'rnd'])->name('rnd');
 });
 
@@ -103,29 +103,20 @@ Route::prefix('products')->name('products.')->group(function () {
     Route::get('/node', [ProductController::class, 'node'])->name('node');
 });
 
-// 홍보센터 (PR Center)
+// 홍보센터 (PR Center) - 일정(캘린더), 영상통합, 자료실 삭제
 Route::prefix('pr')->name('pr.')->group(function () {
-    Route::get('/schedule', [PageController::class, 'schedule'])->name('schedule');
+    Route::get('/schedule', [PageController::class, 'schedule'])->name('schedule'); // 캘린더
     
     Route::get('/notice', [NoticeController::class, 'index'])->name('notice.index');
     Route::get('/notice/{id}', [NoticeController::class, 'show'])->name('notice.show');
 
-    Route::get('/brochure', [BrochureController::class, 'index'])->name('brochure');
-    Route::get('/media', [PageController::class, 'media'])->name('media');
+    Route::get('/brochure', [BrochureController::class, 'index'])->name('brochure'); // 영상 탭 추가 예정
     Route::get('/press', [PageController::class, 'press'])->name('press');
-
-    Route::get('/archive', [ArchiveController::class, 'index'])->name('archive.index');
-    Route::get('/archive/{id}', [ArchiveController::class, 'show'])->name('archive.show');
-    Route::get('/archive/{id}/download', [ArchiveController::class, 'download'])->name('archive.download');
-
-    Route::get('/qna', [QnaController::class, 'index'])->name('qna.index');
-    Route::get('/qna/create', [QnaController::class, 'create'])->name('qna.create');
-    Route::post('/qna', [QnaController::class, 'store'])->name('qna.store');
-    Route::get('/qna/{id}', [QnaController::class, 'show'])->name('qna.show');
 });
 
-// 서비스/신청 (Service)
+// 서비스/신청 (Service) - Q&A 이관됨
 Route::prefix('service')->name('service.')->group(function () {
+    // 교육 신청 목록 및 상세
     Route::get('/education', [EducationController::class, 'index'])->name('edu.apply');
     Route::get('/education/{id}', [EducationController::class, 'show'])->name('edu.show');
     
@@ -135,7 +126,21 @@ Route::prefix('service')->name('service.')->group(function () {
         ->middleware('auth');
 
     Route::get('/inquiry', [ServiceController::class, 'inquiry'])->name('inquiry');
+
+    // [이동됨] Q&A 게시판 (기존 pr prefix에서 service prefix로 변경해도 되지만, URL 유지를 위해 name만 service로 변경하거나 그대로 둡니다.)
+    // 여기서는 메뉴 구조상 Service 하위에 있으므로 편의상 여기에 배치합니다.
+    // ※ 주의: 기존 URL (/pr/qna)을 유지하고 싶다면 prefix를 따로 빼야 하지만, 
+    // 메뉴 구조 변경에 맞춰 URL도 (/service/qna)로 바꾸는 것을 추천합니다.
 });
+
+// Q&A (Service 하위 URL로 변경)
+Route::prefix('service')->name('pr.')->group(function () {
+    Route::get('/qna', [QnaController::class, 'index'])->name('qna.index');
+    Route::get('/qna/create', [QnaController::class, 'create'])->name('qna.create');
+    Route::post('/qna', [QnaController::class, 'store'])->name('qna.store');
+    Route::get('/qna/{id}', [QnaController::class, 'show'])->name('qna.show');
+});
+
 
 // 회원 정보 (Member)
 Route::middleware('auth')->group(function () {

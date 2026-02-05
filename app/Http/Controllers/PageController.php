@@ -187,8 +187,9 @@ class PageController extends Controller
     {
         // 2. DB에서 자료실 데이터를 최신순으로 가져옵니다 (페이지네이션 적용)
         // 변수명을 뷰 파일에서 사용하는 '$references'로 맞춰야 합니다.
-        $references = Archive::latest()->paginate(10); 
-
+        $references = Archive::where('is_display', true) // ★ 추가됨
+                             ->latest()
+                             ->paginate(10);
         // 3. 뷰(화면)에 데이터를 함께 보냅니다.
         return view('pr.archive', compact('references'));
     }

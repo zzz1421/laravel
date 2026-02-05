@@ -20,7 +20,6 @@
     <style>
         body { font-family: 'Noto Sans KR', sans-serif; }
         [x-cloak] { display: none !important; }
-        /* .nav-link 클래스는 HTML에서 직접 Tailwind 클래스를 쓰고 있으므로 제거해도 무방합니다. */
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-white">
@@ -41,36 +40,47 @@
                 {{-- 네비게이션 (Desktop) --}}
                 <nav class="hidden md:flex items-center space-x-1 h-full">
                     
-                    {{-- Company --}}
+                    {{-- 1. Company (인사말, 조직도 삭제됨) --}}
                     <div class="relative h-full flex items-center px-4" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                         <a href="{{ route('company.intro') }}" class="flex items-center gap-1 py-2 font-medium transition cursor-pointer {{ request()->routeIs('company.*') ? 'text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">
                             {{ __('menu.company') }} <i class="xi-angle-down text-xs"></i>
                         </a>
                         <div x-show="open" x-cloak x-transition class="absolute top-full left-1/2 -translate-x-1/2 w-40 bg-white shadow-lg rounded-b-lg py-2 border-t-2 border-blue-600 flex flex-col">
                             <a href="{{ route('company.intro') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.intro') }}</a>
-                            <a href="{{ route('company.greeting') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.greeting') }}</a>
+                            {{-- greeting, organization 삭제 --}}
                             <a href="{{ route('company.history') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.history') }}</a>
-                            <a href="{{ route('company.organization') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.organization') }}</a>
                             <a href="{{ route('company.capability') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.capability') }}</a>
                             <a href="{{ route('company.location') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.location') }}</a>
                         </div>
                     </div>
 
-                    {{-- Business --}}
+                    {{-- 2. Business (기술용역 통합, R&D 분리) --}}
                     <div class="relative h-full flex items-center px-4" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                         <a href="{{ route('business.education') }}" class="flex items-center gap-1 py-2 font-medium transition cursor-pointer {{ request()->routeIs('business.*') ? 'text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">
                             {{ __('menu.business') }} <i class="xi-angle-down text-xs"></i>
                         </a>
-                        <div x-show="open" x-cloak x-transition class="absolute top-full left-1/2 -translate-x-1/2 w-40 bg-white shadow-lg rounded-b-lg py-2 border-t-2 border-blue-600 flex flex-col">
+                        <div x-show="open" x-cloak x-transition class="absolute top-full left-1/2 -translate-x-1/2 w-48 bg-white shadow-lg rounded-b-lg py-2 border-t-2 border-blue-600 flex flex-col">
                             <a href="{{ route('business.education') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.education') }}</a>
-                            <a href="{{ route('business.consulting') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.consulting') }}</a>
-                            <a href="{{ route('business.techservice') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.techservice') }}</a>
+                            {{-- 컨설팅 + 기술용역 통합 --}}
+                            <a href="{{ route('business.consulting') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">컨설팅 & 기술용역</a>
                             <a href="{{ route('business.engineering') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.engineering') }}</a>
-                            <a href="{{ route('business.rnd') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.rnd') }}</a>
                         </div>
                     </div>
 
-                    {{-- Products --}}
+                    {{-- 3. R&D (신규 독립 메뉴) --}}
+                    <div class="relative h-full flex items-center px-4" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                        <a href="{{ route('business.rnd') }}" class="flex items-center gap-1 py-2 font-medium transition cursor-pointer {{ request()->routeIs('rnd.*') ? 'text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">
+                            R&D <i class="xi-angle-down text-xs"></i>
+                        </a>
+                        <div x-show="open" x-cloak x-transition class="absolute top-full left-1/2 -translate-x-1/2 w-40 bg-white shadow-lg rounded-b-lg py-2 border-t-2 border-blue-600 flex flex-col">
+                            {{-- 세부 항목 임시 링크 --}}
+                            <a href="{{ route('business.rnd') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">AI 솔루션</a>
+                            <a href="{{ route('business.rnd') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">CBM 기술</a>
+                            <a href="{{ route('business.rnd') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">연구 실적</a>
+                        </div>
+                    </div>
+
+                    {{-- 4. Solutions --}}
                     <div class="relative h-full flex items-center px-4" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                         <a href="{{ route('products.suite') }}" class="flex items-center gap-1 py-2 font-medium transition cursor-pointer {{ request()->routeIs('products.*') ? 'text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">
                             {{ __('menu.solution') }} <i class="xi-angle-down text-xs"></i>
@@ -81,23 +91,21 @@
                         </div>
                     </div>
 
-                    {{-- PR Center --}}
+                    {{-- 5. PR Center (일정->캘린더, 자료실 삭제, 홍보영상 통합) --}}
                     <div class="relative h-full flex items-center px-4" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                         <a href="{{ route('pr.schedule') }}" class="flex items-center gap-1 py-2 font-medium transition cursor-pointer {{ request()->routeIs('pr.*') ? 'text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">
                             {{ __('menu.pr') }} <i class="xi-angle-down text-xs"></i>
                         </a>
                         <div x-show="open" x-cloak x-transition class="absolute top-full left-1/2 -translate-x-1/2 w-40 bg-white shadow-lg rounded-b-lg py-2 border-t-2 border-blue-600 flex flex-col">
-                            <a href="{{ route('pr.schedule') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.schedule') }}</a>
+                            <a href="{{ route('pr.schedule') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">캘린더</a>
                             <a href="{{ route('pr.notice.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.notice') }}</a>
-                            <a href="{{ route('pr.brochure') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.brochure') }}</a>
-                            <a href="{{ route('pr.media') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.media') }}</a>
+                            <a href="{{ route('pr.brochure') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">홍보자료</a>
                             <a href="{{ route('pr.press') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.press') }}</a>
-                            <a href="{{ route('pr.archive.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.archive') }}</a>
-                            <a href="{{ route('pr.qna.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.qna') }}</a>
+                            {{-- archive, media 삭제됨 --}}
                         </div>
                     </div>
 
-                    {{-- Service --}}
+                    {{-- 6. Service (Q&A 이관됨) --}}
                     <div class="relative h-full flex items-center px-4" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                         <a href="{{ route('service.edu.apply') }}" class="flex items-center gap-1 py-2 font-medium transition cursor-pointer {{ request()->routeIs('service.*') ? 'text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">
                             {{ __('menu.service') }} <i class="xi-angle-down text-xs"></i>
@@ -105,6 +113,8 @@
                         <div x-show="open" x-cloak x-transition class="absolute top-full right-0 w-40 bg-white shadow-lg rounded-b-lg py-2 border-t-2 border-blue-600 flex flex-col">
                             <a href="{{ route('service.edu.apply') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.edu_apply') }}</a>
                             <a href="{{ route('service.inquiry') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.inquiry') }}</a>
+                            {{-- Q&A 이관 --}}
+                            <a href="{{ route('pr.qna.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.qna') }}</a>
                         </div>
                     </div>
 
@@ -112,7 +122,6 @@
 
                 {{-- 우측 상단 (언어, 로그인) --}}
                 <div class="flex items-center space-x-6">
-    
                     {{-- 1. 언어 설정 --}}
                     <div class="flex items-center space-x-2 text-sm font-medium">
                         <a href="{{ route('lang.switch', 'ko') }}" class="{{ app()->getLocale() == 'ko' ? 'text-blue-700 font-bold' : 'text-gray-400 hover:text-gray-600' }}">KR</a>
@@ -120,20 +129,14 @@
                         <a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() == 'en' ? 'text-blue-700 font-bold' : 'text-gray-400 hover:text-gray-600' }}">EN</a>
                     </div>
 
-                    {{-- 2. 로그인/회원가입 (다국어 적용됨) --}}
+                    {{-- 2. 로그인/회원가입 --}}
                     <div class="flex items-center gap-4 text-sm font-medium border-l border-gray-200 pl-6">
                         @auth
-                            {{-- 로그인 상태일 때 --}}
                             <a href="{{ route('mypage') }}" class="mr-4 text-gray-700 hover:text-blue-600 font-bold">
                                 <i class="xi-user-o"></i> {{ __('header.mypage') }}
                             </a>
                             
                             <span class="text-gray-600 hidden md:inline">
-                                {{-- 
-                                    ★ 중요: 이름 부분만 파란색 볼드 처리를 유지하기 위해 HTML을 변수로 넘깁니다.
-                                    한국어: [홍길동]님
-                                    영어: Hello, [HongGilDong]
-                                --}}
                                 {!! __('header.greeting', ['name' => '<span class="text-blue-700 font-bold">' . Auth::user()->name . '</span>']) !!}
                             </span>
 
@@ -144,7 +147,6 @@
                                 </button>
                             </form>
                         @else
-                            {{-- 로그아웃(손님) 상태일 때 --}}
                             <a href="{{ route('login') }}" class="text-gray-500 hover:text-blue-700 transition">
                                 {{ __('header.login') }}
                             </a>
@@ -153,49 +155,55 @@
                             </a>
                         @endauth
                     </div>
-
                 </div>
             </div>
         </div>
     </header>
 
-    {{-- 메인 콘텐츠 (mt-20으로 헤더 높이만큼 띄움) --}}
+    {{-- 메인 콘텐츠 --}}
     <main class="flex-grow mt-20">
         @yield('content')
     </main>
 
-    {{-- 사이트맵 스타일의 확장형 푸터 --}}
+    {{-- 하단 푸터 (수정된 사이트맵 적용) --}}
     <footer class="bg-[#1a1c1e] text-gray-400 py-16 mt-20 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            {{-- [상단] 사이트맵 영역 (5열 그리드) --}}
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-16">
-                {{-- Company --}}
+            {{-- [상단] 사이트맵 영역 (6열 그리드: R&D 추가됨) --}}
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16">
+                
+                {{-- 1. Company --}}
                 <div>
                     <h4 class="text-white font-bold text-base mb-6">{{ __('menu.company') }}</h4>
                     <ul class="space-y-3 text-sm">
                         <li><a href="{{ route('company.intro') }}" class="hover:text-blue-500 transition">{{ __('menu.intro') }}</a></li>
-                        <li><a href="{{ route('company.greeting') }}" class="hover:text-blue-500 transition">{{ __('menu.greeting') }}</a></li>
                         <li><a href="{{ route('company.history') }}" class="hover:text-blue-500 transition">{{ __('menu.history') }}</a></li>
-                        <li><a href="{{ route('company.organization') }}" class="hover:text-blue-500 transition">{{ __('menu.organization') }}</a></li>
                         <li><a href="{{ route('company.capability') }}" class="hover:text-blue-500 transition">{{ __('menu.capability') }}</a></li>
                         <li><a href="{{ route('company.location') }}" class="hover:text-blue-500 transition">{{ __('menu.location') }}</a></li>
                     </ul>
                 </div>
 
-                {{-- Business --}}
+                {{-- 2. Business --}}
                 <div>
                     <h4 class="text-white font-bold text-base mb-6">{{ __('menu.business') }}</h4>
                     <ul class="space-y-3 text-sm">
                         <li><a href="{{ route('business.education') }}" class="hover:text-blue-500 transition">{{ __('menu.education') }}</a></li>
-                        <li><a href="{{ route('business.consulting') }}" class="hover:text-blue-500 transition">{{ __('menu.consulting') }}</a></li>
-                        <li><a href="{{ route('business.techservice') }}" class="hover:text-blue-500 transition">{{ __('menu.techservice') }}</a></li>
+                        <li><a href="{{ route('business.consulting') }}" class="hover:text-blue-500 transition">컨설팅 & 기술용역</a></li>
                         <li><a href="{{ route('business.engineering') }}" class="hover:text-blue-500 transition">{{ __('menu.engineering') }}</a></li>
-                        <li><a href="{{ route('business.rnd') }}" class="hover:text-blue-500 transition">{{ __('menu.rnd') }}</a></li>
                     </ul>
                 </div>
 
-                {{-- Products --}}
+                {{-- 3. R&D (신규) --}}
+                <div>
+                    <h4 class="text-white font-bold text-base mb-6">R&D</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="{{ route('business.rnd') }}" class="hover:text-blue-500 transition">AI 솔루션</a></li>
+                        <li><a href="{{ route('business.rnd') }}" class="hover:text-blue-500 transition">CBM 기술</a></li>
+                        <li><a href="{{ route('business.rnd') }}" class="hover:text-blue-500 transition">연구 실적</a></li>
+                    </ul>
+                </div>
+
+                {{-- 4. Products --}}
                 <div>
                     <h4 class="text-white font-bold text-base mb-6">{{ __('menu.solution') }}</h4>
                     <ul class="space-y-3 text-sm">
@@ -204,20 +212,18 @@
                     </ul>
                 </div>
 
-                {{-- PR Center --}}
+                {{-- 5. PR Center --}}
                 <div>
                     <h4 class="text-white font-bold text-base mb-6">{{ __('menu.pr') }}</h4>
                     <ul class="space-y-3 text-sm">
-                        <li><a href="{{ route('pr.schedule') }}" class="hover:text-blue-500 transition">{{ __('menu.schedule') }}</a></li>
+                        <li><a href="{{ route('pr.schedule') }}" class="hover:text-blue-500 transition">캘린더</a></li>
                         <li><a href="{{ route('pr.notice.index') }}" class="hover:text-blue-500 transition">{{ __('menu.notice') }}</a></li>
-                        <li><a href="{{ route('pr.brochure') }}" class="hover:text-blue-500 transition">{{ __('menu.brochure') }}</a></li>
-                        <li><a href="{{ route('pr.media') }}" class="hover:text-blue-500 transition">{{ __('menu.media') }}</a></li>
+                        <li><a href="{{ route('pr.brochure') }}" class="hover:text-blue-500 transition">홍보자료</a></li>
                         <li><a href="{{ route('pr.press') }}" class="hover:text-blue-500 transition">{{ __('menu.press') }}</a></li>
-                        <li><a href="{{ route('pr.archive.index') }}" class="hover:text-blue-500 transition">{{ __('menu.archive') }}</a></li>
                     </ul>
                 </div>
 
-                {{-- Customer Support --}}
+                {{-- 6. Service --}}
                 <div>
                     <h4 class="text-white font-bold text-base mb-6">{{ __('menu.service') }}</h4>
                     <ul class="space-y-3 text-sm">
