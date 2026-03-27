@@ -21,6 +21,13 @@
         body { font-family: 'Noto Sans KR', sans-serif; }
         [x-cloak] { display: none !important; }
     </style>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        [x-cloak] { display: none !important; }
+    </style>
 </head>
 <body class="flex flex-col min-h-screen bg-white">
 
@@ -272,5 +279,14 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // 스크롤 애니메이션 초기화
+        AOS.init({
+            duration: 1000, // 애니메이션이 1초 동안 부드럽게 실행됨
+            once: false,    // 스크롤을 올렸다 내릴 때마다 반복할지 여부 (true면 한 번만)
+        });
+    </script>
 </body>
 </html>
