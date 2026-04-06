@@ -5,352 +5,237 @@
 @section('content')
 
 <style>
-    /* 1. 브라우저 최상단에 자석 효과 적용 */
+    /* 1. 완벽한 가로 비율 스케일링 (동일) */
+    html { font-size: 16px; }
+    @media (min-width: 768px) and (max-width: 1920px) {
+        html { font-size: calc(100vw / 120); }
+    }
+    @media (min-width: 1921px) {
+        html { font-size: 16px; }
+    }
+
+    /* 🚨 2. 자석 스크롤: 무조건 화면에 딱! 맞게 강제(mandatory) 🚨 */
     html {
-        scroll-snap-type: y mandatory;
+        scroll-snap-type: y mandatory; /* proximity를 버리고 무조건 맞물리게 강제! */
         scroll-behavior: smooth;
-        scroll-padding-top: 80px;
+        scroll-padding-top: 80px; /* 헤더 높이만큼 정확히 여백 */
+    }
+    section, footer { 
+        scroll-snap-align: start; 
+        scroll-snap-stop: always; /* 스크롤 한 번에 한 섹션씩만 이동하도록 브레이크 */
     }
 
-    section, footer {
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
-    }
-
-    /* 2. 모든 섹션 높이를 화면 높이(헤더 제외)에 100% 맞춤 */
     section {
-        height: calc(100vh - 5rem); /* 헤더 5rem 제외한 전체 높이 */
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
+        height: calc(100vh - 80px);
+        min-height: calc(100vh - 80px); 
         position: relative;
-        overflow: hidden;
         display: flex;
         flex-direction: column;
-        justify-content: center; /* 내용물을 세로 중앙에 배치 */
-    }
-    footer {
-        /* 푸터는 내용에 따라 높이가 다르므로 height를 고정하지 않고 자석만 걸어줍니다. */
-        background-color: #1a1c1e; /* 레이아웃의 푸터 색상과 맞춤 */
+        justify-content: center; 
+        overflow: hidden;
     }
 
-    /* 모바일 대응: 모바일은 스냅을 끄는 것이 사용성이 좋습니다 */
+    /* 🚨 4. 일정 섹션 예외 처리: 달력이 커질 수 있도록 높이 제한 해제 🚨 */
+    #schedule {
+        /* 고정 높이를 해제하고 내용물에 맞게 늘어나도록 설정 */
+        height: auto !important; 
+        /* 95rem의 달력과 상하 패딩, 타이틀을 모두 포함할 수 있는 넉넉한 최소 높이 */
+        min-height: 130rem !important; 
+        overflow: visible !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 12rem;
+        padding-bottom: 12rem;
+    }
+    
+    #hero {
+        height: 100vh !important;
+        min-height: 100vh !important;
+    }
+
+    footer { background-color: #1a1c1e; }
+
+    /* 모바일 전용 해제 */
     @media (max-width: 768px) {
         html { scroll-snap-type: none; }
-        section { height: auto; min-height: calc(100vh - 5rem); }
+        section, #schedule { 
+            height: auto; 
+            min-height: calc(100vh - 80px); 
+            padding-top: 4rem; 
+            padding-bottom: 4rem; 
+            overflow: visible;
+        }
     }
 </style>
 
 <div class="bg-gray-950 text-gray-200">
 
-    {{-- [섹션 1] 히로 배너 - 좌측 하단 1/4 구역 집중 --}}
-    {{-- justify-end를 사용하여 내용물을 하단으로 밀착 --}}
-    <section id="hero" class="!justify-end pb-24 md:pb-32 px-6 md:px-20 lg:px-32">
+    {{-- [섹션 1] 히어로 배너 --}}
+    <section id="hero" class="relative px-[4rem] md:px-[18rem] pb-[8rem] md:pb-[18rem] flex flex-col justify-end">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Background" fetchpriority="high" class="w-full h-full object-cover opacity-30">
+            <img src="{{ asset('images/main/main-hero.png') }}" alt="Background" class="w-full h-full object-cover opacity-60">
             <div class="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/20 to-transparent"></div>
         </div>
 
-        {{-- 좌측 하단 1/4 구역 박스 (가로폭 제한으로 콤팩트하게 유지) --}}
-        <div class="relative z-10 text-left w-full md:w-[40%] space-y-4" data-aos="fade-up">
-            <h2 class="text-lg md:text-xl lg:text-2xl font-bold text-[#f9b417] tracking-tight uppercase">
-                A GLOBAL EXPLOSION SAFETY PARTNER
+        <div class="relative z-10 text-left w-full max-w-[80rem] space-y-[1.5rem]" data-aos="fade-up">
+            <h2 class="text-[1.6rem] md:text-[2rem] font-bold text-[#f9b417] tracking-tight uppercase">
+                {{ __('main.hero_subtitle') }}
             </h2>
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tighter">
-                For Explosion Proof
+            <h1 class="text-[4.5rem] md:text-[7.5rem] font-black text-white leading-[1] tracking-tighter">
+                {{ __('main.hero_title') }}
             </h1>
-            <p class="text-sm md:text-lg font-light text-white tracking-wide leading-relaxed break-keep pb-2">
-                포엑스는 국제 표준 기반의 방폭 토탈 솔루션을<br class="hidden sm:block">
-                제공하여 가장 안전한 산업 현장을 만들어갑니다.
+            <p class="text-[1.5rem] md:text-[1.8rem] font-light text-white tracking-wide leading-[1.6] break-keep pt-[0.5rem]">
+                {!! __('main.hero_desc') !!}
             </p>
-            <div>
-                <a href="#intro" class="inline-flex items-center gap-2 bg-[#f9b417] text-black hover:bg-white font-bold py-3 px-8 rounded-lg transition duration-300 group shadow-lg">
-                    포엑스 소개 바로가기 
-                    <i class="xi-angle-right-min text-xl group-hover:translate-x-1 transition font-bold"></i>
+            <div class="pt-[1.5rem]">
+                <a href="#business" class="inline-flex items-center gap-[1rem] bg-[#f9b417] text-black hover:bg-white font-bold py-[1.6rem] px-[3.5rem] rounded-[0.8rem] transition duration-300 group shadow-lg text-[1.5rem] md:text-[1.6rem]">
+                    {{ __('main.hero_btn') }}
+                    <i class="xi-angle-right-min text-[2.2rem] group-hover:translate-x-[0.5rem] transition font-bold"></i>
                 </a>
             </div>
         </div>
         
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-            <a href="#intro" class="text-white text-4xl opacity-30 hover:opacity-100 transition"><i class="xi-angle-down-min"></i></a>
+        <div class="absolute bottom-[4rem] left-1/2 -translate-x-1/2 z-10 animate-bounce">
+            <a href="#business" class="text-white opacity-40 hover:opacity-100 transition-opacity flex flex-col items-center">
+                <x-icons.common.down-arrow class="w-[4rem] h-[2.5rem]" />
+            </a>
         </div>
     </section>
 
-    {{-- [섹션 2] 기업 소개 --}}
-    <section id="business" class="bg-white px-6 md:px-20 lg:px-32">
-        {{-- 1. 상단 헤더 (Center Align) --}}
-        <div class="text-center mb-16" data-aos="fade-down">
-            <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">사업 분야</h2>
-            <p class="text-gray-500 text-lg md:text-xl font-medium">
-                포엑스는 전문적인 기술력과 최적의 서비스를 제공합니다.
-            </p>
+    {{-- [섹션 2] 기업 소개 (사업 분야) --}}
+    <section id="business" class="bg-white px-[4rem] md:px-[18rem] pt-[10rem] pb-[15rem]">
+        <div class="w-full max-w-[140rem] mx-auto h-[0.1rem] bg-gray-300 mb-[6rem]"></div>
+
+        <div class="text-center mb-[6rem]" data-aos="fade-down">
+            <h2 class="text-[3.2rem] md:text-[4.5rem] font-black text-gray-900 mb-[1.5rem] tracking-tight">{{ __('main.biz_title') }}</h2>
+            <p class="text-gray-500 text-[1.6rem] md:text-[1.8rem] font-medium">{{ __('main.biz_subtitle') }}</p>
         </div>
 
-        {{-- 2. 사업 카드 그리드 (이미지 -> 제목 -> 설명 -> 버튼 순차 배치) --}}
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto w-full">
-            
-            {{-- 교육 사업 --}}
-            <div class="flex flex-col items-start text-left group" data-aos="fade-up" data-aos-delay="0">
-                <div class="w-full aspect-[4/3] overflow-hidden rounded-lg mb-6 shadow-md">
-                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80" alt="Education" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+        <div class="grid grid-cols-1 md:grid-cols-4 max-w-[140rem] mx-auto w-full border border-gray-200 divide-y md:divide-y-0 md:divide-x divide-gray-200 bg-white">
+            @foreach([
+                ['img' => 'main-tech1.jpg', 'title' => 'biz_1_title', 'desc' => 'biz_1_desc', 'route' => 'business.education', 'delay' => '0'],
+                ['img' => 'main-tech2.jpg', 'title' => 'biz_2_title', 'desc' => 'biz_2_desc', 'route' => 'business.consulting', 'delay' => '100'],
+                ['img' => 'main-tech3.jpg', 'title' => 'biz_4_title', 'desc' => 'biz_4_desc', 'route' => 'business.engineering', 'delay' => '200'],
+                ['img' => 'main-tech4.jpg', 'title' => 'biz_5_title', 'desc' => 'biz_5_desc', 'route' => 'business.rnd', 'delay' => '300']
+            ] as $biz)
+            <div class="flex flex-col group overflow-hidden" data-aos="fade-up" data-aos-delay="{{ $biz['delay'] }}">
+                <div class="w-full h-[25rem] lg:h-[35rem] overflow-hidden relative bg-gray-100">
+                    <img src="{{ asset('images/main/' . $biz['img']) }}" alt="{{ __('main.'.$biz['title']) }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">{{ __('main.biz_1_title') }}</h3>
-                <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-6 line-clamp-3">
-                    {!! __('main.biz_1_desc') !!}
-                </p>
-                <a href="{{ route('business.education') }}" class="inline-flex items-center text-sm font-bold text-gray-900 hover:text-[#f9b417] transition group/btn">
-                    자세히 보기 <i class="xi-angle-right-min ml-1 group-hover/btn:translate-x-1 transition"></i>
-                </a>
-            </div>
-
-            {{-- 컨설팅 사업 --}}
-            <div class="flex flex-col items-start text-left group" data-aos="fade-up" data-aos-delay="100">
-                <div class="w-full aspect-[4/3] overflow-hidden rounded-lg mb-6 shadow-md">
-                    <img src="https://images.unsplash.com/photo-1454165833767-0266b19677c8?auto=format&fit=crop&w=800&q=80" alt="Consulting" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <div class="flex flex-col flex-grow p-[3rem] lg:p-[4rem]">
+                    <h3 class="text-[2rem] lg:text-[2.4rem] font-bold text-gray-900 mb-[1.5rem]">{{ __('main.'.$biz['title']) }}</h3>
+                    <p class="text-gray-500 text-[1.4rem] lg:text-[1.5rem] leading-[1.6] mb-[4rem] line-clamp-2 break-keep">{!! __('main.'.$biz['desc']) !!}</p>
+                    <a href="{{ route($biz['route']) }}" class="mt-auto inline-flex items-center text-[1.3rem] lg:text-[1.4rem] font-bold text-gray-900 hover:text-[#f9b417] transition-colors group/btn w-fit">
+                        {{ __('main.view_more') }} <i class="xi-angle-right-min ml-[0.6rem] text-[1.6rem] group-hover/btn:translate-x-[0.4rem] transition-transform"></i>
+                    </a>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">{{ __('main.biz_2_title') }}</h3>
-                <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-6 line-clamp-3">
-                    {!! __('main.biz_2_desc') !!}
-                </p>
-                <a href="{{ route('business.consulting') }}" class="inline-flex items-center text-sm font-bold text-gray-900 hover:text-[#f9b417] transition group/btn">
-                    자세히 보기 <i class="xi-angle-right-min ml-1 group-hover/btn:translate-x-1 transition"></i>
-                </a>
             </div>
-
-            {{-- 엔지니어링 사업 --}}
-            <div class="flex flex-col items-start text-left group" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-full aspect-[4/3] overflow-hidden rounded-lg mb-6 shadow-md">
-                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80" alt="Engineering" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">{{ __('main.biz_4_title') }}</h3>
-                <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-6 line-clamp-3">
-                    {!! __('main.biz_4_desc') !!}
-                </p>
-                <a href="{{ route('business.engineering') }}" class="inline-flex items-center text-sm font-bold text-gray-900 hover:text-[#f9b417] transition group/btn">
-                    자세히 보기 <i class="xi-angle-right-min ml-1 group-hover/btn:translate-x-1 transition"></i>
-                </a>
-            </div>
-
-            {{-- 연구개발 사업 --}}
-            <div class="flex flex-col items-start text-left group" data-aos="fade-up" data-aos-delay="300">
-                <div class="w-full aspect-[4/3] overflow-hidden rounded-lg mb-6 shadow-md">
-                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80" alt="R&D" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">{{ __('main.biz_5_title') }}</h3>
-                <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-6 line-clamp-3">
-                    {!! __('main.biz_5_desc') !!}
-                </p>
-                <a href="{{ route('business.rnd') }}" class="inline-flex items-center text-sm font-bold text-gray-900 hover:text-[#f9b417] transition group/btn">
-                    자세히 보기 <i class="xi-angle-right-min ml-1 group-hover/btn:translate-x-1 transition"></i>
-                </a>
-            </div>
-
+            @endforeach
         </div>
     </section>
 
     {{-- [섹션 3] 기대 효과 --}}
-    <section id="effects" class="bg-white px-6 md:px-20 lg:px-32 border-t border-gray-100">
-        {{-- 1. 상단 헤더 (Center Align) --}}
-        <div class="text-center mb-16" data-aos="fade-down">
-            <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-6">기대효과</h2>
-            <p class="text-gray-500 text-lg md:text-xl font-medium max-w-4xl mx-auto break-keep leading-relaxed">
-                포엑스는 시간을 절약하고 현장안전을 강화하여 높은 투자 대비 효과(ROI)를 제공합니다.
-            </p>
-        </div>
+    <section id="effects" class="relative bg-white flex flex-col justify-center items-center px-[4rem] md:px-[18rem] py-[10rem]">
+        <div class="w-full max-w-[140rem] mx-auto relative z-10">
+            <div class="w-full h-[0.1rem] bg-gray-300 mb-[8rem]"></div>
 
-        {{-- 2. 기대 수치 그리드 (수직 스택 카드) --}}
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto w-full">
-            
-            {{-- 문서화 효율증대 --}}
-            <div class="flex flex-col items-center text-center p-12 bg-gray-50 rounded-3xl border border-gray-100 group hover:bg-white hover:shadow-2xl transition duration-500" data-aos="zoom-in" data-aos-delay="0">
-                <h3 class="text-xl font-bold text-gray-900 mb-6">문서화 효율증대</h3>
-                <span class="text-6xl md:text-7xl font-black text-gray-950 mb-8 group-hover:text-[#f9b417] transition duration-500">98%</span>
-                <div class="w-12 h-1.5 bg-[#f9b417] rounded-full"></div>
+            <div class="text-center mb-[8rem]" data-aos="fade-down">
+                <h2 class="text-[3.2rem] md:text-[4.5rem] font-black text-gray-900 mb-[1.5rem] tracking-tight">{{ __('main.effect_title') }}</h2>
+                <p class="text-gray-500 text-[1.6rem] md:text-[1.8rem] font-medium">{{ __('main.effect_subtitle') }}</p>
             </div>
 
-            {{-- 검사 정확도 증가 --}}
-            <div class="flex flex-col items-center text-center p-12 bg-gray-50 rounded-3xl border border-gray-100 group hover:bg-white hover:shadow-2xl transition duration-500" data-aos="zoom-in" data-aos-delay="100">
-                <h3 class="text-xl font-bold text-gray-900 mb-6">검사 정확도 증가</h3>
-                <span class="text-6xl md:text-7xl font-black text-gray-950 mb-8 group-hover:text-[#f9b417] transition duration-500">33%</span>
-                <div class="w-12 h-1.5 bg-[#f9b417] rounded-full"></div>
-            </div>
+            <div class="relative w-full py-[4rem]">
+                <div class="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
+                    <div class="w-[140rem] h-[35rem] bg-[#f9b417]/30 blur-[8rem] rounded-[100%]"></div>
+                </div>
 
-            {{-- 준비시간 감축 --}}
-            <div class="flex flex-col items-center text-center p-12 bg-gray-50 rounded-3xl border border-gray-100 group hover:bg-white hover:shadow-2xl transition duration-500" data-aos="zoom-in" data-aos-delay="200">
-                <h3 class="text-xl font-bold text-gray-900 mb-6">준비시간 감축</h3>
-                <span class="text-6xl md:text-7xl font-black text-gray-950 mb-8 group-hover:text-[#f9b417] transition duration-500">86%</span>
-                <div class="w-12 h-1.5 bg-[#f9b417] rounded-full"></div>
-            </div>
-
-            {{-- 검사시간 단축 --}}
-            <div class="flex flex-col items-center text-center p-12 bg-gray-50 rounded-3xl border border-gray-100 group hover:bg-white hover:shadow-2xl transition duration-500" data-aos="zoom-in" data-aos-delay="300">
-                <h3 class="text-xl font-bold text-gray-900 mb-6">검사시간 단축</h3>
-                <span class="text-6xl md:text-7xl font-black text-gray-950 mb-8 group-hover:text-[#f9b417] transition duration-500">50%</span>
-                <div class="w-12 h-1.5 bg-[#f9b417] rounded-full"></div>
-            </div>
-
-        </div>
-    </section>
-
-    {{-- [섹션 4] 홍보 영상 (PROMOTIONAL VIDEO) - 신규 추가 ⭐ --}}
-    <section id="promo-video" class="bg-white px-6 md:px-20 lg:px-32 border-t border-gray-100">
-        {{-- 1. 상단 헤더 (Center Align) --}}
-        <div class="text-center mb-12" data-aos="fade-down">
-            <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">홍보 영상</h2>
-            <p class="text-gray-500 text-lg md:text-xl font-medium">
-                포엑스가 만들어가는 안전한 산업 현장을 영상으로 만나보세요.
-            </p>
-        </div>
-
-        {{-- 2. 유튜브 플레이어 박스 --}}
-        <div class="max-w-6xl mx-auto w-full aspect-video bg-black rounded-3xl shadow-2xl overflow-hidden border border-gray-100 group" data-aos="zoom-in">
-            {{-- 유튜브 링크 입력 (src의 마지막 ID 부분을 실제 영상 ID로 교체하세요) --}}
-            <iframe 
-                class="w-full h-full" 
-                src="https://www.youtube.com/embed/xLd7W01jNw8?rel=0&modestbranding=1"
-                title="FOEx 홍보 영상" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen
-                loading="lazy">
-            </iframe>
-        </div>
-    </section>
-
-    {{-- [섹션 5] 최신 소식 & 고객센터 (PR & CUSTOMER SERVICE) --}}
-    <section id="contact-pr" class="bg-white px-6 md:px-20 lg:px-32 border-t border-gray-100 flex flex-col justify-center">
-        <div class="max-w-7xl mx-auto w-full space-y-16">
-            
-            {{-- 상단: 최신 소식 (News & Notice) --}}
-            <div data-aos="fade-up">
-                <div class="flex justify-between items-end mb-8 border-b-2 border-gray-900 pb-4">
-                    <div>
-                        <h2 class="text-[#f9b417] text-sm font-bold tracking-widest mb-2 uppercase">PR Center</h2>
-                        <h3 class="text-3xl md:text-4xl font-black text-gray-900">최신 소식</h3>
+                <div class="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-[4rem] text-center">
+                    @foreach([
+                        ['title' => __('main.effect_1_name'), 'value' => 98, 'delay' => '0'],
+                        ['title' => __('main.effect_2_name'), 'value' => 33, 'delay' => '100'],
+                        ['title' => __('main.effect_3_name'), 'value' => 86, 'delay' => '200'],
+                        ['title' => __('main.effect_4_name'), 'value' => 50, 'delay' => '300']
+                    ] as $effect)
+                    <div class="flex flex-col items-center justify-center" data-aos="fade-up" data-aos-delay="{{ $effect['delay'] }}">
+                        <div x-data="numberCounter({{ $effect['value'] }})" class="text-[7rem] md:text-[11rem] font-black text-[#303031] leading-none mb-[2rem] tracking-tighter flex items-baseline justify-center">
+                            <span x-text="current">0</span>
+                            <span class="text-[5rem] md:text-[8rem] ml-[0.5rem]">%</span>
+                        </div>
+                        <h3 class="text-[1.8rem] md:text-[2rem] font-bold text-gray-800">{{ $effect['title'] }}</h3>
                     </div>
-                    <a href="{{ route('pr.notice.index') }}" class="text-gray-500 hover:text-[#f9b417] text-sm flex items-center transition font-bold">
-                        전체보기 <i class="xi-plus-min ml-1"></i>
+                    @endforeach
+                </div>
+            </div>
+            <div class="w-full h-[0.1rem] bg-gray-300 mt-[8rem]"></div>
+        </div>
+    </section>
+
+    {{-- [섹션 4] 홍보 영상 --}}
+    <section id="promo-video" class="relative bg-white flex flex-col justify-center items-center px-[4rem] md:px-[18rem] py-[10rem]">
+        <div class="w-full max-w-[140rem] mx-auto z-10">
+            <div class="text-center mb-[6rem]" data-aos="fade-down">
+                <h2 class="text-[3.2rem] md:text-[4.5rem] font-black text-gray-900 mb-[1.5rem] tracking-tight">{{ __('main.video_title') }}</h2>
+                <p class="text-gray-500 text-[1.6rem] md:text-[1.8rem] font-medium">{{ __('main.video_subtitle') }}</p>
+            </div>
+            <div class="max-w-[90rem] mx-auto w-full aspect-video bg-gray-200 rounded-[2rem] md:rounded-[3rem] shadow-[0_2rem_4rem_rgba(0,0,0,0.1)] overflow-hidden group" data-aos="zoom-in">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/xLd7W01jNw8?rel=0&modestbranding=1" title="FOEx 홍보 영상" frameborder="0" allowfullscreen loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    {{-- [섹션 5] 최신 소식 & 고객센터 --}}
+    <section id="contact-pr" class="relative bg-white flex flex-col justify-center items-center px-[4rem] md:px-[18rem] py-[10rem]">
+        <div class="w-full max-w-[110rem] mx-auto space-y-[6rem]">
+            <div data-aos="fade-up">
+                <div class="flex justify-between items-end mb-[2.5rem] border-b-[0.15rem] border-gray-300 pb-[1.5rem]">
+                    <h2 class="text-[2.8rem] md:text-[3.2rem] font-black text-gray-900 tracking-tight">{{ __('main.news_title') }}</h2>
+                    <a href="{{ route('pr.notice.index') }}" class="text-gray-500 hover:text-[#f9b417] text-[1.4rem] font-bold flex items-center transition-colors">
+                        {{ __('main.view_all') }} <i class="xi-plus-min ml-[0.5rem]"></i>
                     </a>
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-[2.5rem]">
                     @forelse($notices->take(3) as $notice)
-                        <div class="group cursor-pointer p-6 bg-gray-50 rounded-2xl border border-gray-100 hover:bg-white hover:shadow-xl transition duration-300" onclick="location.href='{{ route('pr.notice.show', $notice->id) }}'">
-                            <span class="text-[#f9b417] text-xs font-bold uppercase mb-3 block">Notice</span>
-                            <h4 class="text-lg font-bold text-gray-900 mb-4 line-clamp-1 group-hover:text-blue-900 transition">{{ $notice->title }}</h4>
-                            <p class="text-gray-500 text-sm mb-6 line-clamp-2 leading-relaxed">
-                                {{ Str::limit(strip_tags($notice->content), 100) }}
-                            </p>
-                            <span class="text-gray-400 text-xs">{{ $notice->created_at->format('Y.m.d') }}</span>
+                        <div class="group cursor-pointer p-[3rem] bg-[#f8f9fa] rounded-[1rem] border border-gray-200 hover:border-gray-400 hover:shadow-lg transition duration-300 flex flex-col h-[20rem]" onclick="location.href='{{ route('pr.notice.show', $notice->id) }}'">
+                            <h4 class="text-[1.7rem] font-bold text-gray-900 mb-[1.2rem] line-clamp-1 group-hover:text-blue-700 transition-colors">{{ $notice->title }}</h4>
+                            <p class="text-gray-500 text-[1.4rem] mb-auto line-clamp-2 leading-[1.6] break-keep">{{ Str::limit(strip_tags($notice->content), 100) }}</p>
+                            <span class="text-gray-400 text-[1.2rem] font-medium mt-[1.5rem]">{{ $notice->created_at->format('Y.m.d') }}</span>
                         </div>
                     @empty
-                        <div class="col-span-3 text-center py-10 text-gray-400">등록된 최신 소식이 없습니다.</div>
+                        <div class="col-span-3 text-center py-[8rem] text-gray-400 text-[1.5rem]">{{ __('main.no_news') }}</div>
                     @endforelse
                 </div>
             </div>
 
-            {{-- 하단: 고객센터 (CS Card) --}}
-            <div class="flex flex-col md:flex-row rounded-3xl overflow-hidden shadow-2xl border border-gray-100" data-aos="zoom-in">
-                {{-- 왼쪽: 슬로건 --}}
-                <div class="w-full md:w-1/2 bg-blue-950 text-white p-10 md:p-12 flex flex-col justify-center">
-                    <h3 class="text-2xl md:text-4xl font-black leading-tight mb-4">
-                        Safety isn't optional.<br>It's a <span class="text-[#f9b417]">necessity</span>.
-                    </h3>
-                    <p class="text-xs md:text-sm text-gray-400 mb-8 break-keep">안전은 선택이 아니라 필수입니다. 포엑스가 더 안전한 현장을 만듭니다.</p>
-                    <a href="{{ route('service.inquiry') }}" class="inline-flex items-center justify-center gap-2 bg-[#f9b417] text-black font-bold py-3 px-8 rounded-lg transition hover:bg-white w-fit text-sm">
-                        문의하기 <i class="xi-angle-right-min"></i>
+            <div class="flex flex-col md:flex-row rounded-[2rem] overflow-hidden shadow-[0_1rem_3rem_rgba(0,0,0,0.08)] border border-gray-200" data-aos="zoom-in">
+                <div class="w-full md:w-2/3 bg-[#2A3143] text-white p-[5rem] lg:p-[7rem] flex flex-col justify-center">
+                    <h3 class="text-[3rem] lg:text-[4rem] font-bold leading-[1.2] mb-[2.5rem] tracking-tight">{!! __('main.safety_slogan') !!}</h3>
+                    <p class="text-[1.4rem] lg:text-[1.6rem] text-white font-medium break-keep opacity-90">{{ __('main.safety_desc') }}</p>
+                </div>
+                <div class="w-full md:w-1/3 bg-white p-[4rem] lg:p-[5rem] flex flex-col justify-center border-l border-gray-100">
+                    <h4 class="text-[1.8rem] lg:text-[2rem] font-bold text-gray-900 mb-[1rem]">{{ __('main.cs_title') }}</h4>
+                    <p class="text-[3.6rem] lg:text-[4rem] font-black text-gray-900 mb-[1.5rem] tracking-tighter leading-none whitespace-nowrap">055-293-0521</p>
+                    <div class="text-[1.3rem] lg:text-[1.4rem] text-gray-500 space-y-[0.5rem] mb-[3rem] break-keep">
+                        <p>{!! __('main.cs_time') !!}</p>
+                        <p>{{ __('main.cs_holiday') }}</p>
+                    </div>
+                    <a href="{{ route('service.inquiry') }}" class="inline-flex items-center justify-center bg-[#f9b417] text-gray-900 font-bold text-[1.4rem] lg:text-[1.5rem] py-[1.2rem] px-[3rem] rounded-[0.4rem] transition hover:bg-gray-900 hover:text-white w-fit">
+                        {{ __('main.inquiry_btn') }}
                     </a>
                 </div>
-                {{-- 오른쪽: 연락처 --}}
-                <div class="w-full md:w-1/2 bg-gray-50 p-10 md:p-12 flex flex-col justify-center">
-                    <h4 class="text-lg font-bold text-gray-900 mb-4">고객센터</h4>
-                    <p class="text-3xl md:text-5xl font-black text-gray-950 mb-6 tracking-tight">055-293-0521</p>
-                    <div class="text-xs text-gray-500 space-y-1">
-                        <p>평일 09:00 ~ 18:00 (점심시간 12:00 ~ 13:00)</p>
-                        <p>주말 및 공휴일 휴무</p>
-                    </div>
-                </div>
             </div>
-
         </div>
     </section>
 
-    {{-- [섹션 5] 포엑스 일정 (SCHEDULE) - 한 화면 맞춤(Full-Fit) 최적화 --}}
-    <section id="schedule" class="bg-white px-6 md:px-20 lg:px-32 border-t border-gray-100 flex flex-col items-center justify-center">
-        <div class="w-full max-w-7xl mx-auto h-full flex flex-col py-8 md:py-12">
-            
-            {{-- 1. 상단 타이틀 구역 (간격 축소) --}}
-            <div class="text-center mb-6 md:mb-10" data-aos="fade-down">
-                <h2 class="text-2xl md:text-4xl font-black text-gray-900 mb-2 tracking-tighter">포엑스 일정</h2>
-                <p class="text-gray-500 text-sm md:text-base font-medium">교육 및 행사 일정을 확인하세요.</p>
+    {{-- [섹션 6] 포엑스 일정 --}}
+    <section id="schedule" class="relative bg-white flex flex-col justify-center items-center px-[4rem] md:px-[18rem] py-[12rem] border-t border-gray-100" x-data="calendarHandler()">
+        <div class="w-full max-w-[140rem] mx-auto z-10 flex flex-col items-center">
+            <div class="text-center mb-[6rem]" data-aos="fade-down">
+                <h2 class="text-[3.2rem] md:text-[4.5rem] font-black text-gray-900 mb-[1.5rem] tracking-tight">{{ __('main.schedule_title') }}</h2>
+                <p class="text-gray-500 text-[1.8rem] font-medium">{{ __('main.schedule_subtitle') }}</p>
             </div>
-
-            {{-- 2. 달력 영역 (높이 유연화) --}}
-            <div class="flex-1 flex flex-col min-h-0 w-full rounded-3xl overflow-hidden bg-[#f4f4f4] shadow-lg border border-gray-100" data-aos="fade-up">
-                
-                {{-- 달력 네비게이션 (패딩 축소) --}}
-                <div class="flex items-center justify-center gap-6 py-4 border-b border-gray-200 bg-[#f4f4f4]">
-                    <a href="#" class="text-gray-400 hover:text-blue-700 text-xl"><i class="xi-angle-left"></i></a>
-                    <span class="text-xl font-black text-gray-900 tracking-tight">2026. 03</span>
-                    <a href="#" class="text-gray-400 hover:text-blue-700 text-xl"><i class="xi-angle-right"></i></a>
-                </div>
-
-                {{-- 달력 그리드 (flex-1로 남은 공간 모두 차지) --}}
-                <div class="flex-1 grid grid-cols-7 bg-[#f4f4f4] min-h-0">
-                    
-                    {{-- 요일 헤더 --}}
-                    @php $days = ['일', '월', '화', '수', '목', '금', '토']; @endphp
-                    @foreach($days as $index => $day)
-                        <div class="py-2 border-r border-gray-200 text-xs font-bold bg-gray-50 {{ $index == 0 ? 'text-red-500' : ($index == 6 ? 'text-blue-500' : 'text-gray-800') }}">
-                            {{ $day }}
-                        </div>
-                    @endforeach
-
-                    {{-- 날짜 그리드 --}}
-                    @for($i=1; $i<=31; $i++)
-                        @php
-                            $dayOfWeek = ($i - 1) % 7;
-                            $dateColorClass = $dayOfWeek == 0 ? 'text-red-500' : ($dayOfWeek == 6 ? 'text-blue-500' : 'text-gray-800');
-                        @endphp
-
-                        {{-- [핵심] min-h를 없애고 flex-1을 주어 화면 크기에 따라 높이가 자동 조절되게 함 --}}
-                        <div class="border-r border-t border-gray-200 p-1.5 md:p-2 text-right flex flex-col justify-start items-end gap-1 relative overflow-hidden h-full">
-                            
-                            {{-- 날짜 숫자 (사이즈 축소) --}}
-                            @if($i == 26)
-                                <span class="rounded-full bg-orange-500 text-white flex items-center justify-center h-6 w-6 md:h-7 md:w-7 font-bold text-[11px] md:text-xs">
-                                    26
-                                </span>
-                            @else
-                                <span class="text-[11px] md:text-xs font-medium {{ $dateColorClass }}">
-                                    {{ $i }}
-                                </span>
-                            @endif
-
-                            {{-- 일정 배지 (폰트 및 간격 축소) --}}
-                            <div class="flex flex-col gap-1 w-full text-left overflow-y-auto no-scrollbar">
-                                @if($i == 1)
-                                    <span class="rounded bg-[#f39c12] text-white font-bold text-[9px] px-1.5 py-0.5 w-fit leading-tight">IECEx CoPC</span>
-                                    <span class="rounded bg-[#a55eea] text-white font-bold text-[9px] px-1.5 py-0.5 w-fit leading-tight">방폭교육</span>
-                                @endif
-                                @if($i == 2)
-                                    <span class="rounded bg-[#4b7bec] text-white font-bold text-[9px] px-1.5 py-0.5 w-fit leading-tight">모터기술교육</span>
-                                    <span class="rounded bg-[#eb4d4b] text-white font-bold text-[9px] px-1.5 py-0.5 w-full truncate leading-tight">수소안전교육...</span>
-                                @endif
-                                @if($i == 10)
-                                    <span class="rounded bg-[#2bcbba] text-white font-bold text-[9px] px-1.5 py-0.5 w-fit leading-tight">SIL 교육</span>
-                                @endif
-                                @if($i == 12)
-                                    <span class="rounded bg-[#ec407a] text-white font-bold text-[9px] px-1.5 py-0.5 w-fit leading-tight">기타</span>
-                                @endif
-                            </div>
-                        </div>
-                    @endfor
-                    
-                    {{-- 마지막 주 빈 칸 채우기 --}}
-                    @for($j=0; $j<4; $j++)
-                        <div class="border-t border-gray-200 border-r bg-gray-50/50"></div>
-                    @endfor
-                </div>
+            <div id="calendar-container" class="w-full max-w-[120rem] h-[95rem] bg-white rounded-[2rem] shadow-[0_2rem_5rem_rgba(0,0,0,0.08)] border border-gray-200 overflow-hidden" data-aos="zoom-in">
+                @include('partials.calendar_body')
             </div>
         </div>
     </section>
@@ -362,13 +247,106 @@
 @section('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        if(typeof AOS !== 'undefined') {
-            AOS.init({
-                once: false,
-                offset: 50,
-                duration: 800
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const aosElements = entry.target.querySelectorAll('[data-aos]');
+                if (entry.isIntersecting) {
+                    aosElements.forEach(el => {
+                        el.classList.remove('aos-animate');
+                        setTimeout(() => el.classList.add('aos-animate'), 50);
+                    });
+                    if (entry.target.hasAttribute('data-aos')) {
+                        entry.target.classList.remove('aos-animate');
+                        setTimeout(() => entry.target.classList.add('aos-animate'), 50);
+                    }
+                } else {
+                    aosElements.forEach(el => el.classList.remove('aos-animate'));
+                    if (entry.target.hasAttribute('data-aos')) {
+                        entry.target.classList.remove('aos-animate');
+                    }
+                }
             });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+    });
+
+    function calendarHandler() {
+        return {
+            async changeMonth(year, month) {
+                const container = document.getElementById('calendar-container');
+                container.style.opacity = '0.5';
+
+                try {
+                    // 🚨 route('home') 대신 route('main')으로 되어있는지 확인!
+                    const response = await axios.get(`{{ route('home') }}`, {
+                        params: { year, month },
+                        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                    });
+                    
+                    container.innerHTML = response.data;
+                    container.style.opacity = '1';
+
+                    // AOS 재실행
+                    if (window.AOS) {
+                        AOS.refresh();
+                    }
+                } catch (error) {
+                    console.error('달력 로드 실패:', error);
+                    container.style.opacity = '1';
+                }
+            }
         }
+    }
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('numberCounter', (targetValue, duration = 2000) => ({
+            current: 0,
+            target: targetValue,
+            started: false,
+            init() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // 1. 화면에 들어오면 애니메이션 시작
+                            if (!this.started) {
+                                this.started = true;
+                                this.animate();
+                            }
+                        } else {
+                            // 2. 🚨 [추가된 로직] 화면에서 완전히 사라지면 상태 초기화 🚨
+                            // 다시 이 섹션으로 돌아왔을 때 애니메이션이 재실행되도록 만듭니다.
+                            this.started = false;
+                            this.current = 0;
+                        }
+                    });
+                }, { 
+                    threshold: 0.1 // 섹션이 10%만 보여도 초기화 준비, 10% 이상 보이면 실행
+                });
+                
+                observer.observe(this.$el);
+            },
+            animate() {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!this.started) return; // 초기화되었으면 애니메이션 중단
+                    
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    
+                    // Ease-out 효과 (점점 천천히)
+                    const ease = 1 - Math.pow(1 - progress, 4);
+                    this.current = Math.floor(ease * this.target);
+                    
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        this.current = this.target;
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+        }));
     });
 </script>
 @endsection

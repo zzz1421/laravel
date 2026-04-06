@@ -57,20 +57,6 @@
                 </div>
             </div>
             
-            <div class="bg-slate-900 text-white py-20">
-                <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12 items-start">
-                    <div class="md:w-1/3">
-                        <span class="text-blue-400 font-bold tracking-widest text-sm uppercase mb-2 block">Recognised Training Provider</span>
-                        <h2 class="text-3xl font-bold mb-6 leading-tight">{!! __('business.rtp_title') !!}</h2>
-                        <p class="text-gray-400 mb-8">{{ __('business.rtp_desc') }}</p>
-                        <a href="{{ route('service.edu.apply') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded transition">{{ __('business.edu_btn_apply') }}</a>
-                    </div>
-                    <div class="md:w-2/3 bg-white/5 p-8 rounded-xl border border-white/10 text-sm leading-7 space-y-4">
-                        <p><i class="xi-check-circle text-blue-500 mr-2"></i> {{ __('business.rtp_check1') }}</p>
-                        <p><i class="xi-check-circle text-blue-500 mr-2"></i> {{ __('business.rtp_check2') }}</p>
-                    </div>
-                </div>
-            </div>
 
             <div class="py-24 bg-white">
                 <div class="max-w-7xl mx-auto px-4">
@@ -100,17 +86,26 @@
                     </div>
                 </div>
             </div>
+
+            <div class="bg-slate-900 text-white py-20">
+                <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12 items-start">
+                    <div class="md:w-1/3">
+                        <span class="text-blue-400 font-bold tracking-widest text-sm uppercase mb-2 block">Recognised Training Provider</span>
+                        <h2 class="text-3xl font-bold mb-6 leading-tight">{!! __('business.rtp_title') !!}</h2>
+                        <p class="text-gray-400 mb-8">{{ __('business.rtp_desc') }}</p>
+                        <a href="{{ route('service.edu.apply') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded transition">{{ __('business.edu_btn_apply') }}</a>
+                    </div>
+                    <div class="md:w-2/3 bg-white/5 p-8 rounded-xl border border-white/10 text-sm leading-7 space-y-4">
+                        <p><i class="xi-check-circle text-blue-500 mr-2"></i> {{ __('business.rtp_check1') }}</p>
+                        <p><i class="xi-check-circle text-blue-500 mr-2"></i> {{ __('business.rtp_check2') }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div x-show="tab === 'tech'" x-cloak class="animate-fade-in">
             <div class="py-20 bg-white">
                 <div class="max-w-7xl mx-auto px-4">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-                        <div class="border border-gray-300 rounded-lg p-6 text-center hover:border-amber-500 hover:shadow-md transition bg-white flex items-center justify-center h-24 cursor-default"><span class="font-bold text-gray-700">{{ __('business.tech_g1') }}</span></div>
-                        <div class="border border-gray-300 rounded-lg p-6 text-center hover:border-amber-500 hover:shadow-md transition bg-white flex flex-col items-center justify-center h-24 cursor-default"><span class="font-bold text-gray-700">{{ __('business.tech_g2') }}</span><span class="text-xs text-gray-500 mt-1">(Ex d, Ex e, Ex i, Ex p)</span></div>
-                        <div class="border border-gray-300 rounded-lg p-6 text-center hover:border-amber-500 hover:shadow-md transition bg-white flex items-center justify-center h-24 cursor-default"><span class="font-bold text-gray-700">{{ __('business.tech_g3') }}</span></div>
-                        <div class="border border-gray-300 rounded-lg p-6 text-center hover:border-amber-500 hover:shadow-md transition bg-white flex items-center justify-center h-24 cursor-default"><span class="font-bold text-gray-700">{{ __('business.tech_g4') }}</span></div>
-                    </div>
                     <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
                         <div class="rounded-xl overflow-hidden shadow-lg h-[350px]">
                             <img src="https://loremflickr.com/800/600/meeting,training,office" alt="Tech" class="w-full h-full object-cover">
@@ -128,10 +123,10 @@
                     <div class="border-t border-gray-100 pt-16">
                         <div class="swiper techSwiper pb-12">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm h-64 flex items-center justify-center p-4"><div class="text-center"><i class="xi-cog text-6xl text-gray-300 mb-4"></i><p class="font-bold text-gray-700">{{ __('business.tech_s1') }}</p></div></div></div>
-                                <div class="swiper-slide"><div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm h-64 flex items-center justify-center p-4"><div class="text-center"><i class="xi-safety text-6xl text-amber-500 mb-4"></i><p class="font-bold text-gray-700">{{ __('business.tech_s2') }}</p></div></div></div>
-                                <div class="swiper-slide"><div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm h-64 flex items-center justify-center p-4"><div class="text-center"><i class="xi-circuit text-6xl text-blue-500 mb-4"></i><p class="font-bold text-gray-700">{{ __('business.tech_s3') }}</p></div></div></div>
-                                <div class="swiper-slide"><div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm h-64 flex items-center justify-center p-4"><div class="text-center"><i class="xi-document text-6xl text-green-500 mb-4"></i><p class="font-bold text-gray-700">{{ __('business.tech_s4') }}</p></div></div></div>
+                                <div class="swiper-slide"><div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition group h-80 flex flex-col"><div class="h-48 bg-amber-50 flex items-center justify-center group-hover:bg-amber-100 transition"><i class="xi-woman text-8xl text-amber-500"></i><i class="xi-paper text-4xl text-gray-400 -ml-4 mt-8"></i></div><div class="p-6 text-center flex-grow flex items-center justify-center"><h4 class="text-lg font-bold text-gray-800">{{ __('business.tech_s1') }}</p></div></div></div>
+                                <div class="swiper-slide"><div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition group h-80 flex flex-col"><div class="h-48 bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition"><i class="xi-users text-8xl text-blue-500"></i><i class="xi-wrench text-4xl text-gray-400 -ml-2 mb-8"></i></div><div class="p-6 text-center flex-grow flex items-center justify-center"><h4 class="text-lg font-bold text-gray-800">{{ __('business.tech_s2') }}</p></div></div></div>
+                                <div class="swiper-slide"><div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition group h-80 flex flex-col"><div class="h-48 bg-red-50 flex items-center justify-center group-hover:bg-red-100 transition"><i class="xi-spinner-1 text-8xl text-red-500 animate-spin-slow"></i></div><div class="p-6 text-center flex-grow flex flex-col items-center justify-center"><h4 class="text-lg font-bold text-gray-800">{{ __('business.tech_s3') }}</p></div></div></div>
+                                <div class="swiper-slide"><div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition group h-80 flex flex-col"><div class="h-48 bg-red-50 flex items-center justify-center group-hover:bg-red-100 transition"><i class="xi-spinner-1 text-8xl text-red-500 animate-spin-slow"></i></div><div class="p-6 text-center flex-grow flex flex-col items-center justify-center"><h4 class="text-lg font-bold text-gray-800">{{ __('business.tech_s4') }}</p></div></div></div>
                             </div>
                             <div class="swiper-pagination"></div>
                         </div>
@@ -154,13 +149,6 @@
                                 <li class="flex items-start"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2.5 mr-3 shrink-0"></span> {{ __('business.motor_list_2') }}</li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-20">
-                        <div class="bg-white border border-gray-300 rounded-lg p-4 text-center hover:border-amber-500 hover:shadow-md transition flex flex-col items-center justify-center h-32 cursor-default group"><span class="font-bold text-gray-800 mb-1 group-hover:text-amber-600 transition">{{ __('business.motor_g1') }}</span></div>
-                        <div class="bg-white border border-gray-300 rounded-lg p-4 text-center hover:border-amber-500 hover:shadow-md transition flex flex-col items-center justify-center h-32 cursor-default group"><span class="font-bold text-gray-800 mb-1 group-hover:text-amber-600 transition">{{ __('business.motor_g2') }}</span></div>
-                        <div class="bg-white border border-gray-300 rounded-lg p-4 text-center hover:border-amber-500 hover:shadow-md transition flex flex-col items-center justify-center h-32 cursor-default group"><span class="font-bold text-gray-800 mb-1 group-hover:text-amber-600 transition">{{ __('business.motor_g3') }}</span></div>
-                        <div class="bg-white border border-gray-300 rounded-lg p-4 text-center hover:border-amber-500 hover:shadow-md transition flex flex-col items-center justify-center h-32 cursor-default group"><span class="font-bold text-gray-800 group-hover:text-amber-600 transition">{{ __('business.motor_g4') }}</span></div>
-                        <div class="bg-white border border-gray-300 rounded-lg p-4 text-center hover:border-amber-500 hover:shadow-md transition flex flex-col items-center justify-center h-32 cursor-default group"><span class="font-bold text-gray-800 group-hover:text-amber-600 transition">{{ __('business.motor_g5') }}</span></div>
                     </div>
                     <div class="border-t border-gray-100 pt-16">
                         <div class="swiper motorSwiper pb-12">
@@ -191,11 +179,6 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-20">
-                        <div class="bg-white border border-gray-300 rounded-lg p-6 text-center hover:border-sky-500 hover:shadow-md transition flex items-center justify-center h-24 cursor-default group"><span class="font-bold text-gray-700 group-hover:text-sky-600 transition">{{ __('business.hydro_g1') }}</span></div>
-                        <div class="bg-white border border-gray-300 rounded-lg p-6 text-center hover:border-sky-500 hover:shadow-md transition flex items-center justify-center h-24 cursor-default group"><span class="font-bold text-gray-700 group-hover:text-sky-600 transition">{{ __('business.hydro_g2') }}</span></div>
-                        <div class="bg-white border border-gray-300 rounded-lg p-6 text-center hover:border-sky-500 hover:shadow-md transition flex items-center justify-center h-24 cursor-default group"><span class="font-bold text-gray-700 group-hover:text-sky-600 transition">{{ __('business.hydro_g3') }}</span></div>
-                    </div>
                     <div class="border-t border-gray-100 pt-16">
                         <div class="swiper hydrogenSwiper pb-12">
                             <div class="swiper-wrapper">
@@ -224,10 +207,6 @@
                                 <li class="flex items-start"><span class="w-1.5 h-1.5 bg-orange-400 rounded-full mt-2.5 mr-3 shrink-0"></span> {{ __('business.ess_list_2') }}</li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="grid md:grid-cols-2 gap-6 mb-20">
-                        <div class="bg-white border border-gray-300 rounded-lg p-6 text-center hover:border-orange-500 hover:shadow-md transition flex items-center justify-center h-24 cursor-default group"><span class="font-bold text-gray-700 group-hover:text-orange-600 transition">{{ __('business.ess_g1') }}</span></div>
-                        <div class="bg-white border border-gray-300 rounded-lg p-6 text-center hover:border-orange-500 hover:shadow-md transition flex items-center justify-center h-24 cursor-default group"><span class="font-bold text-gray-700 group-hover:text-orange-600 transition">{{ __('business.ess_g2') }}</span></div>
                     </div>
                     <div class="border-t border-gray-100 pt-16">
                         <div class="swiper essSwiper pb-12">
@@ -269,11 +248,6 @@
                                     {{ __('business.sil_list_3') }}
                                 </li>
                             </ul>
-                        </div>
-                    </div>
-                    <div class="max-w-3xl mx-auto mb-20">
-                        <div class="bg-white border border-gray-300 rounded-lg p-6 text-center hover:border-emerald-500 hover:shadow-md transition flex items-center justify-center h-28 cursor-default group">
-                            <span class="font-bold text-lg text-gray-700 group-hover:text-emerald-600 transition">{{ __('business.sil_g1') }}</span>
                         </div>
                     </div>
                     <div class="border-t border-gray-100 pt-16">

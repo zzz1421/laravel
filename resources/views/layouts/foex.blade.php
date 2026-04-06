@@ -5,277 +5,286 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'FOEX') - {{ __('company.slogan') }}</title>
     
-    {{-- Tailwind CSS CDN --}}
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    {{-- Alpine.js --}}
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
-
-    {{-- XEIcon --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xpressengine/xeicon@2.3.3/xeicon.min.css">
-    
-    {{-- Google Fonts --}}
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
     <style>
-        body { font-family: 'Noto Sans KR', sans-serif; }
-        [x-cloak] { display: none !important; }
-    </style>
-
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        html { scroll-behavior: smooth; }
+        /* 🚨 어떤 제한도 없이 무조건 브라우저 가로 너비(100vw)에 1:1 비례해서 폰트/간격/크기가 바뀝니다 🚨 */
+        html { 
+            font-size: calc(100vw / 192) !important; 
+            scroll-behavior: smooth;
+        }
         body { font-family: 'Noto Sans KR', sans-serif; }
         [x-cloak] { display: none !important; }
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-white">
 
-    {{-- 헤더 (Fixed) --}}
-    <header class="fixed w-full z-50 top-0 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100 h-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-            <div class="flex justify-between h-full">
-                
-                {{-- 로고 --}}
-                <div class="flex items-center">
-                    <a href="{{ route('home') }}" class="flex items-center gap-2">
-                        <span class="text-2xl font-bold text-blue-700 tracking-tighter">FOEX</span>
-                        <span class="text-xs text-gray-500 font-normal mt-1">Total Solution</span>
+    {{-- 🚨 [수정 1] 헤더 (스크롤 감지 애니메이션 적용) 🚨 --}}
+    <header x-data="{ isScrolled: false }" 
+            @scroll.window="isScrolled = (window.pageYOffset > 50)"
+            :class="isScrolled ? 'bg-white shadow-md' : 'bg-transparent'"
+            class="fixed w-full z-[100] top-0 h-[8rem] flex items-center px-[4rem] transition-all duration-300">
+        
+        <div class="w-full flex justify-between items-center h-full">
+            
+            {{-- 1. [왼쪽] 로고 영역 --}}
+            <div class="flex items-center w-[25rem]">
+                {{-- 🚨 로고 컨테이너에 텍스트 색상 전환 애니메이션 추가 (흰색 -> 차콜색) 🚨 --}}
+                <a href="{{ route('home') }}" 
+                   :class="isScrolled ? 'text-[#303031]' : 'text-white'"
+                   class="flex items-center gap-[1.2rem] hover:opacity-80 transition-colors duration-300">
+                    <x-icons.nav-logo class="w-[3.6rem] h-[4rem] object-contain" />
+                    <x-icons.nav-foex class="w-[8rem] h-[3.6rem] object-contain" />
+                </a>
+            </div>
+
+            {{-- 2. [가운데] 네비게이션 --}}
+            <nav class="flex items-center justify-center gap-[3.5rem] flex-1">
+                @php
+                    $menus = [
+                        ['label' => __('menu.company'), 'route' => 'company.intro', 'hasSub' => true, 
+                        'subs' => [['l' => __('menu.intro'), 'r' => 'company.intro'], ['l' => __('menu.history'), 'r' => 'company.history'], ['l' => __('menu.location'), 'r' => 'company.location']]],
+                        ['label' => __('menu.business'), 'route' => 'business.education', 'hasSub' => true,
+                        'subs' => [['l' => __('menu.edu_biz'), 'r' => 'business.education'], ['l' => __('menu.consulting'), 'r' => 'business.consulting'], ['l' => __('menu.engineering'), 'r' => 'business.engineering']]],
+                        ['label' => __('menu.rnd'), 'route' => 'business.rnd', 'hasSub' => true,
+                        'subs' => [['l' => __('menu.ai_sol'), 'r' => 'business.rnd'], ['l' => __('menu.cbm_tech'), 'r' => 'business.rnd'], ['l' => __('menu.rnd_results'), 'r' => 'business.rnd']]],
+                        ['label' => __('menu.solution'), 'route' => 'products.suite', 'hasSub' => true,
+                        'subs' => [['l' => __('menu.suite'), 'r' => 'products.suite'], ['l' => __('menu.node'), 'r' => 'products.node']]],
+                        ['label' => __('menu.pr'), 'route' => 'pr.schedule', 'hasSub' => true,
+                        'subs' => [['l' => __('menu.history'), 'r' => 'pr.schedule'], ['l' => __('menu.notice'), 'r' => 'pr.notice.index'], ['l' => __('menu.brochure'), 'r' => 'pr.brochure'], ['l' => __('menu.press'), 'r' => 'pr.press']]],
+                        ['label' => __('menu.edu_apply'), 'route' => 'service.edu.apply', 'hasSub' => true,
+                        'subs' => [['l' => __('menu.edu_list'), 'r' => 'service.edu.apply']]],
+                        ['label' => __('menu.support'), 'route' => 'service.inquiry', 'hasSub' => true,
+                        'subs' => [['l' => __('menu.online_inquiry'), 'r' => 'service.inquiry'], ['l' => __('menu.qna'), 'r' => 'pr.qna.index']]],
+                    ];
+                @endphp
+
+                @foreach($menus as $menu)
+                <div class="relative flex items-center h-full" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    
+                    {{-- 🚨 메인 메뉴 텍스트: 스크롤 시 흰색 -> 짙은 회색으로 변경 🚨 --}}
+                    <a href="{{ route($menu['route']) }}" 
+                       :class="isScrolled ? 'text-gray-900' : 'text-white'"
+                       class="flex items-center gap-[0.6rem] text-[1.6rem] font-bold hover:text-[#f9b417] transition-colors whitespace-nowrap">
+                        <span>{{ $menu['label'] }}</span>
+                        @if($menu['hasSub'])
+                            <x-icons.nav-downarrow class="w-[1.4rem] h-[1.4rem] transition-transform duration-200" ::class="open ? 'rotate-180' : ''" />
+                        @endif
+                    </a>
+
+                    @if($menu['hasSub'])
+                    <div x-show="open" x-cloak 
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 translate-y-2"
+                         x-transition:enter-end="opacity-100 translate-y-0"
+                         class="absolute top-[1rem] pt-[4rem] left-1/2 -translate-x-1/2 w-[14rem]">
+                        
+                        <div class="bg-[#303031] shadow-2xl py-[1rem] border-t-[0.3rem] border-[#f9b417]">
+                            <ul class="flex flex-col">
+                                @foreach($menu['subs'] as $sub)
+                                <li>
+                                    <a href="{{ route($sub['r']) }}" class="block px-[1.5rem] py-[0.8rem] text-[1.4rem] text-gray-300 hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap">
+                                        {{ $sub['l'] }}
+                                    </a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+                @endforeach
+            </nav>
+
+            {{-- 3. [오른쪽] 유틸리티 영역 --}}
+            <div class="flex items-center justify-end gap-[2rem] w-[25rem]">
+                <div class="flex items-center gap-[1rem] text-[1.4rem] font-bold">
+                    
+                    {{-- [KR 버튼] --}}
+                    {{-- 현재 언어가 'ko'면 무조건 노란색, 아니면 스크롤 상태에 따라 흰색/검은색 --}}
+                    <a href="{{ route('lang.switch', 'ko') }}" 
+                    :class="{
+                        'text-[#f9b417]': '{{ app()->getLocale() }}' === 'ko',
+                        'text-white': '{{ app()->getLocale() }}' !== 'ko' && !isScrolled,
+                        'text-gray-900': '{{ app()->getLocale() }}' !== 'ko' && isScrolled
+                    }"
+                    class="hover:text-[#f9b417] transition-colors duration-300">
+                    KR
+                    </a>
+                    
+                    {{-- 구분선 --}}
+                    <span class="w-[0.1rem] h-[1.4rem] transition-colors duration-300" 
+                        :class="isScrolled ? 'bg-gray-300' : 'bg-gray-500'"></span>
+                    
+                    {{-- [EN 버튼] --}}
+                    {{-- 현재 언어가 'en'이면 무조건 노란색, 아니면 스크롤 상태에 따라 흰색/검은색 --}}
+                    <a href="{{ route('lang.switch', 'en') }}" 
+                    :class="{
+                        'text-[#f9b417]': '{{ app()->getLocale() }}' === 'en',
+                        'text-white': '{{ app()->getLocale() }}' !== 'en' && !isScrolled,
+                        'text-gray-900': '{{ app()->getLocale() }}' !== 'en' && isScrolled
+                    }"
+                    class="hover:text-[#f9b417] transition-colors duration-300">
+                    EN
                     </a>
                 </div>
-
-                {{-- 네비게이션 (Desktop) --}}
-                <nav class="hidden md:flex items-center space-x-1 h-full">
-                    
-                    {{-- 1. Company (인사말, 조직도 삭제됨) --}}
-                    <div class="relative h-full flex items-center px-4" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                        <a href="{{ route('company.intro') }}" class="flex items-center gap-1 py-2 font-medium transition cursor-pointer {{ request()->routeIs('company.*') ? 'text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">
-                            {{ __('menu.company') }} <i class="xi-angle-down text-xs"></i>
-                        </a>
-                        <div x-show="open" x-cloak x-transition class="absolute top-full left-1/2 -translate-x-1/2 w-40 bg-white shadow-lg rounded-b-lg py-2 border-t-2 border-blue-600 flex flex-col">
-                            <a href="{{ route('company.intro') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.intro') }}</a>
-                            {{-- greeting, organization 삭제 --}}
-                            <a href="{{ route('company.history') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.history') }}</a>
-                            <a href="{{ route('company.capability') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.capability') }}</a>
-                            <a href="{{ route('company.location') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.location') }}</a>
-                        </div>
-                    </div>
-
-                    {{-- 2. Business (기술용역 통합, R&D 분리) --}}
-                    <div class="relative h-full flex items-center px-4" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                        <a href="{{ route('business.education') }}" class="flex items-center gap-1 py-2 font-medium transition cursor-pointer {{ request()->routeIs('business.*') ? 'text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">
-                            {{ __('menu.business') }} <i class="xi-angle-down text-xs"></i>
-                        </a>
-                        <div x-show="open" x-cloak x-transition class="absolute top-full left-1/2 -translate-x-1/2 w-48 bg-white shadow-lg rounded-b-lg py-2 border-t-2 border-blue-600 flex flex-col">
-                            <a href="{{ route('business.education') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.education') }}</a>
-                            {{-- 컨설팅 + 기술용역 통합 --}}
-                            <a href="{{ route('business.consulting') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">컨설팅 & 기술용역</a>
-                            <a href="{{ route('business.engineering') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.engineering') }}</a>
-                        </div>
-                    </div>
-
-                    {{-- 3. R&D (신규 독립 메뉴) --}}
-                    <div class="relative h-full flex items-center px-4" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                        <a href="{{ route('business.rnd') }}" class="flex items-center gap-1 py-2 font-medium transition cursor-pointer {{ request()->routeIs('rnd.*') ? 'text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">
-                            R&D <i class="xi-angle-down text-xs"></i>
-                        </a>
-                        <div x-show="open" x-cloak x-transition class="absolute top-full left-1/2 -translate-x-1/2 w-40 bg-white shadow-lg rounded-b-lg py-2 border-t-2 border-blue-600 flex flex-col">
-                            {{-- 세부 항목 임시 링크 --}}
-                            <a href="{{ route('business.rnd') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">AI 솔루션</a>
-                            <a href="{{ route('business.rnd') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">CBM 기술</a>
-                            <a href="{{ route('business.rnd') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">연구 실적</a>
-                        </div>
-                    </div>
-
-                    {{-- 4. Solutions --}}
-                    <div class="relative h-full flex items-center px-4" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                        <a href="{{ route('products.suite') }}" class="flex items-center gap-1 py-2 font-medium transition cursor-pointer {{ request()->routeIs('products.*') ? 'text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">
-                            {{ __('menu.solution') }} <i class="xi-angle-down text-xs"></i>
-                        </a>
-                        <div x-show="open" x-cloak x-transition class="absolute top-full left-1/2 -translate-x-1/2 w-40 bg-white shadow-lg rounded-b-lg py-2 border-t-2 border-blue-600 flex flex-col">
-                            <a href="{{ route('products.suite') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">FOEX Suite</a>
-                            <a href="{{ route('products.node') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">FOEX Node</a>
-                        </div>
-                    </div>
-
-                    {{-- 5. PR Center (일정->캘린더, 자료실 삭제, 홍보영상 통합) --}}
-                    <div class="relative h-full flex items-center px-4" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                        <a href="{{ route('pr.schedule') }}" class="flex items-center gap-1 py-2 font-medium transition cursor-pointer {{ request()->routeIs('pr.*') ? 'text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">
-                            {{ __('menu.pr') }} <i class="xi-angle-down text-xs"></i>
-                        </a>
-                        <div x-show="open" x-cloak x-transition class="absolute top-full left-1/2 -translate-x-1/2 w-40 bg-white shadow-lg rounded-b-lg py-2 border-t-2 border-blue-600 flex flex-col">
-                            <a href="{{ route('pr.schedule') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">캘린더</a>
-                            <a href="{{ route('pr.notice.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.notice') }}</a>
-                            <a href="{{ route('pr.brochure') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">홍보자료</a>
-                            <a href="{{ route('pr.press') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.press') }}</a>
-                            {{-- archive, media 삭제됨 --}}
-                        </div>
-                    </div>
-
-                    {{-- 6. Service (Q&A 이관됨) --}}
-                    <div class="relative h-full flex items-center px-4" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                        <a href="{{ route('service.edu.apply') }}" class="flex items-center gap-1 py-2 font-medium transition cursor-pointer {{ request()->routeIs('service.*') ? 'text-blue-700 font-bold' : 'text-gray-700 hover:text-blue-600' }}">
-                            {{ __('menu.service') }} <i class="xi-angle-down text-xs"></i>
-                        </a>
-                        <div x-show="open" x-cloak x-transition class="absolute top-full right-0 w-40 bg-white shadow-lg rounded-b-lg py-2 border-t-2 border-blue-600 flex flex-col">
-                            <a href="{{ route('service.edu.apply') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.edu_apply') }}</a>
-                            <a href="{{ route('service.inquiry') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.inquiry') }}</a>
-                            {{-- Q&A 이관 --}}
-                            <a href="{{ route('pr.qna.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600">{{ __('menu.qna') }}</a>
-                        </div>
-                    </div>
-
-                </nav>
-
-                {{-- 우측 상단 (언어, 로그인) --}}
-                <div class="flex items-center space-x-6">
-                    {{-- 1. 언어 설정 --}}
-                    <div class="flex items-center space-x-2 text-sm font-medium">
-                        <a href="{{ route('lang.switch', 'ko') }}" class="{{ app()->getLocale() == 'ko' ? 'text-blue-700 font-bold' : 'text-gray-400 hover:text-gray-600' }}">KR</a>
-                        <span class="text-gray-300">|</span>
-                        <a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() == 'en' ? 'text-blue-700 font-bold' : 'text-gray-400 hover:text-gray-600' }}">EN</a>
-                    </div>
-
-                    {{-- 2. 로그인/회원가입 --}}
-                    <div class="flex items-center gap-4 text-sm font-medium border-l border-gray-200 pl-6">
-                        @auth
-                            <a href="{{ route('mypage') }}" class="mr-4 text-gray-700 hover:text-blue-600 font-bold">
-                                <i class="xi-user-o"></i> {{ __('header.mypage') }}
-                            </a>
-                            
-                            <span class="text-gray-600 hidden md:inline">
-                                {!! __('header.greeting', ['name' => '<span class="text-blue-700 font-bold">' . Auth::user()->name . '</span>']) !!}
-                            </span>
-
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="text-gray-500 hover:text-blue-700 transition ml-2">
-                                    {{ __('header.logout') }}
-                                </button>
-                            </form>
-                        @else
-                            <a href="{{ route('login') }}" class="text-gray-500 hover:text-blue-700 transition">
-                                {{ __('header.login') }}
-                            </a>
-                            <a href="{{ route('register') }}" class="text-gray-500 hover:text-blue-700 transition">
-                                {{ __('header.register') }}
-                            </a>
-                        @endauth
-                    </div>
+                
+                {{-- 로그인 영역 (기존 스타일 유지) --}}
+                <div class="border-l pl-[2rem] flex items-center transition-colors duration-300" 
+                    :class="isScrolled ? 'border-gray-300' : 'border-gray-600'">
+                    <a href="{{ route('login') }}" 
+                    :class="isScrolled ? 'text-gray-900' : 'text-white'"
+                    class="text-[1.4rem] font-bold hover:text-[#f9b417] whitespace-nowrap transition-colors duration-300">
+                    {{ __('menu.login') }}
+                    </a>
                 </div>
             </div>
+
         </div>
     </header>
 
-    {{-- 메인 콘텐츠 --}}
-    <main class="flex-grow mt-20">
+    <main class="flex-grow">
         @yield('content')
     </main>
-
-    {{-- 하단 푸터 (수정된 사이트맵 적용) --}}
-    <footer class="bg-[#1a1c1e] text-gray-400 py-16 mt-20 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {{-- 하단 푸터 (시안 반영 7열 구조 & 스케일링 적용) --}}
+    <footer class="bg-[#1a1c1e] text-gray-400 py-[8rem] border-t border-gray-800">
+        <div class="max-w-[140rem] mx-auto px-[4rem]">
             
-            {{-- [상단] 사이트맵 영역 (6열 그리드: R&D 추가됨) --}}
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16">
+            {{-- [상단] 사이트맵 영역 (7열 그리드) --}}
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-[4rem] mb-[8rem]">
                 
-                {{-- 1. Company --}}
+                {{-- 1. 회사 소개 --}}
                 <div>
-                    <h4 class="text-white font-bold text-base mb-6">{{ __('menu.company') }}</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="{{ route('company.intro') }}" class="hover:text-blue-500 transition">{{ __('menu.intro') }}</a></li>
-                        <li><a href="{{ route('company.history') }}" class="hover:text-blue-500 transition">{{ __('menu.history') }}</a></li>
-                        <li><a href="{{ route('company.capability') }}" class="hover:text-blue-500 transition">{{ __('menu.capability') }}</a></li>
-                        <li><a href="{{ route('company.location') }}" class="hover:text-blue-500 transition">{{ __('menu.location') }}</a></li>
+                    <h4 class="text-white font-bold text-[1.6rem] mb-[3rem]">{{ __('menu.company') }}</h4>
+                    <ul class="space-y-[1.5rem] text-[1.4rem]">
+                        <li><a href="{{ route('company.intro') }}" class="hover:text-white">{{ __('menu.intro') }}</a></li>
+                        <li><a href="{{ route('company.history') }}" class="hover:text-white">{{ __('menu.history') }}</a></li>
+                        <li><a href="{{ route('company.capability') }}" class="hover:text-white">{{ __('menu.capability') }}</a></li>
+                        <li><a href="{{ route('company.location') }}" class="hover:text-white">{{ __('menu.location') }}</a></li>
                     </ul>
                 </div>
 
-                {{-- 2. Business --}}
+                {{-- 2. 사업 분야 --}}
                 <div>
-                    <h4 class="text-white font-bold text-base mb-6">{{ __('menu.business') }}</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="{{ route('business.education') }}" class="hover:text-blue-500 transition">{{ __('menu.education') }}</a></li>
-                        <li><a href="{{ route('business.consulting') }}" class="hover:text-blue-500 transition">컨설팅 & 기술용역</a></li>
-                        <li><a href="{{ route('business.engineering') }}" class="hover:text-blue-500 transition">{{ __('menu.engineering') }}</a></li>
+                    <h4 class="text-white font-bold text-[1.6rem] mb-[3rem]">{{ __('menu.business') }}</h4>
+                    <ul class="space-y-[1.5rem] text-[1.4rem]">
+                        <li><a href="{{ route('business.education') }}" class="hover:text-white transition-colors">{{ __('menu.edu_biz') }}</a></li>
+                        <li><a href="{{ route('business.consulting') }}" class="hover:text-white transition-colors">{{ __('menu.consulting') }}</a></li>
+                        <li><a href="{{ route('business.engineering') }}" class="hover:text-white transition-colors">{{ __('menu.engineering') }}</a></li>
                     </ul>
                 </div>
 
-                {{-- 3. R&D (신규) --}}
+                {{-- 3. 연구개발 --}}
                 <div>
-                    <h4 class="text-white font-bold text-base mb-6">R&D</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="{{ route('business.rnd') }}" class="hover:text-blue-500 transition">AI 솔루션</a></li>
-                        <li><a href="{{ route('business.rnd') }}" class="hover:text-blue-500 transition">CBM 기술</a></li>
-                        <li><a href="{{ route('business.rnd') }}" class="hover:text-blue-500 transition">연구 실적</a></li>
+                    <h4 class="text-white font-bold text-[1.6rem] mb-[3rem]">{{ __('menu.rnd') }}</h4>
+                    <ul class="space-y-[1.5rem] text-[1.4rem]">
+                        <li><a href="{{ route('business.rnd') }}" class="hover:text-white transition-colors">{{ __('menu.ai_sol') }}</a></li>
+                        <li><a href="{{ route('business.rnd') }}" class="hover:text-white transition-colors">{{ __('menu.cbm_tech') }}</a></li>
+                        <li><a href="{{ route('business.rnd') }}" class="hover:text-white transition-colors">{{ __('menu.rnd_results') }}</a></li>
                     </ul>
                 </div>
 
-                {{-- 4. Products --}}
+                {{-- 4. 솔루션 --}}
                 <div>
-                    <h4 class="text-white font-bold text-base mb-6">{{ __('menu.solution') }}</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="{{ route('products.suite') }}" class="hover:text-blue-500 transition">FOEX Suite</a></li>
-                        <li><a href="{{ route('products.node') }}" class="hover:text-blue-500 transition">FOEX Node</a></li>
+                    <h4 class="text-white font-bold text-[1.6rem] mb-[3rem]">{{ __('menu.solution') }}</h4>
+                    <ul class="space-y-[1.5rem] text-[1.4rem]">
+                        <li><a href="{{ route('products.suite') }}" class="hover:text-white transition-colors">{{ __('menu.suite') }}</a></li>
+                        <li><a href="{{ route('products.node') }}" class="hover:text-white transition-colors">{{ __('menu.node') }}</a></li>
                     </ul>
                 </div>
 
-                {{-- 5. PR Center --}}
+                {{-- 5. 홍보센터 --}}
                 <div>
-                    <h4 class="text-white font-bold text-base mb-6">{{ __('menu.pr') }}</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="{{ route('pr.schedule') }}" class="hover:text-blue-500 transition">캘린더</a></li>
-                        <li><a href="{{ route('pr.notice.index') }}" class="hover:text-blue-500 transition">{{ __('menu.notice') }}</a></li>
-                        <li><a href="{{ route('pr.brochure') }}" class="hover:text-blue-500 transition">홍보자료</a></li>
-                        <li><a href="{{ route('pr.press') }}" class="hover:text-blue-500 transition">{{ __('menu.press') }}</a></li>
+                    <h4 class="text-white font-bold text-[1.6rem] mb-[3rem]">{{ __('menu.pr') }}</h4>
+                    <ul class="space-y-[1.5rem] text-[1.4rem]">
+                        <li><a href="{{ route('pr.notice.index') }}" class="hover:text-white transition-colors">{{ __('menu.notice') }}</a></li>
+                        <li><a href="{{ route('pr.brochure') }}" class="hover:text-white transition-colors">{{ __('menu.brochure') }}</a></li>
+                        <li><a href="{{ route('pr.press') }}" class="hover:text-white transition-colors">{{ __('menu.press') }}</a></li>
                     </ul>
                 </div>
 
-                {{-- 6. Service --}}
+                {{-- 6. 교육 신청 --}}
                 <div>
-                    <h4 class="text-white font-bold text-base mb-6">{{ __('menu.service') }}</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="{{ route('service.edu.apply') }}" class="hover:text-blue-500 transition">{{ __('menu.edu_apply') }}</a></li>
-                        <li><a href="{{ route('service.inquiry') }}" class="hover:text-blue-500 transition">{{ __('menu.inquiry') }}</a></li>
-                        <li><a href="{{ route('pr.qna.index') }}" class="hover:text-blue-500 transition">{{ __('menu.qna') }}</a></li>
-                        <li class="pt-2"><a href="{{ route('privacy') }}" class="text-blue-500 font-bold hover:underline">개인정보처리방침</a></li>
+                    <h4 class="text-white font-bold text-[1.6rem] mb-[3rem]">{{ __('menu.edu_apply') }}</h4>
+                    <ul class="space-y-[1.5rem] text-[1.4rem]">
+                        <li><a href="{{ route('service.edu.apply') }}" class="hover:text-white transition-colors">{{ __('menu.edu_list') }}</a></li>
+                    </ul>
+                </div>
+
+                {{-- 7. 고객 지원 --}}
+                <div>
+                    <h4 class="text-white font-bold text-[1.6rem] mb-[3rem]">{{ __('menu.support') }}</h4>
+                    <ul class="space-y-[1.5rem] text-[1.4rem]">
+                        <li><a href="{{ route('pr.qna.index') }}" class="hover:text-white transition-colors">{{ __('menu.qna') }}</a></li>
+                        <li><a href="{{ route('service.inquiry') }}" class="hover:text-white transition-colors">{{ __('menu.online_inquiry') }}</a></li>
+                        <li class="pt-[1rem]">
+                            <a href="{{ route('privacy') }}" class="text-[#f9b417] font-bold hover:text-white transition-colors">{{ __('menu.privacy_policy') }}</a>
+                        </li>
                     </ul>
                 </div>
             </div>
 
-            {{-- [하단] 기업 정보 영역 --}}
-            <div class="pt-10 border-t border-gray-800 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
-                <div class="space-y-4">
-                    {{-- 로고 --}}
-                    <div class="flex items-center gap-2">
-                        <span class="text-2xl font-black text-white tracking-tighter">FOEX</span>
-                        <div class="h-4 w-px bg-gray-700 mx-2"></div>
-                        <span class="text-xs text-gray-500 leading-tight uppercase tracking-widest">Digital Transformation<br>Partner</span>
-                    </div>
-                    
-                    {{-- 회사 주소 정보 --}}
-                    <div class="text-xs sm:text-sm leading-relaxed space-y-1">
-                        <div class="flex flex-wrap gap-x-4">
-                            <span>사업자등록번호: 123-45-67890</span>
-                            <span>대표이사: 홍길동</span>
-                        </div>
-                        <p>주소: 서울특별시 강남구 테헤란로 123, 포엑스 빌딩 15층</p>
-                        <div class="flex flex-wrap gap-x-4">
-                            <span>TEL: 02-1234-5678</span>
-                            <span>FAX: 02-1234-5679</span>
-                            <span>E-MAIL: info@foex.co.kr</span>
-                        </div>
-                    </div>
-                </div>
+            {{-- [하단] 기업 정보 및 SNS 영역 --}}
+            <div class="pt-[4rem] border-t border-[#2a2c30] flex flex-col lg:flex-row justify-between items-start lg:items-end gap-[4rem]">
+                
+                {{-- 좌측 기업 정보 --}}
+                <div class="space-y-[2rem]">
+    {{-- 로고 및 슬로건 --}}
+    <div class="flex items-center gap-[1.5rem]">
+        <span class="text-[2.4rem] font-black text-white tracking-tighter">FOEx</span>
+        <div class="h-[2rem] w-[0.1rem] bg-gray-600"></div>
+        <span class="text-[1.2rem] text-gray-500 leading-tight uppercase tracking-widest">{!! __('footer.dt_partner') !!}</span>
+    </div>
+    
+    {{-- 상세 정보 영역 --}}
+    <div class="text-[1.4rem] leading-[1.8] text-gray-400 space-y-[1.5rem]">
+        
+        {{-- 1. 공통 정보 (사업자번호, 대표자, 이메일) --}}
+        <div class="flex flex-wrap gap-x-[2rem] border-b border-gray-700/50 pb-[1.5rem]">
+            <span>{{ __('footer.biz_reg_no') }}: 150-86-02326</span>
+            <span>{{ __('footer.ceo') }}: {{ __('footer.ceo_name') }}</span>
+            <span>{{ __('footer.email') }}: ghkang@foex.kr</span>
+        </div>
 
-                {{-- 저작권 및 SNS --}}
-                <div class="flex flex-col items-start lg:items-end gap-4">
-                    <div class="flex gap-3">
-                        <a href="#" class="w-9 h-9 rounded bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition text-white"><i class="xi-facebook"></i></a>
-                        <a href="#" class="w-9 h-9 rounded bg-gray-800 flex items-center justify-center hover:bg-red-600 transition text-white"><i class="xi-youtube-play"></i></a>
-                        <a href="#" class="w-9 h-9 rounded bg-gray-800 flex items-center justify-center hover:bg-green-600 transition text-white"><i class="xi-naver"></i></a>
+        {{-- 2. 본사 (Head Office) 정보 --}}
+        <div class="space-y-[0.2rem]">
+            <p>
+                <span class="font-bold text-gray-300 mr-[1rem]">{{ __('footer.head_office') }}</span> 
+                {!! __('footer.address_head') !!}
+            </p>
+            <div class="flex flex-wrap gap-x-[2rem]">
+                <span>{{ __('footer.tel') }}: 052-277-8922</span>
+                <span>{{ __('footer.fax') }}: 055-293-0255</span>
+            </div>
+        </div>
+
+        {{-- 3. 연구소 (R&D Center) 정보 --}}
+        <div class="space-y-[0.2rem]">
+            <p>
+                <span class="font-bold text-gray-300 mr-[1rem]">{{ __('footer.rnd_center') }}</span> 
+                {!! __('footer.address_rnd') !!}
+            </p>
+            <div class="flex flex-wrap gap-x-[2rem]">
+                <span>{{ __('footer.tel') }}: 055-293-0252</span>
+                <span>{{ __('footer.fax') }}: 055-293-0255</span>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+                {{-- 우측 저작권 및 SNS --}}
+                <div class="flex flex-col items-start lg:items-end gap-[2rem]">
+                    <div class="flex gap-[1.2rem]">
+                        <a href="#" class="w-[4rem] h-[4rem] rounded-[0.4rem] bg-[#22252a] flex items-center justify-center hover:bg-blue-600 transition-colors text-white text-[1.8rem]"><i class="xi-facebook"></i></a>
+                        <a href="#" class="w-[4rem] h-[4rem] rounded-[0.4rem] bg-[#22252a] flex items-center justify-center hover:bg-red-600 transition-colors text-white text-[1.8rem]"><i class="xi-youtube-play"></i></a>
+                        <a href="#" class="w-[4rem] h-[4rem] rounded-[0.4rem] bg-[#22252a] flex items-center justify-center hover:bg-green-600 transition-colors text-white text-[1.8rem]"><i class="xi-naver"></i></a>
                     </div>
-                    <p class="text-xs text-gray-600">Copyright © {{ date('Y') }} FOEX. All rights reserved.</p>
+                    <p class="text-[1.3rem] text-gray-500">{{ __('footer.copyright', ['year' => date('Y')]) }}</p>
                 </div>
+                
             </div>
         </div>
     </footer>
@@ -288,5 +297,6 @@
             once: false,    // 스크롤을 올렸다 내릴 때마다 반복할지 여부 (true면 한 번만)
         });
     </script>
+    @yield('scripts')
 </body>
 </html>
