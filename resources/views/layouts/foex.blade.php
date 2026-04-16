@@ -2,11 +2,19 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'FOEX') - {{ __('company.slogan') }}</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <meta name="description" content="방폭분야 지식 기반 엔지니어링 서비스 기업, 포엑스">
+    <meta property="og:title" content="FOEX - 글로벌 방폭 안전 파트너">
+    <meta property="og:description" content="방폭 교육, 컨설팅, 엔지니어링 솔루션 제공">
+    <meta property="og:image" content="{{ asset('images/main/main-hero.png') }}">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='43' height='48' viewBox='0 0 43 48' fill='none'%3E%3Cg clip-path='url(%23clip0_2030_84)'%3E%3Cpath d='M0.162799 9.39142C-0.32557 19.7731 1.74419 38.9901 21.839 47.9978C35.0366 42.0812 40.4572 31.7615 42.4862 22.432C23.4495 12.1743 0.184117 9.39336 0.162799 9.39142ZM21.56 38.1277C11.7403 33.7246 10.7286 24.3332 10.967 19.2615C10.9786 19.2615 22.3487 20.622 31.651 25.6336C30.6588 30.1936 28.0095 35.2362 21.56 38.1277Z' fill='%23303031'/%3E%3Cpath d='M41.7052 4.38951C35.8525 0.974801 20.8526 0 20.8526 0C20.8526 0 5.85268 0.974801 0 4.38951C0 4.38951 26.3894 7.32554 42.523 16.5891C42.8719 9.56003 41.7071 4.38951 41.7071 4.38951H41.7052Z' fill='%23F9B417'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_2030_84'%3E%3Crect width='42.5889' height='47.9978' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E">
+    <title>FOEx :: {{ __('company.slogan') }}</title>
+    
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
     <style>
@@ -44,20 +52,58 @@
             <nav class="flex items-center justify-center gap-[3.5rem] flex-1">
                 @php
                     $menus = [
+                        // [1] 회사소개: 역량이 통합된 인트로 페이지 중심
                         ['label' => __('menu.company'), 'route' => 'company.intro', 'hasSub' => true, 
-                        'subs' => [['l' => __('menu.intro'), 'r' => 'company.intro'], ['l' => __('menu.history'), 'r' => 'company.history'], ['l' => __('menu.location'), 'r' => 'company.location']]],
+                        'subs' => [
+                            ['l' => __('menu.intro'), 'r' => 'company.intro'], 
+                            ['l' => __('menu.history'), 'r' => 'company.history'], 
+                            ['l' => __('menu.location'), 'r' => 'company.location']
+                        ]],
+
+                        // [2] 사업분야
                         ['label' => __('menu.business'), 'route' => 'business.education', 'hasSub' => true,
-                        'subs' => [['l' => __('menu.edu_biz'), 'r' => 'business.education'], ['l' => __('menu.consulting'), 'r' => 'business.consulting'], ['l' => __('menu.engineering'), 'r' => 'business.engineering']]],
-                        ['label' => __('menu.rnd'), 'route' => 'business.rnd', 'hasSub' => true,
-                        'subs' => [['l' => __('menu.ai_sol'), 'r' => 'business.rnd'], ['l' => __('menu.cbm_tech'), 'r' => 'business.rnd'], ['l' => __('menu.rnd_results'), 'r' => 'business.rnd']]],
+                        'subs' => [
+                            ['l' => __('menu.edu_biz'), 'r' => 'business.education'], 
+                            ['l' => __('menu.consulting'), 'r' => 'business.consulting'], 
+                            ['l' => __('menu.engineering'), 'r' => 'business.engineering']
+                        ]],
+
+                        // [3] R&D: 연구과제와 논문 중심의 실적 페이지
+                        ['label' => __('menu.rnd'), 'route' => 'rnd.ai', 'hasSub' => true,
+                        'subs' => [
+                            ['l' => __('menu.ai_sol'), 'r' => 'rnd.ai'], 
+                            ['l' => __('menu.cbm_tech'), 'r' => 'rnd.cbm'], 
+                            ['l' => __('menu.rnd_results'), 'r' => 'rnd.results']
+                        ]],
+
+                        // [4] 솔루션 (제품)
                         ['label' => __('menu.solution'), 'route' => 'products.suite', 'hasSub' => true,
-                        'subs' => [['l' => __('menu.suite'), 'r' => 'products.suite'], ['l' => __('menu.node'), 'r' => 'products.node']]],
-                        ['label' => __('menu.pr'), 'route' => 'pr.schedule', 'hasSub' => true,
-                        'subs' => [['l' => __('menu.history'), 'r' => 'pr.schedule'], ['l' => __('menu.notice'), 'r' => 'pr.notice.index'], ['l' => __('menu.brochure'), 'r' => 'pr.brochure'], ['l' => __('menu.press'), 'r' => 'pr.press']]],
-                        ['label' => __('menu.edu_apply'), 'route' => 'service.edu.apply', 'hasSub' => true,
-                        'subs' => [['l' => __('menu.edu_list'), 'r' => 'service.edu.apply']]],
+                        'subs' => [
+                            ['l' => __('menu.suite'), 'r' => 'products.suite'], 
+                            ['l' => __('menu.node'), 'r' => 'products.node']
+                        ]],
+
+                        // [5] 홍보센터: 뉴스 및 자료 아카이브
+                        ['label' => __('menu.pr'), 'route' => 'pr.notice.index', 'hasSub' => true,
+                        'subs' => [
+                            ['l' => __('menu.notice'), 'r' => 'pr.notice.index'], 
+                            ['l' => __('menu.press'), 'r' => 'pr.press'], 
+                            ['l' => __('menu.brochure'), 'r' => 'pr.brochure'], 
+                        ]],
+
+                        // [6] 교육서비스: 교육 일정 및 신청 전용
+                        ['label' => __('menu.edu'), 'route' => 'service.schedule', 'hasSub' => true,
+                        'subs' => [
+                            ['l' => __('menu.edu_schedule'), 'r' => 'service.schedule'], 
+                            ['l' => __('menu.edu_list'), 'r' => 'service.edu.apply']
+                        ]],
+
+                        // [7] 고객지원: 문의하기와 문의확인을 하나로 묶음
                         ['label' => __('menu.support'), 'route' => 'service.inquiry', 'hasSub' => true,
-                        'subs' => [['l' => __('menu.online_inquiry'), 'r' => 'service.inquiry'], ['l' => __('menu.qna'), 'r' => 'pr.qna.index']]],
+                        'subs' => [
+                            ['l' => __('menu.online_inquiry'), 'r' => 'service.inquiry'], // 라벨: 문의하기(쓰기)
+                            ['l' => __('menu.qna'), 'r' => 'pr.qna.index']             // 라벨: 문의확인/Q&A(목록)
+                        ]],
                     ];
                 @endphp
 
@@ -66,9 +112,9 @@
                     
                     {{-- 🚨 메인 메뉴 텍스트: 스크롤 시 흰색 -> 짙은 회색으로 변경 🚨 --}}
                     <a href="{{ route($menu['route']) }}" 
-                       :class="isScrolled ? 'text-gray-900' : 'text-white'"
-                       class="flex items-center gap-[0.6rem] text-[1.6rem] font-bold hover:text-[#f9b417] transition-colors whitespace-nowrap">
-                        <span>{{ $menu['label'] }}</span>
+                        :class="isScrolled ? 'text-gray-900' : 'text-white'"
+                        class="flex items-center gap-[0.6rem] text-[1.6rem] font-bold hover:text-[#f9b417] transition-colors whitespace-nowrap text-center">
+                        <span>{!! $menu['label'] !!}</span>
                         @if($menu['hasSub'])
                             <x-icons.nav-downarrow class="w-[1.4rem] h-[1.4rem] transition-transform duration-200" ::class="open ? 'rotate-180' : ''" />
                         @endif
@@ -86,7 +132,7 @@
                                 @foreach($menu['subs'] as $sub)
                                 <li>
                                     <a href="{{ route($sub['r']) }}" class="block px-[1.5rem] py-[0.8rem] text-[1.4rem] text-gray-300 hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap">
-                                        {{ $sub['l'] }}
+                                        {!! $sub['l'] !!}
                                     </a>
                                 </li>
                                 @endforeach
@@ -172,6 +218,7 @@
                     <ul class="space-y-[1.5rem] text-[1.4rem]">
                         <li><a href="{{ route('business.education') }}" class="hover:text-white transition-colors">{{ __('menu.edu_biz') }}</a></li>
                         <li><a href="{{ route('business.consulting') }}" class="hover:text-white transition-colors">{{ __('menu.consulting') }}</a></li>
+                        <li><a href="{{ route('business.techservice') }}" class="hover:text-white transition-colors">{{ __('menu.techservice') }}</a></li>
                         <li><a href="{{ route('business.engineering') }}" class="hover:text-white transition-colors">{{ __('menu.engineering') }}</a></li>
                     </ul>
                 </div>
@@ -180,9 +227,9 @@
                 <div>
                     <h4 class="text-white font-bold text-[1.6rem] mb-[3rem]">{{ __('menu.rnd') }}</h4>
                     <ul class="space-y-[1.5rem] text-[1.4rem]">
-                        <li><a href="{{ route('business.rnd') }}" class="hover:text-white transition-colors">{{ __('menu.ai_sol') }}</a></li>
-                        <li><a href="{{ route('business.rnd') }}" class="hover:text-white transition-colors">{{ __('menu.cbm_tech') }}</a></li>
-                        <li><a href="{{ route('business.rnd') }}" class="hover:text-white transition-colors">{{ __('menu.rnd_results') }}</a></li>
+                        <li><a href="{{ route('rnd.ai') }}" class="hover:text-white transition-colors">{{ __('menu.ai_sol') }}</a></li>
+                        <li><a href="{{ route('rnd.cbm') }}" class="hover:text-white transition-colors">{{ __('menu.cbm_tech') }}</a></li>
+                        <li><a href="{{ route('rnd.results') }}" class="hover:text-white transition-colors">{{ __('menu.rnd_results') }}</a></li>
                     </ul>
                 </div>
 

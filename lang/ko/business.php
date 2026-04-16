@@ -102,39 +102,41 @@ return [
     
     // Tab 1: 방폭 제품인증
     'cons_tab_product' => '방폭 제품인증 컨설팅',
-    'cons_prod_subtitle' => 'Explosion proof Equipment Certification Consulting (IECEx, ATEX, UL, KCs)',
+    // --- 탭 1: 제품 인증 컨설팅 ---
+    'cons_prod_subtitle' => '방폭 기기 인증 컨설팅 (IECEx, ATEX, UL, KCs)',
     
-    // Process Flow
-    'proc_develop' => 'Develop',
-    'proc_app' => 'Application',
-    'proc_docs' => 'Documents',
-    'proc_prod' => 'Product',
-    'proc_qs' => 'Quality System',
-    'proc_test' => 'TEST',
-    'proc_cert' => 'Certification',
+    // 프로세스 (Process Flow)
+    'proc_develop' => '제품 개발',
+    'proc_app' => '인증 신청',
+    'proc_docs' => '문서 심사',
+    'proc_prod' => '제품 심사',
+    'proc_qs' => '품질 시스템',
+    'proc_test' => '제품 시험',
+    'proc_cert' => '인증서 발행',
 
-    // Lists (Product)
-    'prod_list_1' => 'Strategy support',
-    'prod_list_2' => 'Document review',
-    'prod_list_3' => 'Design Review',
-    'prod_list_4' => 'Procedure support',
-    'prod_list_5' => 'CB, NB, TL Arrange',
-    'prod_list_6' => 'Gap assessment',
-    'prod_list_7' => 'Certification procedure support',
-    'prod_list_8' => 'Quality management system',
-    'prod_list_9' => 'Non-Conformance solution',
+    // 리스트 (Product)
+    'prod_list_1' => '인증 전략 수립 지원',
+    'prod_list_2' => '기술 문서 검토 (Document review)',
+    'prod_list_3' => '설계 검토 (Design Review)',
+    'prod_list_4' => '인증 절차 지원',
+    'prod_list_5' => '인증기관(CB, NB) 및 시험소(TL) 섭외',
+    'prod_list_6' => '갭 평가 (Gap assessment)',
+    'prod_list_7' => '인증 심사 절차 지원',
+    'prod_list_8' => '품질 경영 시스템 구축 지원',
+    'prod_list_9' => '부적합 사항(Non-Conformance) 해결 지원',
     
-    'prod_note_1' => 'Conformity assessment service for Ex products and Ex quality system',
-    'prod_note_2' => 'Corrective action support for non-conformity',
+    // 하단 참고사항
+    'prod_note_1' => '방폭 기기 및 방폭 품질 시스템에 대한 적합성 평가 서비스 제공',
+    'prod_note_2' => '부적합 사항 발생 시 시정 조치(Corrective action) 지원',
     
     'btn_cons_inquiry' => '컨설팅 문의하기',
 
-    // Tab 2: 품질 시스템
+    // --- 탭 2: 품질 시스템 컨설팅 ---
     'cons_tab_quality' => '품질 시스템 컨설팅',
-    'qual_list_1' => 'IECEx Service Facility Certification Consulting',
-    'qual_list_2' => 'Quality Management System Development Consulting',
-    'qual_list_3' => 'Consulting services for repair facility certification',
-    'qual_list_4' => 'Consulting services for inspection and maintenance facility certification',
+    'qual_list_1' => 'IECEx 서비스 기업(Service Facility) 인증 컨설팅',
+    'qual_list_2' => '품질 경영 시스템(QMS) 구축 컨설팅',
+    'qual_list_3' => '수리 기업(Repair facility) 인증 컨설팅',
+    'qual_list_4' => '검사 및 유지보수 기업 인증 컨설팅',
     
     'btn_qual_inquiry' => '품질시스템 문의하기',
 
@@ -174,6 +176,7 @@ return [
     'ts_std_list_3' => '데이터와 분석을 기반으로 안전절차서를 도출하고, 작업장에 적용 가능한 안전기준을 제정하여 드립니다.',
     'ts_std_list_4' => '이를 통해 중대재해를 예방하고, 안전한 작업장을 유지하며 법적 요구사항을 충족할 수 있도록 기술지원을 해 드립니다.',
     
+    'btn_ts_inquiry' => '위험성 평가 문의하기',
     'btn_std_inquiry' => '안전기준 개발 문의하기',
 
     // [엔지니어링]
@@ -277,17 +280,17 @@ return [
     'rnd_dev_card3' => '전자계 해석 및 최적화',
     
     // Process Diagram
-    'rnd_proc_title' => 'Design Optimization Process',
-    'rnd_step_1' => 'System Requirements',
-    'rnd_step_1_sub' => 'Load characteristics, Size etc.',
-    'rnd_step_2' => 'Motor Specifications',
-    'rnd_step_2_sub' => 'Voltage, Torque etc.',
-    'rnd_step_3' => 'Preliminary design',
-    'rnd_step_3_sub' => 'Magnetic Equivalent Circuit<br>장하분배법/D²L법', // 영문 용어는 그대로
-    'rnd_step_4' => 'Detail-design',
-    'rnd_step_4_sub' => 'Finite Element Analysis<br>Magnetic saturation etc.',
-    'rnd_step_5' => 'Optimization',
-    'rnd_step_5_sub' => 'Deterministic / Stochastic method<br>Performance optimization',
+    'rnd_proc_title' => '설계 최적화 프로세스',
+    'rnd_step_1' => '시스템 요구사항',
+    'rnd_step_1_sub' => '부하 특성, 크기 등',
+    'rnd_step_2' => '모터 사양',
+    'rnd_step_2_sub' => '전압, 토크 등',
+    'rnd_step_3' => '기본 설계 (Preliminary design)',
+    'rnd_step_3_sub' => '자기 등가 회로 (MEC)<br>장하분배법 / D²L법',
+    'rnd_step_4' => '상세 설계 (Detail-design)',
+    'rnd_step_4_sub' => '유한요소해석 (FEA)<br>자기 포화 등',
+    'rnd_step_5' => '최적화 (Optimization)',
+    'rnd_step_5_sub' => '결정론적 / 확률론적 기법<br>성능 최적화',
 
     // Tab 2: Hydrogen Safety Design
     'rnd_hyd_title' => '수소안전 설계',
@@ -301,4 +304,39 @@ return [
     'rnd_hyd_card3' => '수소연료공급 시스템<br>안전 설계',
     
     'btn_rnd_inquiry' => 'R&D 기술 협력 문의',
+
+    // --- 통합 컨설팅 & 기술용역 공통 ---
+    'cons_tech_title' => '컨설팅 & 기술용역',
+    'cons_tech_desc' => '고객의 성공적인 비즈니스를 위해 인증 컨설팅부터 위험성 평가, 안전 기준 개발까지 통합 솔루션을 제공합니다.',
+
+    // --- 품질 시스템 (Quality) ---
+    'qual_fac_title' => 'IECEx 서비스 기업 (Service Facility)',
+    'qual_fac_1' => '선정 / 설계 (Selection/Design)',
+    'qual_fac_2' => '설치 (Installation)',
+    'qual_fac_3' => '검사 (Inspection)',
+    'qual_fac_4' => '수리 / 오버홀 (Repair/Overhaul)',
+
+    // --- 위험성 평가 (Risk Assessment) ---
+    'risk_method_1_title' => 'HAZID',
+    'risk_method_1_desc' => '위험 요인 식별',
+    'risk_method_2_title' => 'HAZOP',
+    'risk_method_2_desc' => '위험 및 운전성 분석',
+    'risk_method_3_title' => 'FMEA',
+    'risk_method_3_desc' => '고장 모드 및 영향 분석',
+    'risk_method_4_title' => 'LOPA',
+    'risk_method_4_desc' => '방호계층 분석',
+    'risk_method_5_title' => 'IRA',
+    'risk_method_5_desc' => '점화 위험 분석',
+
+    // 위험성 평가 비교 테이블
+    'risk_tbl_m1' => '체크리스트 (Check lists)',
+    'risk_tbl_m2' => '예비 위험 분석 (Preliminary hazard analysis)',
+    'risk_tbl_m3' => '구조화된 인터뷰 / 브레인스토밍',
+    'risk_tbl_m4' => '델파이 기법 (Delphi technique)',
+    'risk_tbl_m5' => 'SWIFT (구조화된 만약-결과 분석)',
+    'risk_tbl_m6' => '근본 원인 분석 (Root cause analysis)',
+    'risk_tbl_m7' => '결함수 분석 (Fault tree analysis)',
+    'risk_tbl_m8' => '고장 모드 및 영향 분석 (FMEA)',
+    'risk_tbl_m9' => '위험 및 운전성 분석 (HAZOP)',
+    'risk_tbl_m10' => '방호계층 분석 (LOPA)',
 ];

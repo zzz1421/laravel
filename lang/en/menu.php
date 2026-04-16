@@ -1,32 +1,51 @@
 <?php
+
 return [
     'slogan' => 'Global Explosion Safety Partner',
-    'company' => 'Company',
-    'business' => 'Business',
-    'rnd' => 'R&D',
-    'solution' => 'Solution',
-    'pr' => 'PR Center',
-    'edu_apply' => 'Education',
-    'support' => 'Support',
-    'login' => 'LOGIN',
+    'login' => 'Login',
+    'privacy_policy' => 'Privacy Policy',
 
-    'intro' => 'About FOEx',
+    // Main Menu (Categories)
+    'company' => 'About FOEx',
+    'business' => 'Business Fields',
+    'rnd' => 'R&D',
+    'solution' => 'Solutions',
+    'pr' => 'PR Center',
+    'edu' => 'Education',
+    'support' => 'Support',
+
+    // [About FOEx] Submenu
+    'intro' => 'Introduction',
     'history' => 'History',
+    'organization' => 'Organization',
     'location' => 'Location',
-    'capability' => 'Capability',
-    'edu_biz' => 'Education Biz',
-    'consulting' => 'Consulting',
+
+    // [Business Fields] Submenu
+    'edu_biz' => 'Education Business',
+    'consulting' => 'Consulting & Technical Services',
     'engineering' => 'Engineering',
+
+    // [R&D] Submenu
     'ai_sol' => 'AI Solution',
-    'cbm_tech' => 'CBM Tech',
+    'cbm_tech' => 'CBM Technology',
     'rnd_results' => 'R&D Results',
+
+    // [Solutions] Submenu
     'suite' => 'FOEx Suite',
     'node' => 'FOEx Node',
+
+    // [PR Center] Submenu
     'notice' => 'Notice',
-    'brochure' => 'Brochure',
     'press' => 'Press Release',
-    'edu_list' => 'Courses',
-    'qna' => 'Q&A',
-    'online_inquiry' => 'Inquiry',
-    'privacy_policy' => 'Privacy Policy',
+    'media' => 'Media',
+    'brochure' => 'Brochure',
+    'archive' => 'Archive',
+
+    // [Education] Submenu
+    'edu_schedule' => 'Education Schedule',
+    'edu_list' => 'Training Courses',
+
+    // [Support] Submenu
+    'online_inquiry' => 'Online Inquiry',
+    'qna' => 'Q&A (Check Status)',
 ];

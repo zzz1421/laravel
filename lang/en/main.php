@@ -16,7 +16,7 @@ return [
     'biz_1_title' => 'Education',
     'biz_1_desc' => 'IECEx CoPC International Certification and Practical Technical Training',
     
-    'biz_2_title' => 'Consulting',
+    'biz_2_title' => 'Consulting & Tech service', // 시안: "Consulting"
     'biz_2_desc' => 'Expert Consulting for Explosion-proof Product Certification and Quality Systems',
     
     'biz_4_title' => 'Engineering',

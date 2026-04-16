@@ -116,7 +116,7 @@
                 </div>
 
                 {{-- 3. 기술용역 --}}
-                <div class="p-[5rem] lg:p-[7rem] text-center hover:bg-white hover:shadow-xl transition duration-300 group cursor-pointer" onclick="location.href='{{ route('business.consulting') }}'">
+                <div class="p-[5rem] lg:p-[7rem] text-center hover:bg-white hover:shadow-xl transition duration-300 group cursor-pointer" onclick="location.href='{{ route('business.techservice') }}'">
                     <x-icons.intro.tech class="w-[7rem] h-[7rem] mx-auto mb-[3rem] text-[#303031] group-hover:text-[#f9b417] transition-colors" />
                     <h3 class="font-bold text-[#303031] group-hover:text-[#f9b417] transition-colors text-[2rem]">{{ __('intro.biz_tech') }}</h3>
                 </div>
@@ -128,7 +128,7 @@
                 </div>
 
                 {{-- 5. 연구개발 --}}
-                <div class="p-[5rem] lg:p-[7rem] text-center hover:bg-white hover:shadow-xl transition duration-300 group cursor-pointer" onclick="location.href='{{ route('business.rnd') }}'">
+                <div class="p-[5rem] lg:p-[7rem] text-center hover:bg-white hover:shadow-xl transition duration-300 group cursor-pointer" onclick="location.href='{{ route('business.techservice') }}'">
                     <x-icons.intro.rnd class="w-[7rem] h-[7rem] mx-auto mb-[3rem] text-[#303031] group-hover:text-[#f9b417] transition-colors" />
                     <h3 class="font-bold text-[#303031] group-hover:text-[#f9b417] transition-colors text-[2rem]">{{ __('intro.biz_rnd') }}</h3>
                 </div>
@@ -193,6 +193,112 @@
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    {{-- [신규 섹션] 보유 역량 (Capabilities) --}}
+    {{-- 🚨 기업 개요(#overview)와 연혁(#history) 사이에 삽입하세요 🚨 --}}
+    <section id="capabilities" class="relative bg-gray-50 flex flex-col justify-center px-[4rem] md:px-[18rem] py-[10rem]" x-data="{ capTab: 'cert' }">
+        <div class="w-full max-w-[140rem] mx-auto">
+            
+            {{-- 상단 타이틀 영역 --}}
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-[6rem]" data-aos="fade-up">
+                <div>
+                    <p class="text-[#f9b417] font-bold text-[1.6rem] mb-[1.5rem] tracking-widest uppercase">Our Capabilities</p>
+                    <h2 class="text-[3.2rem] md:text-[4.5rem] font-black text-gray-900 tracking-tight leading-[1.2]">
+                        증명된 기술과 신뢰
+                    </h2>
+                </div>
+                {{-- 탭 메뉴 --}}
+                <div class="flex gap-[1rem] mt-[3rem] md:mt-0 overflow-x-auto no-scrollbar pb-[1rem] md:pb-0">
+                    @foreach(['cert'=>'인증', 'patent'=>'특허', 'performance'=>'실적', 'mou'=>'MOU'] as $key => $label)
+                    <button @click="capTab = '{{ $key }}'" 
+                            :class="capTab === '{{ $key }}' ? 'bg-[#f9b417] text-white border-[#f9b417] shadow-md' : 'bg-white text-gray-500 border-gray-200 hover:bg-gray-50'"
+                            class="whitespace-nowrap px-[2.5rem] py-[1.2rem] border-[0.15rem] rounded-[0.4rem] font-bold text-[1.5rem] transition-all duration-300">
+                        {{ $label }}
+                    </button>
+                    @endforeach
+                </div>
+            </div>
+
+            {{-- 콘텐츠: 인증현황 --}}
+            <div x-show="capTab === 'cert'" x-cloak class="animate-fade-in-up">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-[2.5rem]">
+                    @forelse($certs ?? [] as $item)
+                    <div class="bg-white border border-gray-100 rounded-[1.5rem] p-[3rem] flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
+                        <div class="h-[18rem] flex items-center justify-center mb-[2rem]">
+                            <img src="{{ asset('storage/'.$item->file_path) }}" class="max-w-full max-h-full object-contain" onerror="this.src='https://placehold.co/200x280?text=Certificate'">
+                        </div>
+                        <h3 class="text-[1.7rem] font-bold text-gray-900 line-clamp-1">{{ $item->title }}</h3>
+                        <p class="text-[1.4rem] text-gray-400 mt-[0.5rem]">{{ $item->agency }}</p>
+                    </div>
+                    @empty
+                    <div class="col-span-full py-[10rem] text-center text-gray-400">등록된 인증 정보가 없습니다.</div>
+                    @endforelse
+                </div>
+            </div>
+
+            {{-- 콘텐츠: 지식재산권(특허) --}}
+            <div x-show="capTab === 'patent'" x-cloak class="animate-fade-in-up">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-[2.5rem]">
+                    @forelse($patents ?? [] as $item)
+                    <div class="bg-white border border-gray-100 rounded-[1.5rem] p-[3rem] flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
+                        <div class="h-[18rem] flex items-center justify-center mb-[2rem]">
+                            <img src="{{ asset('storage/'.$item->file_path) }}" class="max-w-full max-h-full object-contain" onerror="this.src='https://placehold.co/200x280?text=Patent'">
+                        </div>
+                        <h3 class="text-[1.7rem] font-bold text-gray-900 line-clamp-1">{{ $item->title }}</h3>
+                        <p class="text-[1.4rem] text-gray-400 mt-[0.5rem]">{{ $item->date ? $item->date->format('Y.m.d') : '' }}</p>
+                    </div>
+                    @empty
+                    <div class="col-span-full py-[10rem] text-center text-gray-400">등록된 특허 정보가 없습니다.</div>
+                    @endforelse
+                </div>
+            </div>
+
+            {{-- 콘텐츠: 사업실적 (미니 테이블 스타일) --}}
+            <div x-show="capTab === 'performance'" x-cloak class="animate-fade-in-up">
+                <div class="bg-white border border-gray-100 rounded-[2rem] overflow-hidden shadow-sm">
+                    <table class="w-full text-left">
+                        <tbody class="text-[1.6rem] divide-y divide-gray-50">
+                            @forelse($performances ?? [] as $item)
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="py-[2rem] px-[4rem] w-[15rem] font-bold text-[#f9b417]">{{ $item->date ? $item->date->format('Y.m') : '' }}</td>
+                                <td class="py-[2rem] px-[4rem] font-medium text-gray-800">{{ $item->title }}</td>
+                                <td class="py-[2rem] px-[4rem] text-right text-gray-400">{{ $item->agency }}</td>
+                            </tr>
+                            @empty
+                            <tr><td class="py-[10rem] text-center text-gray-400">등록된 실적이 없습니다.</td></tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {{-- 콘텐츠: MOU --}}
+            <div x-show="capTab === 'mou'" x-cloak class="animate-fade-in-up">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-[2.5rem]">
+                    @forelse($mous ?? [] as $item)
+                    <div class="bg-white border border-gray-100 rounded-[1.5rem] p-[3rem] flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
+                        <div class="h-[12rem] flex items-center justify-center mb-[2rem]">
+                            <img src="{{ asset('storage/'.$item->file_path) }}" class="max-w-full max-h-full object-contain mix-blend-multiply" onerror="this.src='https://placehold.co/300x150?text=Partner+Logo'">
+                        </div>
+                        <h3 class="text-[1.7rem] font-bold text-gray-900">{{ $item->title }}</h3>
+                    </div>
+                    @empty
+                    <div class="col-span-full py-[10rem] text-center text-gray-400">등록된 MOU 정보가 없습니다.</div>
+                    @endforelse
+                </div>
+            </div>
+
+            {{-- 하단 링크 (독립 페이지로 이동) --}}
+            <div class="mt-[6rem] text-center">
+                 <p class="text-gray-400 text-[1.5rem] mb-[2rem]">※ 위 자료는 포엑스의 주요 자산 중 일부를 발췌한 것입니다.</p>
+                 {{-- 🚨 여기서 기존에 만들었던 독립된 '보유역량' 페이지로 링크를 연결해 줍니다. --}}
+                 <a href="{{ route('company.capability') }}" class="inline-flex items-center text-[#303031] font-bold text-[1.6rem] hover:text-[#f9b417] transition-colors group">
+                    전체 역량 자세히 보기 <i class="xi-arrow-right ml-[0.8rem] group-hover:translate-x-2 transition-transform"></i>
+                 </a>
+            </div>
+
         </div>
     </section>
 

@@ -38,6 +38,13 @@ sudo -u $WEB_USER php artisan view:clear
 sudo -u $WEB_USER php artisan cache:clear
 sudo -u $WEB_USER php artisan config:clear
 
+# 8. 바이너리 파일(Node, Artisan) 실행 권한 복구 🚨(추가할 부분)
+echo "6. Restoring execution permissions for binaries..."
+sudo chmod +x "$PROJECT_PATH/artisan"
+if [ -d "$PROJECT_PATH/node_modules/.bin" ]; then
+    sudo chmod -R +x "$PROJECT_PATH/node_modules/.bin/"
+fi
+
 echo "=========================================="
 echo " [SUCCESS] 권한 복구가 완료되었습니다! "
 echo "=========================================="

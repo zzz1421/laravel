@@ -253,6 +253,7 @@ return [
     'eng_fac_list_1' => 'FOEx is an IECEx Service Facility certified for IECEx 03-4 program explosion-proof inspection and maintenance.',
     'eng_fac_list_2' => 'It is the first certified institution in Korea for this program and the third in the world.',
     
+    'btn_ts_inquiry' => 'Risk Assessment Inquiry',
     'btn_eng_inquiry' => 'Inquiry for Design',
 
     // [R&D]
@@ -300,4 +301,38 @@ return [
     'rnd_hyd_card3' => 'Fuel Supply System<br>Safety Design',
     
     'btn_rnd_inquiry' => 'Inquiry for R&D Cooperation',
+    // --- Integrated Consulting & Tech Service ---
+    'cons_tech_title' => 'Consulting & Technical Service',
+    'cons_tech_desc' => 'We provide integrated solutions from certification consulting to risk assessment and safety standard development for your successful business.',
+
+    // --- Quality System ---
+    'qual_fac_title' => 'IECEx Service Facility',
+    'qual_fac_1' => 'Selection/Design',
+    'qual_fac_2' => 'Installation',
+    'qual_fac_3' => 'Inspection',
+    'qual_fac_4' => 'Repair/Overhaul',
+
+    // --- Risk Assessment ---
+    'risk_method_1_title' => 'HAZID',
+    'risk_method_1_desc' => 'Hazard Identifications',
+    'risk_method_2_title' => 'HAZOP',
+    'risk_method_2_desc' => 'Hazard and Operability',
+    'risk_method_3_title' => 'FMEA',
+    'risk_method_3_desc' => 'Failure Mode and Effect Analysis',
+    'risk_method_4_title' => 'LOPA',
+    'risk_method_4_desc' => 'Layer of Protection Analysis',
+    'risk_method_5_title' => 'IRA',
+    'risk_method_5_desc' => 'Ignition Risk Analysis',
+
+    // Risk Assessment Compare Table
+    'risk_tbl_m1' => 'Check lists',
+    'risk_tbl_m2' => 'Preliminary hazard analysis',
+    'risk_tbl_m3' => 'Structured Interview / brainstorming',
+    'risk_tbl_m4' => 'Delphi technique',
+    'risk_tbl_m5' => 'SWIFT (Structured "what-if")',
+    'risk_tbl_m6' => 'Root cause analysis',
+    'risk_tbl_m7' => 'Fault tree analysis',
+    'risk_tbl_m8' => 'FMEA',
+    'risk_tbl_m9' => 'HAZOP',
+    'risk_tbl_m10' => 'LOPA',
 ];

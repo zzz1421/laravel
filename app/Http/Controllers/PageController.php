@@ -32,7 +32,13 @@ class PageController extends Controller
         return view('mypage', compact('user', 'myApplications'));
     }
     public function intro() {
-        return view('company.intro');
+        // 기업소개 페이지에 통합될 역량 데이터 조회
+        $patents = \App\Models\Capability::where('category', 'patent')->orderBy('date', 'desc')->take(4)->get();
+        $certs = \App\Models\Capability::where('category', 'cert')->orderBy('date', 'desc')->take(4)->get();
+        $performances = \App\Models\Capability::where('category', 'performance')->orderBy('date', 'desc')->take(5)->get();
+        $mous = \App\Models\Capability::where('category', 'mou')->orderBy('date', 'desc')->take(4)->get();
+
+        return view('company.intro', compact('patents', 'certs', 'performances', 'mous'));
     }
 
     // [추가] CEO 인사말 (새로 분리)
@@ -45,17 +51,42 @@ class PageController extends Controller
         return view('company.history');
     }
 
+    public function ai()
+    {
+        // resources/views/business/ai.blade.php 파일을 보여줌
+        return view('rnd.ai'); 
+    }
+
+    public function cbm()
+    {
+        // resources/views/business/cbm.blade.php 파일을 보여줌
+        return view('rnd.cbm');
+    }
+
+    // [1] R&D - 연구 개발 실적 (기술 중심)
+    public function results()
+    {
+        // 1. 학술 논문 데이터
+        $papers = \App\Models\Capability::where('category', 'paper')->orderBy('date', 'desc')->get();
+
+        // 2. 연구 과제 데이터 (DB 카테고리명이 'performance'라면 아래처럼 가져와야 합니다)
+        // ★ 변수명은 반드시 $projects 여야 블레이드와 매칭됩니다.
+        $projects = \App\Models\Capability::where('category', 'performance')->orderBy('date', 'desc')->get();
+
+        // 3. 뷰로 전달 (compact 안에 'projects'가 들어있는지 확인!)
+        return view('rnd.results', compact('papers', 'projects'));
+    }
+
+    // [2] 회사소개 - 보유 역량 (비즈니스/신뢰도 중심)
     public function capability()
     {
-        // 1. 카테고리별 데이터 조회 (날짜 최신순)
-        $patents = Capability::where('category', 'patent')->orderBy('date', 'desc')->get();
-        $certs = Capability::where('category', 'cert')->orderBy('date', 'desc')->get();
-        $papers = Capability::where('category', 'paper')->orderBy('date', 'desc')->get();
-        $performances = Capability::where('category', 'performance')->orderBy('date', 'desc')->get();
-        $mous = Capability::where('category', 'mou')->orderBy('date', 'desc')->get();
+        // 인증, 실적, MOU, 전체 특허 위주
+        $certs = \App\Models\Capability::where('category', 'cert')->orderBy('date', 'desc')->get();
+        $performances = \App\Models\Capability::where('category', 'performance')->orderBy('date', 'desc')->get();
+        $mous = \App\Models\Capability::where('category', 'mou')->orderBy('date', 'desc')->get();
+        $patents = \App\Models\Capability::where('category', 'patent')->orderBy('date', 'desc')->get();
 
-        // 2. 뷰로 변수 전달 (compact 사용)
-        return view('company.capability', compact('patents', 'certs', 'papers', 'performances', 'mous'));
+        return view('company.capability', compact('certs', 'performances', 'mous', 'patents'));
     }
 
     // 회사소개 - 오시는 길
@@ -68,10 +99,6 @@ class PageController extends Controller
         return view('business.engineering');
     }
 
-    // 사업분야 - 기술용역
-    public function techservice() {
-        return view('business.techservice');
-    }
     // 사업분야 - 컨설팅
     public function consulting() {
         return view('business.consulting');
@@ -99,7 +126,7 @@ class PageController extends Controller
 
     // [미리 추가] R&D 페이지
     public function rnd() {
-        return view('business.rnd');
+        return view('rnd.rnd');
     }
 
     // ==========================================
@@ -129,7 +156,7 @@ class PageController extends Controller
         }
 
         // ★ [중요] 여기서 'events' 변수를 뷰로 넘겨줘야 합니다!
-        return view('pr.schedule', ['events' => $events]);
+        return view('service.schedule', ['events' => $events]);
     }
 
     // 홍보자료 (브로슈어 등)
@@ -149,21 +176,6 @@ class PageController extends Controller
         return view('pr.brochure', compact('brochures'));
     }
 
-    // 홍보영상
-    public function media(Request $request)
-    {
-        // ... (데이터 조회 로직 동일) ...
-        $query = PromotionalVideo::where('is_display', true);
-
-        if ($search = $request->input('search')) {
-            $query->where('title', 'like', "%{$search}%");
-        }
-
-        $videos = $query->orderBy('created_at', 'desc')->paginate(9)->onEachSide(1);
-
-        // ★ 여기를 수정하세요! ('pr.movie' -> 'pr.media')
-        return view('pr.media', compact('videos'));
-    }
 
     // 보도자료
     public function press(Request $request)
@@ -182,28 +194,23 @@ class PageController extends Controller
         return view('pr.press', compact('pressReleases'));
     }
 
-    // 자료실
-    public function archive()
+    public function inquiry()
     {
-        // 2. DB에서 자료실 데이터를 최신순으로 가져옵니다 (페이지네이션 적용)
-        // 변수명을 뷰 파일에서 사용하는 '$references'로 맞춰야 합니다.
-        $references = Archive::where('is_display', true) // ★ 추가됨
-                             ->latest()
-                             ->paginate(10);
-        // 3. 뷰(화면)에 데이터를 함께 보냅니다.
-        return view('pr.archive', compact('references'));
+        return view('contact.index'); // 여기서 모든 문의를 작성
     }
-
     // Q&A 목록
-    public function qna()
-{
-    // 1. DB에서 Qna 데이터를 최신순으로 가져오기 (10개씩 페이지네이션)
-    $qnas = Qna::latest()->paginate(10);
+    public function qna(Request $request)
+    {
+        $query = Qna::query();
 
-    // 2. 화면(pr.qna.index)에 $qnas 변수를 함께 전달
-    // (이전에 파일명을 index.blade.php로 바꿨다면 뷰 이름은 'pr.qna.index'가 정확합니다)
-    return view('pr.qna.index', compact('qnas')); 
-}
+        if ($search = $request->input('search')) {
+            $query->where('title', 'like', "%{$search}%")
+                  ->orWhere('writer', 'like', "%{$search}%");
+        }
+
+        $qnas = $query->latest()->paginate(10);
+        return view('pr.qna.index', compact('qnas'));
+    }
 
     // [추가] Q&A 상세 보기 (임시)
     public function qnaShow($id)

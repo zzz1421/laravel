@@ -117,7 +117,7 @@
                 ['img' => 'main-tech1.jpg', 'title' => 'biz_1_title', 'desc' => 'biz_1_desc', 'route' => 'business.education', 'delay' => '0'],
                 ['img' => 'main-tech2.jpg', 'title' => 'biz_2_title', 'desc' => 'biz_2_desc', 'route' => 'business.consulting', 'delay' => '100'],
                 ['img' => 'main-tech3.jpg', 'title' => 'biz_4_title', 'desc' => 'biz_4_desc', 'route' => 'business.engineering', 'delay' => '200'],
-                ['img' => 'main-tech4.jpg', 'title' => 'biz_5_title', 'desc' => 'biz_5_desc', 'route' => 'business.rnd', 'delay' => '300']
+                ['img' => 'main-tech4.jpg', 'title' => 'biz_5_title', 'desc' => 'biz_5_desc', 'route' => 'rnd.ai', 'delay' => '300']
             ] as $biz)
             <div class="flex flex-col group overflow-hidden" data-aos="fade-up" data-aos-delay="{{ $biz['delay'] }}">
                 <div class="w-full h-[25rem] lg:h-[35rem] overflow-hidden relative bg-gray-100">

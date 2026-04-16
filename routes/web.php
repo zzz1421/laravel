@@ -94,7 +94,12 @@ Route::prefix('business')->name('business.')->group(function () {
     Route::get('/consulting', [PageController::class, 'consulting'])->name('consulting');
     Route::get('/techservice', [PageController::class, 'techservice'])->name('techservice');
     Route::get('/engineering', [PageController::class, 'engineering'])->name('engineering');
-    Route::get('/rnd', [PageController::class, 'rnd'])->name('rnd');
+});
+
+Route::prefix('rnd')->name('rnd.')->group(function () {
+    Route::get('/results', [PageController::class, 'results'])->name('results');
+    Route::get('/ai', [PageController::class, 'ai'])->name('ai');
+    Route::get('/cbm', [PageController::class, 'cbm'])->name('cbm');
 });
 
 // 솔루션/제품 (Products)
@@ -105,8 +110,6 @@ Route::prefix('products')->name('products.')->group(function () {
 
 // 홍보센터 (PR Center)
 Route::prefix('pr')->name('pr.')->group(function () {
-    Route::get('/schedule', [PageController::class, 'schedule'])->name('schedule');
-    
     Route::get('/notice', [NoticeController::class, 'index'])->name('notice.index');
     Route::get('/notice/{id}', [NoticeController::class, 'show'])->name('notice.show');
 
@@ -126,6 +129,8 @@ Route::prefix('pr')->name('pr.')->group(function () {
 
 // 서비스/신청 (Service)
 Route::prefix('service')->name('service.')->group(function () {
+
+    Route::get('/schedule', [PageController::class, 'schedule'])->name('schedule');
     Route::get('/education', [EducationController::class, 'index'])->name('edu.apply');
     Route::get('/education/{id}', [EducationController::class, 'show'])->name('edu.show');
     

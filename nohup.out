@@ -1,0 +1,764 @@
+
+> dev
+> vite
+
+Port 5173 is in use, trying another one...
+
+  VITE v5.4.21  ready in 863 ms
+
+  ➜  Local:   http://localhost:5174/
+  ➜  Network: use --host to expose
+
+  LARAVEL v12.46.0  plugin v2.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+3:47:51 PM [vite] vite.config.js changed, restarting server...
+3:47:51 PM [vite] vite.config.js changed, restarting server...
+3:47:51 PM [vite] server restarted.
+
+  ➜  Local:   http://localhost:5174/
+  ➜  Network: http://172.30.1.250:5174/
+  ➜  Network: http://172.31.0.1:5174/
+  ➜  Network: http://172.21.0.1:5174/
+  ➜  Network: http://192.168.0.1:5174/
+  ➜  Network: http://172.29.0.1:5174/
+  ➜  Network: http://172.23.0.1:5174/
+
+  ➜  Local:   http://localhost:5174/
+  ➜  Network: http://172.30.1.250:5174/
+  ➜  Network: http://172.31.0.1:5174/
+  ➜  Network: http://172.21.0.1:5174/
+  ➜  Network: http://192.168.0.1:5174/
+  ➜  Network: http://172.29.0.1:5174/
+  ➜  Network: http://172.23.0.1:5174/
+
+  LARAVEL v12.46.0  plugin v2.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+3:48:00 PM [vite] vite.config.js changed, restarting server...
+failed to load config from /volume1/web/foex_new/vite.config.js
+3:48:00 PM [vite] config must export or return an object.
+3:48:00 PM [vite] server restart failed
+
+> dev
+> vite
+
+Port 5173 is in use, trying another one...
+
+  VITE v5.4.21  ready in 550 ms
+
+  ➜  Local:   http://localhost:5174/
+  ➜  Network: http://172.30.1.250:5174/
+  ➜  Network: http://172.31.0.1:5174/
+  ➜  Network: http://172.21.0.1:5174/
+  ➜  Network: http://192.168.0.1:5174/
+  ➜  Network: http://172.29.0.1:5174/
+  ➜  Network: http://172.23.0.1:5174/
+
+  LARAVEL v12.46.0  plugin v2.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+3:51:34 PM [vite] vite.config.js changed, restarting server...
+3:51:34 PM [vite] vite.config.js changed, restarting server...
+3:51:35 PM [vite] server restarted.
+
+  LARAVEL v12.46.0  plugin v2.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+3:51:41 PM [vite] vite.config.js changed, restarting server...
+failed to load config from /volume1/web/foex_new/vite.config.js
+3:51:41 PM [vite] config must export or return an object.
+3:51:41 PM [vite] server restart failed
+3:51:41 PM [vite] vite.config.js changed, restarting server...
+3:51:41 PM [vite] server restarted.
+
+  LARAVEL v12.46.0  plugin v2.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+3:51:42 PM [vite] vite.config.js changed, restarting server...
+failed to load config from /volume1/web/foex_new/vite.config.js
+3:51:42 PM [vite] config must export or return an object.
+3:51:42 PM [vite] server restart failed
+3:51:42 PM [vite] vite.config.js changed, restarting server...
+failed to load config from /volume1/web/foex_new/vite.config.js
+3:51:42 PM [vite] Cannot find package '@vitejs/plugin-basic-ssl' imported from /volume1/web/foex_new/vite.config.js.timestamp-1775717502607-ba8585f5d6a45.mjs
+3:51:42 PM [vite] server restart failed
+4:00:01 PM [vite] vite.config.js changed, restarting server...
+4:00:01 PM [vite] vite.config.js changed, restarting server...
+4:00:01 PM [vite] server restarted.
+
+  LARAVEL v12.46.0  plugin v3.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+
+> dev
+> vite
+
+Port 5173 is in use, trying another one...
+Port 5174 is in use, trying another one...
+Port 5175 is in use, trying another one...
+
+  VITE v8.0.8  ready in 630 ms
+
+  ➜  Local:   http://localhost:5176/
+  ➜  Network: http://172.30.1.250:5176/
+  ➜  Network: http://172.31.0.1:5176/
+  ➜  Network: http://172.21.0.1:5176/
+  ➜  Network: http://192.168.0.1:5176/
+  ➜  Network: http://172.29.0.1:5176/
+  ➜  Network: http://172.23.0.1:5176/
+
+  LARAVEL v12.46.0  plugin v3.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+4:01:53 PM [vite] vite.config.js changed, restarting server...
+4:01:53 PM [vite] vite.config.js changed, restarting server...
+4:01:53 PM [vite] vite.config.js changed, restarting server...
+4:01:54 PM [vite] (client) Re-optimizing dependencies because vite config has changed
+4:01:54 PM [vite] server restarted.
+
+  ➜  Local:   https://localhost:5176/
+  ➜  Network: https://172.30.1.250:5176/
+  ➜  Network: https://172.31.0.1:5176/
+  ➜  Network: https://172.21.0.1:5176/
+  ➜  Network: https://192.168.0.1:5176/
+  ➜  Network: https://172.29.0.1:5176/
+  ➜  Network: https://172.23.0.1:5176/
+
+  ➜  Local:   https://localhost:5176/
+  ➜  Network: https://172.30.1.250:5176/
+  ➜  Network: https://172.31.0.1:5176/
+  ➜  Network: https://172.21.0.1:5176/
+  ➜  Network: https://192.168.0.1:5176/
+  ➜  Network: https://172.29.0.1:5176/
+  ➜  Network: https://172.23.0.1:5176/
+
+  LARAVEL v12.46.0  plugin v3.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+Re-optimizing dependencies because lockfile has changed
+4:01:55 PM [vite] server restarted.
+
+  ➜  Local:   https://localhost:5174/
+  ➜  Network: https://172.30.1.250:5174/
+  ➜  Network: https://172.31.0.1:5174/
+  ➜  Network: https://172.21.0.1:5174/
+  ➜  Network: https://192.168.0.1:5174/
+  ➜  Network: https://172.29.0.1:5174/
+  ➜  Network: https://172.23.0.1:5174/
+
+  LARAVEL v12.46.0  plugin v3.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+4:02:15 PM [vite] vite.config.js changed, restarting server...
+4:02:16 PM [vite] vite.config.js changed, restarting server...
+failed to load config from /volume1/web/foex_new/vite.config.js
+4:02:16 PM [vite] config must export or return an object.
+4:02:16 PM [vite] server restart failed
+failed to load config from /volume1/web/foex_new/vite.config.js
+4:02:16 PM [vite] config must export or return an object.
+4:02:16 PM [vite] server restart failed
+4:02:16 PM [vite] vite.config.js changed, restarting server...
+4:02:16 PM [vite] vite.config.js changed, restarting server...
+Error: Port 5176 is already in use
+4:02:16 PM [vite] server restarted.
+
+  LARAVEL v12.46.0  plugin v3.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+
+> dev
+> vite
+
+
+  VITE v8.0.8  ready in 995 ms
+
+  ➜  Local:   https://localhost:5176/
+  ➜  Network: https://172.30.1.250:5176/
+  ➜  Network: https://172.31.0.1:5176/
+  ➜  Network: https://172.21.0.1:5176/
+  ➜  Network: https://192.168.0.1:5176/
+  ➜  Network: https://172.29.0.1:5176/
+  ➜  Network: https://172.23.0.1:5176/
+
+  LARAVEL v12.46.0  plugin v3.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+4:40:16 PM [vite] full reload resources/views/layouts/foex.blade.php
+4:40:16 PM [vite] (client) hmr update /resources/css/app.css?direct
+4:40:16 PM [vite] full reload resources/views/layouts/foex.blade.php
+4:40:16 PM [vite] (client) hmr update /resources/css/app.css?direct
+4:43:05 PM [vite] full reload resources/views/company/history.blade.php
+4:43:05 PM [vite] (client) hmr update /resources/css/app.css?direct
+4:47:30 PM [vite] full reload resources/views/company/history.blade.php
+4:47:30 PM [vite] (client) hmr update /resources/css/app.css?direct
+4:51:15 PM [vite] full reload resources/views/company/history.blade.php
+4:51:15 PM [vite] (client) hmr update /resources/css/app.css?direct
+4:51:15 PM [vite] full reload resources/views/company/history.blade.php
+4:51:15 PM [vite] (client) hmr update /resources/css/app.css?direct
+4:53:19 PM [vite] full reload resources/views/company/history.blade.php
+4:53:19 PM [vite] (client) hmr update /resources/css/app.css?direct
+4:53:19 PM [vite] full reload resources/views/company/history.blade.php
+4:53:19 PM [vite] (client) hmr update /resources/css/app.css?direct
+4:54:02 PM [vite] full reload resources/views/company/history.blade.php
+4:54:02 PM [vite] (client) hmr update /resources/css/app.css?direct
+4:54:02 PM [vite] full reload resources/views/company/history.blade.php
+4:54:02 PM [vite] (client) hmr update /resources/css/app.css?direct
+4:55:16 PM [vite] full reload resources/views/company/history.blade.php
+4:55:16 PM [vite] (client) hmr update /resources/css/app.css?direct
+4:55:16 PM [vite] full reload resources/views/company/history.blade.php
+4:55:16 PM [vite] (client) hmr update /resources/css/app.css?direct
+4:55:50 PM [vite] full reload resources/views/layouts/foex.blade.php
+4:55:50 PM [vite] (client) hmr update /resources/css/app.css?direct
+4:55:50 PM [vite] full reload resources/views/layouts/foex.blade.php
+4:55:50 PM [vite] (client) hmr update /resources/css/app.css?direct
+4:59:21 PM [vite] full reload resources/views/layouts/foex.blade.php
+4:59:21 PM [vite] (client) hmr update /resources/css/app.css?direct
+5:02:17 PM [vite] full reload resources/views/company/history.blade.php
+5:02:17 PM [vite] (client) hmr update /resources/css/app.css?direct
+5:03:15 PM [vite] (client) page reload resources/js/app.js
+5:03:16 PM [vite] (client) ✨ new dependencies optimized: @alpinejs/intersect
+5:03:16 PM [vite] (client) ✨ optimized dependencies changed. reloading
+
+> dev
+> vite
+
+
+  VITE v8.0.8  ready in 691 ms
+
+  ➜  Local:   https://localhost:5176/
+  ➜  Network: https://172.30.1.250:5176/
+  ➜  Network: https://172.31.0.1:5176/
+  ➜  Network: https://172.21.0.1:5176/
+  ➜  Network: https://192.168.0.1:5176/
+  ➜  Network: https://172.29.0.1:5176/
+  ➜  Network: https://172.23.0.1:5176/
+
+  LARAVEL v12.46.0  plugin v3.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+5:44:42 PM [vite] full reload resources/views/company/history.blade.php
+5:44:42 PM [vite] (client) hmr update /resources/css/app.css?direct
+5:46:26 PM [vite] full reload resources/views/company/history.blade.php
+5:46:26 PM [vite] (client) hmr update /resources/css/app.css?direct
+5:47:30 PM [vite] full reload resources/views/company/history.blade.php
+5:47:30 PM [vite] (client) hmr update /resources/css/app.css?direct
+5:49:14 PM [vite] full reload resources/views/company/history.blade.php
+5:49:14 PM [vite] (client) hmr update /resources/css/app.css?direct
+8:49:40 AM [vite] full reload resources/views/business/consulting.blade.php
+8:49:40 AM [vite] (client) hmr update /resources/css/app.css?direct
+8:49:51 AM [vite] full reload resources/views/business/consulting.blade.php
+8:49:51 AM [vite] (client) hmr update /resources/css/app.css?direct
+8:49:52 AM [vite] full reload resources/views/business/consulting.blade.php
+8:49:52 AM [vite] (client) hmr update /resources/css/app.css?direct
+8:49:55 AM [vite] full reload resources/views/business/consulting.blade.php
+8:49:55 AM [vite] (client) hmr update /resources/css/app.css?direct
+8:49:55 AM [vite] full reload resources/views/business/consulting.blade.php
+8:49:55 AM [vite] (client) hmr update /resources/css/app.css?direct
+8:51:59 AM [vite] full reload resources/views/business/consulting.blade.php
+8:51:59 AM [vite] (client) hmr update /resources/css/app.css?direct
+8:51:59 AM [vite] full reload resources/views/business/consulting.blade.php
+8:51:59 AM [vite] (client) hmr update /resources/css/app.css?direct
+8:54:58 AM [vite] full reload resources/views/business/consulting.blade.php
+8:54:58 AM [vite] (client) hmr update /resources/css/app.css?direct
+8:54:58 AM [vite] full reload resources/views/business/consulting.blade.php
+8:54:58 AM [vite] (client) hmr update /resources/css/app.css?direct
+8:58:26 AM [vite] full reload lang/ko/business.php
+8:58:26 AM [vite] full reload lang/ko/business.php
+8:58:40 AM [vite] full reload lang/en/business.php
+8:58:40 AM [vite] full reload lang/en/business.php
+8:58:40 AM [vite] full reload lang/en/business.php
+8:59:03 AM [vite] full reload resources/views/business/consulting.blade.php
+8:59:03 AM [vite] (client) hmr update /resources/css/app.css?direct
+8:59:03 AM [vite] full reload resources/views/business/consulting.blade.php
+8:59:03 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:01:41 AM [vite] full reload lang/ko/business.php
+9:01:41 AM [vite] full reload lang/ko/business.php
+9:03:13 AM [vite] full reload lang/ko/business.php
+9:03:13 AM [vite] full reload lang/ko/business.php
+9:05:17 AM [vite] full reload lang/ko/business.php
+9:05:17 AM [vite] full reload lang/ko/business.php
+9:05:29 AM [vite] full reload lang/en/business.php
+9:05:29 AM [vite] full reload lang/en/business.php
+9:07:37 AM [vite] full reload resources/views/business/consulting.blade.php
+9:07:37 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:07:38 AM [vite] full reload resources/views/business/consulting.blade.php
+9:07:38 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:10:07 AM [vite] full reload lang/ko/business.php
+9:10:07 AM [vite] full reload lang/ko/business.php
+9:10:21 AM [vite] full reload lang/en/business.php
+9:10:21 AM [vite] full reload lang/en/business.php
+9:10:31 AM [vite] full reload resources/views/business/consulting.blade.php
+9:10:31 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:10:32 AM [vite] full reload resources/views/business/consulting.blade.php
+9:10:32 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:22:01 AM [vite] full reload resources/views/business/consulting.blade.php
+9:22:01 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:22:29 AM [vite] full reload resources/views/business/consulting.blade.php
+9:22:29 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:36:54 AM [vite] full reload resources/views/business/consulting.blade.php
+9:36:54 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:36:54 AM [vite] full reload resources/views/business/consulting.blade.php
+9:36:54 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:36:54 AM [vite] full reload resources/views/business/consulting.blade.php
+9:36:54 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:38:30 AM [vite] full reload resources/views/business/consulting.blade.php
+9:38:30 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:38:30 AM [vite] full reload resources/views/business/consulting.blade.php
+9:38:30 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:44:12 AM [vite] full reload resources/views/business/consulting.blade.php
+9:44:12 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:44:12 AM [vite] full reload resources/views/business/consulting.blade.php
+9:44:12 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:56:42 AM [vite] full reload resources/views/business/consulting.blade.php
+9:56:42 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:57:12 AM [vite] full reload resources/views/business/consulting.blade.php
+9:57:12 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:57:13 AM [vite] full reload resources/views/business/consulting.blade.php
+9:57:13 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:57:18 AM [vite] full reload resources/views/business/consulting.blade.php
+9:57:18 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:57:18 AM [vite] full reload resources/views/business/consulting.blade.php
+9:57:18 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:58:47 AM [vite] full reload resources/views/business/consulting.blade.php
+9:58:47 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:58:47 AM [vite] full reload resources/views/business/consulting.blade.php
+9:58:47 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:58:56 AM [vite] full reload resources/views/business/consulting.blade.php
+9:58:56 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:58:57 AM [vite] full reload resources/views/business/consulting.blade.php
+9:58:57 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:59:10 AM [vite] full reload resources/views/business/consulting.blade.php
+9:59:10 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:59:11 AM [vite] full reload resources/views/business/consulting.blade.php
+9:59:11 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:00:20 AM [vite] full reload resources/views/business/consulting.blade.php
+10:00:20 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:00:21 AM [vite] full reload resources/views/business/consulting.blade.php
+10:00:21 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:00:29 AM [vite] full reload resources/views/business/consulting.blade.php
+10:00:29 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:00:29 AM [vite] full reload resources/views/business/consulting.blade.php
+10:00:29 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:03:16 AM [vite] full reload resources/views/business/consulting.blade.php
+10:03:16 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:03:16 AM [vite] full reload resources/views/business/consulting.blade.php
+10:03:16 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:21:36 AM [vite] full reload resources/views/business/consulting.blade.php
+10:21:36 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:21:37 AM [vite] full reload resources/views/business/consulting.blade.php
+10:21:37 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:25:30 AM [vite] full reload resources/views/business/consulting.blade.php
+10:25:30 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:27:46 AM [vite] full reload resources/views/business/consulting.blade.php
+10:27:46 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:27:46 AM [vite] full reload resources/views/business/consulting.blade.php
+10:27:46 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:30:22 AM [vite] full reload resources/views/business/consulting.blade.php
+10:30:22 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:30:22 AM [vite] full reload resources/views/business/consulting.blade.php
+10:30:22 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:32:42 AM [vite] full reload resources/views/business/consulting.blade.php
+10:32:42 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:32:42 AM [vite] full reload resources/views/business/consulting.blade.php
+10:32:42 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:32:43 AM [vite] full reload resources/views/business/consulting.blade.php
+10:32:43 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:33:50 AM [vite] full reload resources/views/business/consulting.blade.php
+10:33:50 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:33:50 AM [vite] full reload resources/views/business/consulting.blade.php
+10:33:50 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:36:28 AM [vite] full reload resources/views/business/education.blade.php
+11:36:28 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:36:40 AM [vite] full reload resources/views/business/education.blade.php
+11:36:40 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:36:41 AM [vite] full reload resources/views/business/education.blade.php
+11:36:41 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:55:06 AM [vite] full reload resources/views/business/education.blade.php
+11:55:06 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:55:06 AM [vite] full reload resources/views/business/education.blade.php
+11:55:06 AM [vite] (client) hmr update /resources/css/app.css?direct
+12:05:42 PM [vite] full reload resources/views/business/education.blade.php
+12:05:42 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:05:42 PM [vite] full reload resources/views/business/education.blade.php
+12:05:42 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:06:27 PM [vite] full reload resources/views/business/copc_training.jpg
+12:06:27 PM [vite] full reload resources/views/business/copc_training.jpg
+12:06:27 PM [vite] full reload resources/views/business/copc_training.jpg
+12:06:27 PM [vite] full reload resources/views/business/@eaDir/copc_training.jpg@SynoEAStream
+12:06:27 PM [vite] full reload resources/views/business/@eaDir/copc_training.jpg@SynoEAStream
+12:06:27 PM [vite] full reload resources/views/business/copc_training.jpg
+12:08:36 PM [vite] full reload resources/views/business/education.blade.php
+12:08:36 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:08:36 PM [vite] full reload resources/views/business/education.blade.php
+12:08:36 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:08:36 PM [vite] full reload resources/views/business/education.blade.php
+12:08:36 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:10:46 PM [vite] full reload resources/views/business/education.blade.php
+12:10:46 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:12:06 PM [vite] full reload resources/views/business/education.blade.php
+12:12:06 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:15:16 PM [vite] full reload resources/views/business/education.blade.php
+12:15:16 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:15:16 PM [vite] full reload resources/views/business/education.blade.php
+12:15:16 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:15:17 PM [vite] full reload resources/views/business/education.blade.php
+12:15:17 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:16:13 PM [vite] full reload resources/views/business/education.blade.php
+12:16:13 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:16:13 PM [vite] full reload resources/views/business/education.blade.php
+12:16:13 PM [vite] (client) hmr update /resources/css/app.css?direct
+9:10:50 AM [vite] full reload resources/views/company/location.blade.php
+9:10:50 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:10:50 AM [vite] full reload resources/views/company/location.blade.php
+9:10:50 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:26:38 AM [vite] full reload resources/views/company/location.blade.php
+9:26:38 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:33:20 AM [vite] full reload resources/views/layouts/foex.blade.php
+9:33:20 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:33:20 AM [vite] full reload resources/views/layouts/foex.blade.php
+9:33:20 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:33:33 AM [vite] full reload resources/views/layouts/foex.blade.php
+9:33:33 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:34:03 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:36:23 AM [vite] full reload lang/ko/menu.php
+9:36:23 AM [vite] full reload lang/ko/menu.php
+9:36:23 AM [vite] full reload lang/ko/menu.php
+9:36:24 AM [vite] full reload lang/ko/menu.php
+9:36:39 AM [vite] full reload lang/en/menu.php
+9:36:39 AM [vite] full reload lang/en/menu.php
+9:36:39 AM [vite] full reload lang/en/menu.php
+9:36:40 AM [vite] full reload lang/en/menu.php
+9:37:00 AM [vite] full reload lang/en/menu.php
+9:37:00 AM [vite] full reload lang/en/menu.php
+9:37:09 AM [vite] full reload lang/en/menu.php
+9:37:09 AM [vite] full reload lang/en/menu.php
+9:37:10 AM [vite] full reload lang/en/menu.php
+9:38:02 AM [vite] full reload lang/en/menu.php
+9:39:24 AM [vite] full reload resources/views/layouts/foex.blade.php
+9:39:24 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:39:24 AM [vite] full reload resources/views/layouts/foex.blade.php
+9:39:24 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:40:11 AM [vite] full reload resources/views/layouts/foex.blade.php
+9:40:11 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:40:11 AM [vite] full reload resources/views/layouts/foex.blade.php
+9:40:11 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:40:20 AM [vite] full reload resources/views/layouts/foex.blade.php
+9:40:20 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:40:20 AM [vite] full reload resources/views/layouts/foex.blade.php
+9:40:20 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:41:48 AM [vite] full reload resources/views/layouts/foex.blade.php
+9:41:48 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:42:11 AM [vite] full reload lang/en/menu.php
+9:42:11 AM [vite] full reload lang/en/menu.php
+9:45:09 AM [vite] full reload resources/views/business/engineering.blade.php
+9:45:09 AM [vite] (client) hmr update /resources/css/app.css?direct
+9:45:10 AM [vite] full reload resources/views/business/engineering.blade.php
+9:45:10 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:06:42 AM [vite] full reload resources/views/rnd/results.blade.php
+10:06:42 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:06:43 AM [vite] full reload resources/views/rnd/results.blade.php
+10:06:43 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:08:40 AM [vite] full reload resources/views/rnd/ai.blade.php
+10:08:40 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:10:05 AM [vite] full reload resources/views/rnd/cbm.blade.php
+10:10:05 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:20:45 AM [vite] full reload resources/views/products/suite.blade.php
+10:20:45 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:20:45 AM [vite] full reload resources/views/products/suite.blade.php
+10:20:45 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:22:07 AM [vite] full reload resources/views/products/node.blade.php
+10:22:07 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:22:07 AM [vite] full reload resources/views/products/node.blade.php
+10:22:07 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:23:21 AM [vite] full reload resources/views/products/suite.blade.php
+10:23:21 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:23:21 AM [vite] full reload resources/views/products/suite.blade.php
+10:23:21 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:25:22 AM [vite] full reload resources/views/products/suite.blade.php
+10:25:22 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:25:22 AM [vite] full reload resources/views/products/suite.blade.php
+10:25:22 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:28:09 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:29:48 AM [vite] full reload resources/views/pr/brochure.blade.php
+10:29:48 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:29:49 AM [vite] full reload resources/views/pr/brochure.blade.php
+10:29:49 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:31:02 AM [vite] full reload resources/views/pr/notice/index.blade.php
+10:31:02 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:31:03 AM [vite] full reload resources/views/pr/notice/index.blade.php
+10:31:03 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:32:34 AM [vite] full reload resources/views/pr/press.blade.php
+10:32:34 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:32:34 AM [vite] full reload resources/views/pr/press.blade.php
+10:32:34 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:34:01 AM [vite] full reload resources/views/pagination/foex.blade.php
+10:34:01 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:34:01 AM [vite] full reload resources/views/pagination/foex.blade.php
+10:34:01 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:34:47 AM [vite] full reload resources/views/pagination/foex.blade.php
+10:34:47 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:34:47 AM [vite] full reload resources/views/pagination/foex.blade.php
+10:34:47 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:34:52 AM [vite] full reload resources/views/pagination/foex.blade.php
+10:34:52 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:35:27 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:35:32 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:37:30 AM [vite] full reload resources/views/rnd/results.blade.php
+10:37:30 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:37:30 AM [vite] full reload resources/views/rnd/results.blade.php
+10:37:30 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:37:38 AM [vite] full reload resources/views/rnd/results.blade.php
+10:37:38 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:37:43 AM [vite] full reload resources/views/rnd/results.blade.php
+10:37:43 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:37:43 AM [vite] full reload resources/views/rnd/results.blade.php
+10:37:43 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:46:13 AM [vite] full reload resources/views/company/capability.blade.php
+10:46:13 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:46:13 AM [vite] full reload resources/views/company/capability.blade.php
+10:46:13 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:46:31 AM [vite] full reload resources/views/rnd/results.blade.php
+10:46:31 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:51:46 AM [vite] full reload resources/views/rnd/results.blade.php
+10:51:46 AM [vite] (client) hmr update /resources/css/app.css?direct
+10:51:46 AM [vite] full reload resources/views/rnd/results.blade.php
+10:51:46 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:03:02 AM [vite] full reload resources/views/company/intro.blade.php
+11:03:02 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:03:03 AM [vite] full reload resources/views/company/intro.blade.php
+11:03:03 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:19:49 AM [vite] full reload resources/views/service/schedule.blade.php
+11:19:49 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:21:42 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:21:42 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:21:42 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:21:42 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:21:48 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:21:48 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:21:48 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:21:48 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:21:49 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:21:49 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:22:09 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:22:09 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:22:10 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:22:10 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:22:12 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:22:12 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:22:12 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:22:12 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:22:33 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:22:33 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:22:33 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:22:33 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:23:18 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:23:18 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:23:18 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:23:18 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:23:34 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:23:34 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:23:34 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:23:34 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:23:41 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:23:41 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:23:41 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:23:41 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:24:23 AM [vite] full reload lang/ko/menu.php
+11:24:23 AM [vite] full reload lang/ko/menu.php
+11:24:23 AM [vite] full reload lang/ko/menu.php
+11:24:30 AM [vite] full reload lang/en/menu.php
+11:24:30 AM [vite] full reload lang/en/menu.php
+11:24:30 AM [vite] full reload lang/en/menu.php
+11:24:31 AM [vite] full reload lang/en/menu.php
+11:25:57 AM [vite] full reload routes/web.php
+11:25:57 AM [vite] full reload routes/web.php
+11:26:26 AM [vite] full reload lang/ko/menu.php
+11:26:26 AM [vite] full reload lang/ko/menu.php
+11:26:26 AM [vite] full reload lang/ko/menu.php
+11:26:43 AM [vite] full reload lang/en/menu.php
+11:26:43 AM [vite] full reload lang/en/menu.php
+11:27:29 AM [vite] full reload lang/ko/menu.php
+11:27:29 AM [vite] full reload lang/ko/menu.php
+11:27:29 AM [vite] full reload lang/ko/menu.php
+11:27:46 AM [vite] full reload lang/en/menu.php
+11:27:46 AM [vite] full reload lang/en/menu.php
+11:28:06 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:28:06 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:28:06 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:28:06 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:29:21 AM [vite] full reload resources/views/service/schedule.blade.php
+11:29:21 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:29:21 AM [vite] full reload resources/views/service/schedule.blade.php
+11:29:21 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:30:23 AM [vite] full reload resources/views/service/education/index.blade.php
+11:30:23 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:30:24 AM [vite] full reload resources/views/service/education/index.blade.php
+11:30:24 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:32:25 AM [vite] full reload resources/views/service/inquiry.blade.php
+11:32:25 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:32:25 AM [vite] full reload resources/views/service/inquiry.blade.php
+11:32:25 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:35:05 AM [vite] full reload resources/views/pr/notice/show.blade.php
+11:35:05 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:35:05 AM [vite] full reload resources/views/pr/notice/show.blade.php
+11:35:05 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:36:51 AM [vite] full reload resources/views/service/education/show.blade.php
+11:36:51 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:36:51 AM [vite] full reload resources/views/service/education/show.blade.php
+11:36:51 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:38:03 AM [vite] full reload resources/views/pr/qna/index.blade.php
+11:38:03 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:38:03 AM [vite] full reload resources/views/pr/qna/index.blade.php
+11:38:03 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:38:41 AM [vite] full reload resources/views/pr/qna/create.blade.php
+11:38:41 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:38:41 AM [vite] full reload resources/views/pr/qna/create.blade.php
+11:38:41 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:38:54 AM [vite] full reload resources/views/pr/qna/create.blade.php
+11:38:54 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:38:54 AM [vite] full reload resources/views/pr/qna/create.blade.php
+11:38:54 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:39:31 AM [vite] full reload resources/views/pr/qna/create.blade.php
+11:39:31 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:39:32 AM [vite] full reload resources/views/pr/qna/create.blade.php
+11:39:32 AM [vite] (client) hmr update /resources/css/app.css?direct
+12:03:32 PM [vite] full reload resources/views/contact/index.blade.php
+12:03:32 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:03:32 PM [vite] full reload resources/views/contact/index.blade.php
+12:03:32 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:04:58 PM [vite] full reload resources/views/contact/index.blade.php
+12:04:58 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:04:58 PM [vite] full reload resources/views/contact/index.blade.php
+12:04:58 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:07:52 PM [vite] full reload resources/views/layouts/foex.blade.php
+12:07:52 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:07:52 PM [vite] full reload resources/views/layouts/foex.blade.php
+12:07:52 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:07:58 PM [vite] full reload resources/views/layouts/foex.blade.php
+12:07:58 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:08:42 PM [vite] full reload resources/views/layouts/foex.blade.php
+12:08:42 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:08:42 PM [vite] full reload resources/views/layouts/foex.blade.php
+12:08:42 PM [vite] (client) hmr update /resources/css/app.css?direct
+12:10:19 PM [vite] full reload lang/ko/menu.php
+12:10:19 PM [vite] full reload lang/ko/menu.php
+12:11:18 PM [vite] full reload lang/ko/menu.php
+12:11:18 PM [vite] full reload lang/ko/menu.php
+12:11:18 PM [vite] full reload lang/ko/menu.php
+12:11:56 PM [vite] full reload lang/en/menu.php
+12:11:56 PM [vite] full reload lang/en/menu.php
+12:11:57 PM [vite] full reload lang/en/menu.php
+12:12:48 PM [vite] full reload lang/ko/menu.php
+12:12:48 PM [vite] full reload lang/ko/menu.php
+12:26:02 PM [vite] full reload resources/views/service/contact/index.blade.php
+12:26:02 PM [vite] (client) hmr update /resources/css/app.css?direct
+2:39:42 PM [vite] full reload resources/views/business/engineering.blade.php
+2:39:42 PM [vite] (client) hmr update /resources/css/app.css?direct
+2:39:42 PM [vite] full reload resources/views/business/engineering.blade.php
+2:39:42 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:12:40 PM [vite] full reload resources/views/rnd/ai.blade.php
+3:12:40 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:12:41 PM [vite] full reload resources/views/rnd/ai.blade.php
+3:12:41 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:21:25 PM [vite] full reload resources/views/rnd/ai.blade.php
+3:21:25 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:21:25 PM [vite] full reload resources/views/rnd/ai.blade.php
+3:21:25 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:29:29 PM [vite] full reload resources/views/rnd/cbm.blade.php
+3:29:29 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:44:39 PM [vite] full reload resources/views/rnd/cbm.blade.php
+3:44:39 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:44:39 PM [vite] full reload resources/views/rnd/cbm.blade.php
+3:44:39 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:45:06 PM [vite] full reload resources/views/rnd/cbm.blade.php
+3:45:06 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:45:06 PM [vite] full reload resources/views/rnd/cbm.blade.php
+3:45:06 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:47:00 PM [vite] full reload resources/views/rnd/ai.blade.php
+3:47:00 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:47:00 PM [vite] full reload resources/views/rnd/ai.blade.php
+3:47:00 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:47:00 PM [vite] full reload resources/views/rnd/ai.blade.php
+3:47:00 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:48:20 PM [vite] full reload resources/views/business/consulting.blade.php
+3:48:20 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:48:20 PM [vite] full reload resources/views/business/consulting.blade.php
+3:48:20 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:48:20 PM [vite] full reload resources/views/business/consulting.blade.php
+3:48:20 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:48:28 PM [vite] full reload resources/views/business/consulting.blade.php
+3:48:28 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:48:28 PM [vite] full reload resources/views/business/consulting.blade.php
+3:48:28 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:49:16 PM [vite] full reload resources/views/business/consulting.blade.php
+3:49:16 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:49:16 PM [vite] full reload resources/views/business/consulting.blade.php
+3:49:16 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:49:51 PM [vite] full reload resources/views/business/engineering.blade.php
+3:49:51 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:49:52 PM [vite] full reload resources/views/business/engineering.blade.php
+3:49:52 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:49:52 PM [vite] full reload resources/views/business/engineering.blade.php
+3:49:52 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:50:17 PM [vite] full reload resources/views/business/education.blade.php
+3:50:17 PM [vite] (client) hmr update /resources/css/app.css?direct
+3:50:17 PM [vite] full reload resources/views/business/education.blade.php
+3:50:17 PM [vite] (client) hmr update /resources/css/app.css?direct
+5:42:13 PM [vite] full reload resources/views/rnd/results.blade.php
+5:42:13 PM [vite] (client) hmr update /resources/css/app.css?direct
+5:42:13 PM [vite] full reload resources/views/rnd/results.blade.php
+5:42:13 PM [vite] (client) hmr update /resources/css/app.css?direct
+5:37:27 PM [vite] vite.config.js changed, restarting server...
+5:37:30 PM [vite] server restarted.
+
+  ➜  Local:   https://localhost:5176/
+  ➜  Network: https://172.30.1.60:5176/
+  ➜  Network: https://192.168.0.1:5176/
+  ➜  Network: https://172.29.0.1:5176/
+  ➜  Network: https://172.21.0.1:5176/
+  ➜  Network: https://172.23.0.1:5176/
+  ➜  Network: https://172.31.0.1:5176/
+
+  LARAVEL v12.46.0  plugin v3.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+10:30:20 AM [vite] vite.config.js changed, restarting server...
+10:30:20 AM [vite] vite.config.js changed, restarting server...
+10:30:21 AM [vite] server restarted.
+
+  LARAVEL v12.46.0  plugin v3.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+10:40:53 AM [vite] vite.config.js changed, restarting server...
+10:40:53 AM [vite] vite.config.js changed, restarting server...
+10:40:53 AM [vite] (client) Re-optimizing dependencies because vite config has changed
+10:40:53 AM [vite] server restarted.
+
+  ➜  Local:   http://localhost:5176/
+  ➜  Network: http://172.30.1.60:5176/
+  ➜  Network: http://192.168.0.1:5176/
+  ➜  Network: http://172.29.0.1:5176/
+  ➜  Network: http://172.21.0.1:5176/
+  ➜  Network: http://172.23.0.1:5176/
+  ➜  Network: http://172.31.0.1:5176/
+
+  ➜  Local:   http://localhost:5176/
+  ➜  Network: http://172.30.1.60:5176/
+  ➜  Network: http://192.168.0.1:5176/
+  ➜  Network: http://172.29.0.1:5176/
+  ➜  Network: http://172.21.0.1:5176/
+  ➜  Network: http://172.23.0.1:5176/
+  ➜  Network: http://172.31.0.1:5176/
+
+  LARAVEL v12.46.0  plugin v3.0.1
+
+  ➜  APP_URL: https://www.foex.kr
+10:42:49 AM [vite] vite.config.js changed, restarting server...
+failed to load config from /volume1/web/foex_new/vite.config.js
+10:42:50 AM [vite] config must export or return an object.
+10:42:50 AM [vite] server restart failed
+11:31:38 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:31:38 AM [vite] (client) hmr update /resources/css/app.css?direct
+11:31:38 AM [vite] full reload resources/views/layouts/foex.blade.php
+11:31:38 AM [vite] (client) hmr update /resources/css/app.css?direct
