@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+/**
+* list
+*/
+article.board div.board-body ul.row li.subject strong{max-width:45rem;}
+
+#search {padding-bottom:2rem;}
+#search input{height:4rem;}
+#search button{width:4rem; height:4rem; line-height:4rem;}
+/**
+* view
+*/
+.board_view{padding-top:6rem;}
+div.board_view > dl > dd.etc > strong { display:block; position:absolute; top:13px; right:20px; width:50px; height:23px; border:1px solid #333; font-weight:bold; line-height:21px; color:#fff;text-align:center;}
+div.board_view > dl > dd.etc > strong.bd_state_W { background:#00690c; }
+div.board_view > dl > dd.etc > strong.bd_state_P { background:#0062c3; }
+div.board_view > dl > dd.etc > strong.bd_state_E { background:#555; }
+
+div.board_view > dl > dd.cont > div img {width:100%;}
+
+/**
+* recruit > guide
+*/
+div.guide {position:relative; padding:15px;margin-bottom: 30px;border:1px solid #ddd; background-color:#eff8ff}
+div.guide strong {font-weight:600;}
+div.guide div.button {position:absolute; top:10px; right:15px; margin-top:0;}
+
+
+@media (max-width: 970px) {
+
+    #search{flex-direction: column;}
+    #search > div{width:100%;}
+}
+
+@media (max-width: 740px) {
+
+    div.guide strong{word-break: keep-all;}
+    div.guide div.button{position:unset;}
+
+
+}
+
