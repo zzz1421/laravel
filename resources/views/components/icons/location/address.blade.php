@@ -1,0 +1,6 @@
+<svg {{ $attributes->merge(['class' => 'w-[5rem] h-[5rem]']) }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="none">
+    {{-- stroke 색상을 모두 currentColor로 변경했습니다 --}}
+    <path d="M25.0003 24.5621C28.5671 24.5621 31.4586 21.6862 31.4586 18.1385C31.4586 14.5908 28.5671 11.7148 25.0003 11.7148C21.4335 11.7148 18.542 14.5908 18.542 18.1385C18.542 21.6862 21.4335 24.5621 25.0003 24.5621Z" stroke="currentColor" stroke-width="3.90625" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M31.2949 36.6672C33.7055 37.8307 35.2561 39.6468 35.2561 41.6874C35.2561 45.199 30.6643 48.0458 25.0001 48.0458C19.3359 48.0458 14.7441 45.199 14.7441 41.6874C14.7441 39.6427 16.301 37.8233 18.7198 36.6602" stroke="currentColor" stroke-width="3.90625" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M39.3664 26.4716C40.4436 24.0103 41.121 21.1895 41.121 17.9878C41.1209 9.14619 33.8891 1.95312 24.9999 1.95312C16.1107 1.95312 8.87891 9.14619 8.87891 17.9878C8.87891 33.6065 24.9999 40.1582 24.9999 40.1582C24.9999 40.1582 29.4189 38.3623 33.6297 34.4095" stroke="currentColor" stroke-width="3.90625" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

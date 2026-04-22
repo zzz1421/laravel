@@ -1,6 +1,7 @@
-{{-- 🚨 핵심: stroke="#303031" 을 지우고 stroke="currentColor" 로 변경 🚨 --}}
-{{-- 🚨 {{ $attributes }} 를 넣어 부모의 클래스(크기, 색상, 호버)를 물려받게 함 🚨 --}}
-<svg {{ $attributes }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none">
+@props(['class' => ''])
+
+{{-- $attributes->merge를 사용하여 부모의 class와 기본 class를 합칩니다. --}}
+<svg {{ $attributes->merge(['class' => $class]) }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none">
     <g clip-path="url(#clip0_9_122)">
         <mask id="mask0_9_122" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="97" height="97">
             <path d="M0 0H96.0018V96.0018H0V0Z" fill="white"/>

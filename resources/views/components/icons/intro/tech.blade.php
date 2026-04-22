@@ -1,4 +1,6 @@
-<svg {{ $attributes }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 98 98" fill="none">
+@props(['class' => ''])
+
+<svg {{ $attributes->merge(['class' => $class]) }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 98 98" fill="none">
     <g clip-path="url(#clip0_9_164)">
         <path d="M24.5845 29.3867H73.4156" stroke="currentColor" stroke-width="7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M29.6485 29.3867C28.9738 31.3754 28.6084 33.5027 28.6084 35.7138C28.6084 46.7677 37.7383 55.7286 49.0004 55.7286C60.2626 55.7286 69.3925 46.7677 69.3925 35.7138C69.3925 33.5027 69.0271 31.3752 68.3524 29.3867H29.6485Z" stroke="currentColor" stroke-width="7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>

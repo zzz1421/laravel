@@ -41,27 +41,12 @@
     <div x-data="{ tab: 'product' }" class="bg-white font-sans text-gray-800">
 
         {{-- [1] 페이지 헤더 --}}
-        <section class="relative pt-[14rem] pb-[14rem] px-[4rem] md:px-[18rem] overflow-hidden bg-[#1a1c1e]">
-            
-            {{-- 1. 이미지 투명도 조정: opacity-40 -> opacity-60 (숫자가 클수록 원본 이미지가 선명해짐) --}}
-            <img src="{{ asset('images/business/hero-consulting.jpg') }}" 
-                alt="Consulting & Tech Service" 
-                class="absolute inset-0 w-full h-full object-cover opacity-60"
-                onerror="this.src='https://loremflickr.com/1920/1080/business,engineers'">
-            
-            {{-- 2. 그라데이션 필터 농도 조정: 50/80 -> 20/60 수준으로 연하게 빼기 --}}
-            <div class="absolute inset-0 bg-gradient-to-r from-[#1a1c1e]/60 via-[#1a1c1e]/10 to-transparent pointer-events-none z-0"></div>
-
-            <div class="relative z-10 max-w-[140rem] mx-auto text-center" data-aos="fade-up">
-                <h1 class="text-[4rem] md:text-[6rem] font-black text-white mb-[2.5rem] tracking-tight">
-                    {{ __('business.cons_tech_title') }}
-                </h1>
-                {{-- 배경이 밝아진 만큼 서브 텍스트도 더 밝은 회색(gray-200)으로 올려서 가독성 확보 --}}
-                <p class="text-[1.8rem] md:text-[2.2rem] text-gray-200 font-medium break-keep">
-                    {{ __('business.cons_tech_desc') }}
-                </p>
-            </div>
-        </section>
+        <x-page-hero 
+        category="{{ __('menu.business') }}" 
+            title="{{ __('business.cons_tech_title') }}" 
+            desc="{{ __('business.cons_tech_desc') }}" 
+            bg-image="images/business/hero_consulting.jpg" 
+        />
 
         {{-- [2] 탭 메뉴 --}}
         <div id="tab-menu" class="bg-white border-b border-gray-200 sticky shadow-sm" style="top: 8rem; z-index: 90; scroll-margin-top: 8rem;">

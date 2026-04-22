@@ -11,14 +11,12 @@
     </style>
 
     {{-- [1] 페이지 헤더 (다크 히어로 스타일 공통 적용) --}}
-    <section class="relative pt-[14rem] pb-[14rem] px-[4rem] md:px-[18rem] bg-[#1a1c1e] overflow-hidden">
-        <img src="{{ asset('images/business/engineering_hero.jpg') }}" alt="FOEx Engineering" class="absolute inset-0 w-full h-full object-cover opacity-50" onerror="this.src='https://loremflickr.com/1920/1080/engineering,plant'">
-        <div class="absolute inset-0 bg-gradient-to-r from-[#1a1c1e]/60 via-[#1a1c1e]/10 to-transparent pointer-events-none z-0"></div>
-        <div class="relative z-10 max-w-[140rem] mx-auto text-center" data-aos="fade-up">
-            <h1 class="text-[4rem] md:text-[6rem] font-black text-white mb-[2.5rem] tracking-tight">{{ __('business.eng_title') }}</h1>
-            <p class="text-[1.8rem] md:text-[2.2rem] text-gray-300 font-medium break-keep">{{ __('business.eng_desc') }}</p>
-        </div>
-    </section>
+    <x-page-hero 
+        category="{{ __('menu.business') }}" 
+        title="{{ __('business.eng_title') }}" 
+        desc="{{ __('business.eng_desc') }}" 
+        bg-image="images/business/engineering_hero.jpg" 
+    />
 
     <div x-data="{ tab: 'design' }">
 

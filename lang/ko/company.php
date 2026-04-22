@@ -78,7 +78,7 @@ return [
 
     // Location
     'loc_title' => '오시는 길',
-    'loc_desc' => '포엑스(주) 본사 및 R&D 센터를 안내해 드립니다.',
+    'loc_desc' => '방문 전 사전 문의를 통해 보다 원활한 상담이 가능합니다.',
     
     'hq_map_title' => '울산 본사 지도',
     'hq_name' => '포엑스 본사',

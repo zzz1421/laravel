@@ -8,20 +8,14 @@
     $latestYear = !empty($historyYears) ? $historyYears[0]['year'] : '';
 @endphp
 
-{{-- [1] Hero 섹션 (생략 가능) --}}
-<section class="relative h-[450px] flex items-center justify-center overflow-hidden bg-slate-900">
-    <img src="{{ asset('images/history/hero_bg.jpg') }}" class="absolute inset-0 w-full h-full object-cover opacity-50" alt="History Hero">
-    <div class="relative z-10 text-center">
-        <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 uppercase tracking-tighter">{{ __('history.title') }}</h1>
-        <p class="text-lg text-gray-300 max-w-2xl mx-auto">{{ __('history.desc') }}</p>
-    </div>
-    <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
-</section>
+<x-page-hero 
+    category="{{ __('menu.company') }}" 
+    title="{{ __('menu.history') }}" 
+    desc="{{ __('history.desc') }}" 
+    bg-image="images/company/hero_history.jpg" 
+/>
 
-{{-- 
-    [2] 메인 연혁 섹션 
-    Sticky가 작동하려면 부모 요소에 overflow-hidden이 있으면 안 됩니다. (필요 시 제거)
---}}
+{{-- 메인 연혁 섹션 (액션 로직 유지) --}}
 <section x-data="{ 
         activeYear: '{{ $latestYear }}',
         scrollPercent: 0,
@@ -29,104 +23,131 @@
             const container = this.$refs.historyContainer;
             const rect = container.getBoundingClientRect();
             const windowHeight = window.innerHeight;
-
-            // 핵심 수정: 섹션 상단이 화면 상단에 닿을 때 0%, 섹션 하단이 화면 하단에 닿을 때 100%
-            // scrollTop: 섹션이 화면 상단에서 위로 넘어간 거리
             const scrollTop = -rect.top;
-            // scrollHeight: 섹션 전체 높이에서 화면 높이를 뺀 '실제 스크롤 가능 거리'
             const scrollHeight = rect.height - windowHeight;
-
             let progress = (scrollTop / scrollHeight) * 100;
-            
-            // 0% ~ 100% 사이로 제한
             this.scrollPercent = Math.min(Math.max(progress, 0), 100);
         }
     }" 
     x-init="window.addEventListener('scroll', () => updateScroll())"
     x-ref="historyContainer"
-    class="relative bg-white">
+    class="relative bg-[#fafafa] pb-[20rem]">
     
-    {{-- [3] 좌측 고정 퀵 메뉴 (Clips) --}}
-    <nav class="fixed left-10 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col gap-6">
+    {{-- [1] 좌측 픽스 내비게이션 (시안 반영: 파란색 / 회색 텍스트 폰트 위주) --}}
+    <nav class="fixed left-[5rem] top-[30%] z-40 hidden xl:flex flex-col gap-4">
         @foreach($historyYears as $item)
         <a href="#year-{{ $item['year'] }}" 
            @click.prevent="document.getElementById('year-{{ $item['year'] }}').scrollIntoView({behavior: 'smooth'})"
-           class="group flex items-center gap-4 transition-all">
-            <span class="relative w-10 h-[2px] transition-all duration-500"
-                  :class="activeYear === '{{ $item['year'] }}' ? 'w-16 bg-[#f9b417]' : 'bg-gray-200 group-hover:bg-gray-400 group-hover:w-16'">
-            </span>
-            <span class="text-[1.4rem] font-bold transition-all duration-300"
-                  :class="activeYear === '{{ $item['year'] }}' ? 'text-[#f9b417] opacity-100' : 'text-gray-300 opacity-0 group-hover:opacity-100'">
-                {{ $item['year'] }}
-            </span>
+           class="text-[1.6rem] font-bold transition-colors duration-300"
+           :class="activeYear === '{{ $item['year'] }}' ? 'text-[#0088cc]' : 'text-gray-300 hover:text-gray-500'">
+            {{ $item['year'] }}
         </a>
         @endforeach
     </nav>
 
-    <div class="max-w-[140rem] mx-auto flex flex-col lg:flex-row px-[4rem] md:px-[18rem] py-[10rem] gap-[10rem] relative">
+    {{-- [2] 메인 타임라인 컨테이너 --}}
+    <div class="max-w-[150rem] w-full mx-auto px-[4rem] pt-[15rem] pb-[15rem] relative">
         
-        {{-- [4] 왼쪽: Sticky 이미지 영역 (고정 유지) --}}
-        {{-- h-fit과 self-start가 있어야 부모 높이를 다 차지하지 않고 고정(Sticky)이 정상 작동합니다. --}}
-        <div class="lg:w-1/2 lg:sticky lg:top-[15rem] h-fit self-start order-2 lg:order-1">
-            <div class="relative overflow-hidden rounded-[2rem] shadow-2xl aspect-[4/3] bg-gray-100">
-                @foreach($historyYears as $item)
-                    <div x-show="activeYear === '{{ $item['year'] }}'" 
-                        x-transition:enter="transition ease-out duration-700"
-                        x-transition:enter-start="opacity-0 scale-105"
-                        x-transition:enter-end="opacity-100 scale-100"
-                        x-transition:leave="transition ease-in duration-300"
-                        x-transition:leave-start="opacity-100"
-                        x-transition:leave-end="opacity-0"
-                        class="absolute inset-0">
+        {{-- ★ [핵심 구조] 선이 어긋나지 않도록 '마커부터 마커까지만' 감싸는 전용 구역 --}}
+        <div class="relative w-full flex flex-col">
+
+            {{-- 중앙 뼈대 기준선: 무조건 부모의 top-[2rem](첫 마커 중앙) 부터 bottom-[2rem](끝 마커 중앙) 까지만 뻗음 --}}
+            <div class="absolute left-1/2 top-[2rem] bottom-[2rem] w-[2px] bg-gray-200 -translate-x-1/2 hidden md:block z-0"></div>
+            
+            {{-- 중앙 프로그레스 선 --}}
+            <div class="absolute left-1/2 top-[2rem] bottom-[2rem] w-[2px] bg-[#F97316] -translate-x-1/2 origin-top transition-transform duration-100 ease-out hidden md:block z-10"
+                 :style="{ transform: `scaleY(${scrollPercent / 100})` }"></div>
+
+            {{-- 1. 연도별 리스트 영역 --}}
+            <div class="flex flex-col gap-[15rem] relative z-20 w-full">
+                @foreach($historyYears as $index => $item)
+                    @php
+                        $isEven = $index % 2 === 0;
+                    @endphp
+                    
+                    <div id="year-{{ $item['year'] }}" 
+                         class="scroll-mt-[17rem] relative flex flex-col md:flex-row w-full items-start justify-center"
+                         x-intersect:enter.margin.-40%="activeYear = '{{ $item['year'] }}'">
                         
-                        <img src="{{ asset('images/history/' . $item['year'] . '.jpg') }}" 
-                            class="w-full h-full object-cover"
-                            onerror="this.src='{{ asset('images/common/no-image.jpg') }}'">
-                        
-                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-                            <h2 class="text-white text-[10rem] font-black tracking-tighter opacity-80">{{ $item['year'] }}</h2>
+                        {{-- 타임라인 중앙 동그라미 마커 (첫 번째 아이템의 top-[2rem]이 선의 시작점과 정확히 일치함) --}}
+                        <div class="absolute left-1/2 top-[2rem] -translate-x-1/2 w-[4rem] h-[4rem] rounded-full z-10 transition-all duration-300 hidden md:flex items-center justify-center"
+                             :class="activeYear === '{{ $item['year'] }}' ? 'ring-[6px] ring-[#F97316]/20' : ''">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" class="w-full h-full">
+                                <ellipse cx="20.0002" cy="19.9999" rx="20.0002" ry="19.9999" 
+                                         :fill="activeYear === '{{ $item['year'] }}' ? '#F97316' : '#9CA3AF'" 
+                                         style="transition: fill 0.3s ease;" />
+                                <ellipse cx="19.9995" cy="19.9994" rx="8.61669" ry="8.61655" fill="#F9FAFB" />
+                            </svg>
                         </div>
+
+                        @if($isEven)
+                            {{-- [A] 짝수 해 (기존 코드와 동일) --}}
+                            <div class="w-full md:w-1/2 flex flex-col items-end md:pr-[11rem] mb-[4rem] md:mb-0">
+                                <h2 class="{{ $index === 0 ? 'text-[#303031]' : 'text-[#929292]' }} text-[12rem] font-black font-['Noto_Sans_KR'] leading-none mb-[4.5rem] text-right">
+                                    {{ $item['year'] }}
+                                </h2>
+                                <div class="w-full max-w-[60rem] aspect-[3/4] md:h-[80rem] bg-[#F5F4EC] rounded-[2.5rem] border border-black overflow-hidden flex items-center justify-center shrink-0">
+                                    <img src="{{ asset('images/history/' . $item['year'] . '.jpg') }}" alt="{{ $item['year'] }} 연혁" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 md:pl-[11rem] pt-[2rem]">
+                                <ul class="space-y-[3.5rem]">
+                                    @foreach($item['events'] as $event)
+                                        <li class="flex gap-[2.5rem] items-start">
+                                            <span class="text-[#303031] text-[3rem] font-semibold font-['Noto_Sans_KR'] leading-none pt-[0.5rem] shrink-0">{{ $event['month'] }}</span>
+                                            <span class="text-[#626263] text-[3rem] font-medium font-['Noto_Sans_KR'] leading-tight break-keep w-full max-w-[47.4rem]">{{ $event['content'] }}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @else
+                            {{-- [B] 홀수 해 (기존 코드와 동일) --}}
+                            <div class="w-full md:w-1/2 flex flex-col items-end md:pr-[11rem] pt-[2rem] order-2 md:order-1 mt-[4rem] md:mt-0">
+                                <ul class="space-y-[3.5rem] w-full flex flex-col items-end">
+                                    @foreach($item['events'] as $event)
+                                        <li class="flex gap-[2.5rem] items-start justify-end w-full">
+                                            <span class="text-[#626263] text-[3rem] font-medium font-['Noto_Sans_KR'] leading-tight break-keep text-right w-full max-w-[47.4rem] order-2 md:order-1">{{ $event['content'] }}</span>
+                                            <span class="text-[#303031] text-[3rem] font-semibold font-['Noto_Sans_KR'] leading-none pt-[0.5rem] shrink-0 order-1 md:order-2">{{ $event['month'] }}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="w-full md:w-1/2 flex flex-col items-start md:pl-[11rem] order-1 md:order-2">
+                                <h2 class="{{ $index === 0 ? 'text-[#303031]' : 'text-[#929292]' }} text-[12rem] font-black font-['Noto_Sans_KR'] leading-none mb-[4.5rem] text-left">
+                                    {{ $item['year'] }}
+                                </h2>
+                                <div class="w-full max-w-[60rem] aspect-[3/4] md:h-[80rem] bg-[#F5F4EC] rounded-[2.5rem] border border-black overflow-hidden flex items-center justify-center shrink-0">
+                                    <img src="{{ asset('images/history/' . $item['year'] . '.jpg') }}" alt="{{ $item['year'] }} 연혁" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 @endforeach
             </div>
-        </div>
 
-        {{-- [5] 가운데: 흐르는 세로 라인 (FOEx 색상) --}}
-        <div class="hidden lg:block absolute left-[calc(50%-1px)] top-[10rem] bottom-[20rem] w-[2px] bg-gray-100 overflow-hidden">
-            {{-- scrollPercent에 맞춰 높이가 실시간으로 변함 --}}
-            <div class="w-full bg-[#f9b417] shadow-[0_0_15px_rgba(249,180,23,0.6)] transition-all duration-150 ease-out"
-                 :style="'height: ' + scrollPercent + '%'">
-            </div>
-        </div>
-
-        {{-- [6] 오른쪽: 연혁 텍스트 내용 --}}
-        <div class="lg:w-1/2 flex flex-col gap-[20rem] pb-[40rem] order-1 lg:order-2">
-            @foreach($historyYears as $item)
-                <div id="year-{{ $item['year'] }}"
-                     x-intersect:enter.margin.-40%="activeYear = '{{ $item['year'] }}'" 
-                     class="min-h-[40rem] flex flex-col justify-center pl-[6rem] relative scroll-mt-60">
-                    
-                    {{-- 타임라인 포인트 (가운데 선과 일치) --}}
-                    <div class="absolute left-[-1.1rem] lg:left-[-5.1rem] top-[1.2rem] w-[2.2rem] h-[2.2rem] rounded-full border-4 border-white z-10 transition-all duration-500"
-                         :class="activeYear === '{{ $item['year'] }}' ? 'bg-[#f9b417] scale-125 shadow-[0_0_10px_rgba(249,180,23,0.8)]' : 'bg-gray-200'">
-                    </div>
-
-                    <span class="text-[#f9b417] text-[2.8rem] font-black mb-[1rem] inline-block tracking-tighter">{{ $item['year'] }}</span>
-                    @if(!empty($item['slogan']))
-                        <h3 class="text-[3.6rem] font-extrabold text-gray-900 mb-[5rem] tracking-tight leading-tight">{{ $item['slogan'] }}</h3>
-                    @endif
-                    
-                    <ul class="space-y-[3.5rem]">
-                        @foreach($item['events'] as $event)
-                            <li class="flex gap-[3rem] items-start text-[2rem] text-gray-600">
-                                <span class="font-bold text-gray-900 shrink-0 w-[6rem] pt-1">{{ $event['month'] }}</span>
-                                <span class="leading-relaxed font-medium">{{ $event['content'] }}</span>
-                            </li>
-                        @endforeach
-                    </ul>
+            {{-- 2. 종단 마커 (타임라인 전용 구역의 맨 끝바닥에 위치) --}}
+            <div class="relative w-full flex justify-center mt-[20rem] z-20">
+                <div class="w-[4rem] h-[4rem] rounded-full bg-[#fafafa] flex items-center justify-center transition-all duration-500"
+                     :class="scrollPercent >= 98 ? 'ring-[6px] ring-[#F97316]/20' : ''">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" class="w-full h-full">
+                        <ellipse cx="20.0002" cy="19.9999" rx="20.0002" ry="19.9999" 
+                                 :fill="scrollPercent >= 98 ? '#F97316' : '#9CA3AF'" 
+                                 style="transition: fill 0.3s ease;" />
+                        <ellipse cx="19.9995" cy="19.9994" rx="8.61669" ry="8.61655" fill="#F9FAFB" />
+                    </svg>
                 </div>
-            @endforeach
+            </div>
+
+        </div> {{-- // 타임라인 전용 구역 끝 --}}
+            
+            {{-- 3. 타임라인 밖: 설립과 시작 (선이 절대 침범할 수 없는 독립 영역) --}}
+        <div class="relative w-full flex flex-col items-center justify-center mt-[4rem]">
+            <span class="relative z-10 text-[#303031] text-[3rem] font-semibold font-['Noto_Sans_KR'] leading-normal text-center">
+                설립과 시작
+            </span>
+            <div class="absolute top-[2rem] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[67.2rem] h-[15.8rem] bg-[rgba(255,227,144,0.8)] blur-[102px] rounded-full pointer-events-none z-0"></div>
         </div>
+
     </div>
 </section>
 @endsection

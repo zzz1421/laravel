@@ -145,46 +145,73 @@
             </nav>
 
             {{-- 3. [오른쪽] 유틸리티 영역 --}}
-            <div class="flex items-center justify-end gap-[2rem] w-[25rem]">
+            <div class="flex items-center justify-end gap-[2rem] w-[35rem]"> {{-- 가로폭을 조금 넓혔습니다 --}}
                 <div class="flex items-center gap-[1rem] text-[1.4rem] font-bold">
-                    
                     {{-- [KR 버튼] --}}
-                    {{-- 현재 언어가 'ko'면 무조건 노란색, 아니면 스크롤 상태에 따라 흰색/검은색 --}}
                     <a href="{{ route('lang.switch', 'ko') }}" 
                     :class="{
                         'text-[#f9b417]': '{{ app()->getLocale() }}' === 'ko',
                         'text-white': '{{ app()->getLocale() }}' !== 'ko' && !isScrolled,
                         'text-gray-900': '{{ app()->getLocale() }}' !== 'ko' && isScrolled
                     }"
-                    class="hover:text-[#f9b417] transition-colors duration-300">
-                    KR
-                    </a>
+                    class="hover:text-[#f9b417] transition-colors duration-300">KR</a>
                     
-                    {{-- 구분선 --}}
                     <span class="w-[0.1rem] h-[1.4rem] transition-colors duration-300" 
                         :class="isScrolled ? 'bg-gray-300' : 'bg-gray-500'"></span>
                     
                     {{-- [EN 버튼] --}}
-                    {{-- 현재 언어가 'en'이면 무조건 노란색, 아니면 스크롤 상태에 따라 흰색/검은색 --}}
                     <a href="{{ route('lang.switch', 'en') }}" 
                     :class="{
                         'text-[#f9b417]': '{{ app()->getLocale() }}' === 'en',
                         'text-white': '{{ app()->getLocale() }}' !== 'en' && !isScrolled,
                         'text-gray-900': '{{ app()->getLocale() }}' !== 'en' && isScrolled
                     }"
-                    class="hover:text-[#f9b417] transition-colors duration-300">
-                    EN
-                    </a>
+                    class="hover:text-[#f9b417] transition-colors duration-300">EN</a>
                 </div>
                 
-                {{-- 로그인 영역 (기존 스타일 유지) --}}
+                {{-- 로그인/로그아웃 영역 --}}
                 <div class="border-l pl-[2rem] flex items-center transition-colors duration-300" 
                     :class="isScrolled ? 'border-gray-300' : 'border-gray-600'">
-                    <a href="{{ route('login') }}" 
-                    :class="isScrolled ? 'text-gray-900' : 'text-white'"
-                    class="text-[1.4rem] font-bold hover:text-[#f9b417] whitespace-nowrap transition-colors duration-300">
-                    {{ __('menu.login') }}
-                    </a>
+                    
+                    @guest
+                        {{-- [로그인 전] --}}
+                        <a href="{{ route('login') }}" 
+                        :class="isScrolled ? 'text-gray-900' : 'text-white'"
+                        class="text-[1.4rem] font-bold hover:text-[#f9b417] whitespace-nowrap transition-colors duration-300">
+                        {{ __('menu.login') }}
+                        </a>
+                    @endguest
+
+                    @auth
+                    {{-- [로그인 후] 유저 성함 + 마이페이지 + 로그아웃 버튼 --}}
+                    <div class="flex items-center gap-[1.2rem]">
+                        
+                        {{-- 1. 유저 성함 --}}
+                        <span :class="isScrolled ? 'text-gray-900' : 'text-white'" class="text-[1.4rem] font-bold">
+                            {{ Auth::user()->name }}님
+                        </span>
+                        
+                        {{-- 2. 마이페이지 (경로는 라라벨 설정에 맞춰 dashboard 또는 profile.edit 등으로 변경 가능) --}}
+                        <a href="{{ route('mypage') }}" 
+                            :class="isScrolled ? 'text-gray-600 hover:text-[#f9b417]' : 'text-gray-300 hover:text-white'"
+                            class="text-[1.3rem] font-medium transition-colors">
+                                마이페이지
+                            </a>
+
+                        {{-- 구분선 --}}
+                        <span class="w-[0.1rem] h-[1.2rem]" :class="isScrolled ? 'bg-gray-300' : 'bg-gray-500'"></span>
+
+                        {{-- 3. 로그아웃 --}}
+                        <form method="POST" action="{{ route('logout') }}" class="inline">
+                            @csrf
+                            <button type="submit" 
+                                    :class="isScrolled ? 'text-gray-500 hover:text-red-500' : 'text-gray-400 hover:text-red-400'"
+                                    class="text-[1.3rem] font-medium transition-colors">
+                                로그아웃
+                            </button>
+                        </form>
+                    </div>
+                @endauth
                 </div>
             </div>
 

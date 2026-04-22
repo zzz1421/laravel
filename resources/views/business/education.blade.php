@@ -17,29 +17,13 @@
 
     <div x-data="{ tab: 'copc' }" class="bg-white font-sans text-gray-800">
 
-        {{-- [1] 페이지 헤더 (포엑스 다크 스타일) --}}
-        <section class="relative pt-[14rem] pb-[14rem] px-[4rem] md:px-[18rem] overflow-hidden bg-[#1a1c1e]">
-    
-            {{-- 배경 이미지 (public/images/business/edu_hero.jpg 파일 필요) --}}
-            <img src="{{ asset('images/business/hero-edu.jpg') }}" 
-                alt="FOEx Education" 
-                class="absolute inset-0 w-full h-full object-cover opacity-60"
-                onerror="this.src='https://loremflickr.com/1920/1080/education,seminar'">
-            
-            {{-- 가독성을 위한 연한 그라데이션 오버레이 --}}
-            <div class="absolute inset-0 bg-gradient-to-r from-[#1a1c1e]/60 via-[#1a1c1e]/10 to-transparent pointer-events-none z-0"></div>
-
-            {{-- 텍스트 영역 (상위에 노출되도록 relative z-10 추가) --}}
-            <div class="relative z-10 max-w-[140rem] mx-auto text-center" data-aos="fade-up">
-                <h1 class="text-[4rem] md:text-[6rem] font-black text-white mb-[2.5rem] tracking-tight">
-                    {{ __('business.edu_title') }}
-                </h1>
-                {{-- 배경색 변화에 맞춰 설명글 밝기를 gray-400 -> gray-200으로 조정 --}}
-                <p class="text-[1.8rem] md:text-[2.2rem] text-gray-200 font-medium break-keep">
-                    {{ __('business.edu_desc') }}
-                </p>
-            </div>
-        </section>
+        {{-- [1] 공통 히어로 컴포넌트 (인트로 전용 대형 사이즈) --}}
+        <x-page-hero 
+            category="{{ __('menu.business') }}" 
+            title="{{ __('business.edu_title') }}" 
+            desc="{{ __('business.edu_desc') }}" 
+            bg-image="images/business/hero_edu.jpg" 
+        />
 
         {{-- [2] 탭 메뉴 (Sticky, 포엑스 옐로우 포인트) --}}
         <div id="tab-menu" class="bg-white border-b border-gray-200 sticky shadow-sm" style="top: 8rem; z-index: 90; scroll-margin-top: 8rem;">

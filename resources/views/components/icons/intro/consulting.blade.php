@@ -1,9 +1,13 @@
-<svg {{ $attributes }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+@props(['class' => ''])
+
+{{-- [수정 포인트] $attributes->merge(['class' => $class]) 를 사용해야 외부에서 보낸 크기와 색상이 적용됩니다. --}}
+<svg {{ $attributes->merge(['class' => $class]) }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
     <g clip-path="url(#clip0_9_134)">
         <mask id="mask0_9_134" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
             <path d="M0 1.52588e-05H100V100H0V1.52588e-05Z" fill="white"/>
         </mask>
         <g mask="url(#mask0_9_134)">
+            {{-- stroke="currentColor"와 fill="currentColor"가 아주 잘 적용되어 있습니다! --}}
             <path d="M70.7031 3.90625H88.1715C92.5469 3.90625 96.0937 7.45312 96.0937 11.8285V34.2795C96.0937 38.6547 92.5469 42.2016 88.1715 42.2016C85.109 42.2016 82.6262 44.6844 82.6262 47.7471V52.5125C82.6262 53.9254 80.9182 54.633 79.9191 53.6338L72.3678 45.807C71.1592 44.5982 70.1154 43.7771 68.5547 43.1641" stroke="currentColor" stroke-width="7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M29.6879 27.5391C27.5303 27.5391 25.7812 25.7901 25.7812 23.6324C25.7812 21.4748 27.5303 19.7258 29.6879 19.7258C31.8455 19.7258 33.5945 21.4748 33.5945 23.6324C33.5945 25.7901 31.8455 27.5391 29.6879 27.5391Z" fill="currentColor"/>
             <path d="M43.3598 27.5391C41.2021 27.5391 39.4531 25.7901 39.4531 23.6324C39.4531 21.4748 41.2021 19.7258 43.3598 19.7258C45.5174 19.7258 47.2664 21.4748 47.2664 23.6324C47.2664 25.7901 45.5174 27.5391 43.3598 27.5391Z" fill="currentColor"/>

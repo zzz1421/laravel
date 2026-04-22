@@ -49,8 +49,8 @@ Route::middleware('guest')->group(function () {
 
 // 일반 사용자 대시보드
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return redirect()->route('mypage');
+})->middleware(['auth', 'verified']);
 
 // 일반 로그아웃
 Route::middleware('auth')->group(function () {

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public const HOME = '/mypage';
     /**
      * Register any application services.
      */
